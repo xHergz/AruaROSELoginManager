@@ -17,10 +17,10 @@ This application is used to automatically login the free to play MMORPG, [AruaRO
 3. Use the + button to add an account
 ![](http://i.imgur.com/8ntVdtM.png)
 4. Use the actions buttons
-  + Login: Opens a new game client that will be logged in to that account.
-  + Up Arrow: Move that account up in the list.
-  + Down Arrow: Move that account down in the list.
-  + X Button: Delete that account from the list.
+	+ Login: Opens a new game client that will be logged in to that account.
+  	+ Up Arrow: Move that account up in the list.
+  	+ Down Arrow: Move that account down in the list.
+  	+ X Button: Delete that account from the list.
 ![](http://i.imgur.com/nl2Xczr.png)
 5. Close the application to save the new data to the XML File
 
