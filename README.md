@@ -13,8 +13,10 @@ This application is used to automatically login the free to play MMORPG, [AruaRO
 ## How to use
 1. Open the application
 2. Use the Locate button to find your AruaROSE folder.
+
 ![](http://i.imgur.com/H1EWFsa.png)
 3. Use the + button to add an account
+
 ![](http://i.imgur.com/8ntVdtM.png)
 4. Use the actions buttons
 	+ Login: Opens a new game client that will be logged in to that account.
