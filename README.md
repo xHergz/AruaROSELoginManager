@@ -15,9 +15,11 @@ This application is used to automatically login the free to play MMORPG, [AruaRO
 2. Use the Locate button to find your AruaROSE folder.
 
 ![](http://i.imgur.com/H1EWFsa.png)
+
 3. Use the + button to add an account
 
 ![](http://i.imgur.com/8ntVdtM.png)
+
 4. Use the actions buttons
 	+ Login: Opens a new game client that will be logged in to that account.
   	+ Up Arrow: Move that account up in the list.
@@ -25,6 +27,7 @@ This application is used to automatically login the free to play MMORPG, [AruaRO
   	+ X Button: Delete that account from the list.
 
 ![](http://i.imgur.com/nl2Xczr.png)
+
 5. Close the application to save the new data to the XML File
 
 [Pictures](http://imgur.com/a/F66iz)
