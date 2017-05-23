@@ -21,6 +21,7 @@ This application is used to automatically login the free to play MMORPG, [AruaRO
   	+ Up Arrow: Move that account up in the list.
   	+ Down Arrow: Move that account down in the list.
   	+ X Button: Delete that account from the list.
+
 ![](http://i.imgur.com/nl2Xczr.png)
 5. Close the application to save the new data to the XML File
 
