@@ -30,7 +30,12 @@ This application is used to automatically login the free to play MMORPG, [AruaRO
 
 5. Close the application to save the new data to the XML File
 
-## Custom Emblems
+## Where is the info stored?
+The info you enter is stored in a XML file saved to your AppData/Roaming folder. To get there you can open up the Windows search bar from the Windows button and type %AppData% and hit enter. You will see a AruaROSELoginManager folder with an XML file inside if you have run the application and closed it. You will see if you specified a password for the account it is stored in an MD5 hash. Here is what the file contents will look like:
+
+![](https://imgur.com/gtSaIHn.png)
+
+## Custom emblems
 The installer will install 15 emblems that are taken from the game itself. These images are not included here in the source code here. If you wish to add your own emblems, simply go to the AruaROSELoginManager/Images folder. Delete any "emblemX.png" files you don't want and add any pictures you want to use as emblems. These need to be PNG images and by named emblemX.png where X is the order you want it displayed in. These must be in order or it won't load them. Here is an example:
 
 ![](https://imgur.com/uri6n1f.png)
