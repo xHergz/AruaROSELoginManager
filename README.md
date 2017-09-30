@@ -6,7 +6,7 @@ This application is used to automatically login the free to play MMORPG, [AruaRO
 
 ## How to setup
 1. Run the installer
-	+ [Found Here]()
+	+ [Found Here](https://www.mediafire.com/file/q4jltrm8hz15vca/AruaROSELoginManagerSetup.msi)
 2. Choose the destination folder
 3. Run the program
 
