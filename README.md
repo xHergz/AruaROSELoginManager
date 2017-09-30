@@ -30,4 +30,15 @@ This application is used to automatically login the free to play MMORPG, [AruaRO
 
 5. Close the application to save the new data to the XML File
 
-[Pictures](https://imgur.com/a/wWsqK)
+## Custom Emblems
+The installer will install 15 emblems that are taken from the game itself. These images are not included here in the source code here. If you wish to add your own emblems, simply go to the AruaROSELoginManager/Images folder. Delete any "emblemX.png" files you don't want and add any pictures you want to use as emblems. These need to be PNG images and by named emblemX.png where X is the order you want it displayed in. These must be in order or it won't load them. Here is an example:
+
+![](https://imgur.com/uri6n1f.png)
+
+## Assets:
++ The background is a screenshot taken by me in AruaROSE.
++ The "+" button was made by me in paint.
++ The up/down arrows and the delete button are from [FatCow](http://www.fatcow.com/free-icons)
++ The emblems that come with the installer are taken from the [AruaROSE Armory](http://armory.aruarose.com)
+
+[//]: # (Imgur album with the pictures: https://imgur.com/a/wWsqK))
