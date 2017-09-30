@@ -41,4 +41,4 @@ The installer will install 15 emblems that are taken from the game itself. These
 + The up/down arrows and the delete button are from [FatCow](http://www.fatcow.com/free-icons)
 + The emblems that come with the installer are taken from the [AruaROSE Armory](http://armory.aruarose.com)
 
-[//]: # (Imgur album with the pictures: https://imgur.com/a/wWsqK))
+<!-- Imgur album with the pictures: https://imgur.com/a/wWsqK)) -->
