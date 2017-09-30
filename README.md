@@ -35,7 +35,7 @@ The installer will install 15 emblems that are taken from the game itself. These
 
 ![](https://imgur.com/uri6n1f.png)
 
-## Assets:
+## Assets
 + The background is a screenshot taken by me in AruaROSE.
 + The "+" button was made by me in paint.
 + The up/down arrows and the delete button are from [FatCow](http://www.fatcow.com/free-icons)
