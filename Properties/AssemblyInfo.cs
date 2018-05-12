@@ -10,11 +10,11 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("xHergz")]
 [assembly: AssemblyProduct("AruaROSELoginManager")]
-[assembly: AssemblyCopyright("Copyright xHergz ©  2017")]
+[assembly: AssemblyCopyright("Copyright xHergz ©  2018")]
 [assembly: AssemblyTrademark("https://github.com/xHergz/AruaROSELoginManager")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
