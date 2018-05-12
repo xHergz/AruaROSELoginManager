@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using AruaROSELoginManager.Data;
+using AruaROSELoginManager.Enum;
 
 namespace AruaROSELoginManager.Controls
 {
@@ -51,9 +52,14 @@ namespace AruaROSELoginManager.Controls
         public event EventHandler<AccountDisplayEventArgs> DeletePressed;
 
         /// <summary>
-        /// Event to raise when the login button is pressed
+        /// Event to raise when the Arua login button is pressed
         /// </summary>
-        public event EventHandler<AccountDisplayEventArgs> LoginPressed;
+        public event EventHandler<AccountDisplayEventArgs> LoginAruaPressed;
+
+        /// <summary>
+        /// Event to raise when the Classic login button is pressed
+        /// </summary>
+        public event EventHandler<AccountDisplayEventArgs> LoginClassicPressed;
 
         /// <summary>
         /// Returns the account name for the entry
@@ -132,7 +138,7 @@ namespace AruaROSELoginManager.Controls
         {
             if (sender != null && MoveUpPressed != null)
             {
-                MoveUpPressed(this, GetAccountManagerEventArgs());
+                MoveUpPressed(this, GetAccountManagerEventArgs(Server.NotApplicable));
             }
         }
 
@@ -145,7 +151,7 @@ namespace AruaROSELoginManager.Controls
         {
             if (sender != null && MoveDownPressed != null)
             {
-                MoveDownPressed(this, GetAccountManagerEventArgs());
+                MoveDownPressed(this, GetAccountManagerEventArgs(Server.NotApplicable));
             }
         }
 
@@ -158,20 +164,33 @@ namespace AruaROSELoginManager.Controls
         {
             if (sender != null && DeletePressed != null)
             {
-                DeletePressed(this, GetAccountManagerEventArgs());
+                DeletePressed(this, GetAccountManagerEventArgs(Server.NotApplicable));
             }
         }
 
         /// <summary>
-        /// Handles the login button click
+        /// Handles the Arua login button click
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event args</param>
-        private void _loginButton_Click(object sender, EventArgs e)
+        private void _aruaLoginButton_Click(object sender, EventArgs e)
         {
-            if (sender != null && LoginPressed != null)
+            if (sender != null && LoginAruaPressed != null)
             {
-                LoginPressed(this, GetAccountManagerEventArgs());
+                LoginAruaPressed(this, GetAccountManagerEventArgs(Server.Arua));
+            }
+        }
+
+        /// <summary>
+        /// Handles the Classic login button click
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
+        private void _classicLoginButton_Click(object sender, EventArgs e)
+        {
+            if (sender != null && LoginClassicPressed != null)
+            {
+                LoginClassicPressed(this, GetAccountManagerEventArgs(Server.Classic));
             }
         }
 
@@ -179,11 +198,12 @@ namespace AruaROSELoginManager.Controls
         /// Creates the event args for passing the account display info
         /// </summary>
         /// <returns>The argument object</returns>
-        private AccountDisplayEventArgs GetAccountManagerEventArgs()
+        private AccountDisplayEventArgs GetAccountManagerEventArgs(Server serverId)
         {
             return new AccountDisplayEventArgs()
             {
-                AccountName = _accountNameLabel.Text
+                AccountName = _accountNameLabel.Text,
+                ServerId = serverId
             };
         }
     }

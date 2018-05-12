@@ -86,7 +86,8 @@ namespace AruaROSELoginManager.Controls
             newAccountDisplay.MoveUpPressed += AccountDisplay_MoveUpPressed;
             newAccountDisplay.MoveDownPressed += AccountDisplay_MoveDownPressed;
             newAccountDisplay.DeletePressed += AccountDisplay_DeletePressed;
-            newAccountDisplay.LoginPressed += AccountDisplay_LoginPressed;
+            newAccountDisplay.LoginAruaPressed += AccountDisplay_LoginPressed;
+            newAccountDisplay.LoginClassicPressed += AccountDisplay_LoginPressed;
             _accountFlowLayout.Controls.Add(newAccountDisplay);
         }
 
@@ -277,6 +278,7 @@ namespace AruaROSELoginManager.Controls
                 AccountLoginEventArgs args = new AccountLoginEventArgs()
                 {
                     AccountName = e.AccountName,
+                    ServerId = e.ServerId,
                     FilePath = _rosePathTextBox.Text,
                     RunAsAdmin = _runAsAdminCheckBox.Checked
                 };

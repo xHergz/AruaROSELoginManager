@@ -5,6 +5,7 @@
 // DATE     : 2017-09-30
 // 
 
+using AruaROSELoginManager.Enum;
 using System;
 
 namespace AruaROSELoginManager.Data
@@ -15,5 +16,10 @@ namespace AruaROSELoginManager.Data
         /// The account name
         /// </summary>
         public string AccountName { get; set; }
+
+        /// <summary>
+        /// The server
+        /// </summary>
+        public Server ServerId { get; set; }
     }
 }

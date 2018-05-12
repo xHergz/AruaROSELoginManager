@@ -13,6 +13,7 @@ using System.Threading;
 using AruaROSELoginManager.Controls;
 using AruaROSELoginManager.DAL;
 using AruaROSELoginManager.Data;
+using AruaROSELoginManager.Enum;
 
 namespace AruaROSELoginManager.Controllers
 {
@@ -114,7 +115,7 @@ namespace AruaROSELoginManager.Controllers
             }
 
             //Start a thread for the new login process
-            Thread loginThread = new Thread(() => LoginAccountThread(e.AccountName, password, e.FilePath, e.RunAsAdmin));
+            Thread loginThread = new Thread(() => LoginAccountThread(e.AccountName, password, e.ServerId, e.FilePath, e.RunAsAdmin));
             loginThread.Start();
         }
 
@@ -125,7 +126,7 @@ namespace AruaROSELoginManager.Controllers
         /// <param name="password">The password hash to use</param>
         /// <param name="roseFilePath">The path to the rose folder</param>
         /// <param name="runAsAdmin">Whether we should run as admin or not</param>
-        private void LoginAccountThread(string username, string password, string roseFilePath, bool runAsAdmin)
+        private void LoginAccountThread(string username, string password, Server serverId, string roseFilePath, bool runAsAdmin)
         {
             //Start the process for TRose.exe
             System.Diagnostics.Process process = new System.Diagnostics.Process();
@@ -139,7 +140,7 @@ namespace AruaROSELoginManager.Controllers
             {
                 startInfo.WorkingDirectory = roseFilePath;
                 startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-                startInfo.Arguments = "@AruaOnline@ _account " + username + " _passwordMD5 " + password + " _channel 1";
+                startInfo.Arguments = "_account " + username + " _passwordMD5 " + password + " _server " + serverId.ToString("D") + " _channel 1";
                 if (runAsAdmin)
                 {
                     startInfo.Verb = "runas";

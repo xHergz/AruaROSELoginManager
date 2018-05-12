@@ -38,7 +38,9 @@
             this._accountInfoTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this._accountNameLabel = new System.Windows.Forms.Label();
             this._passwordInfo = new System.Windows.Forms.Label();
-            this._loginButton = new System.Windows.Forms.Button();
+            this._aruaLoginButton = new System.Windows.Forms.Button();
+            this._loginButtonLayout = new System.Windows.Forms.TableLayoutPanel();
+            this._classicLoginButton = new System.Windows.Forms.Button();
             this._accountDisplayTableLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._emblemPicutreBox)).BeginInit();
             this._actionButtonTableLayout.SuspendLayout();
@@ -46,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this._moveDownArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._deleteButton)).BeginInit();
             this._accountInfoTableLayout.SuspendLayout();
+            this._loginButtonLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // _accountDisplayTableLayout
@@ -59,13 +62,14 @@
             this._accountDisplayTableLayout.Controls.Add(this._emblemPicutreBox, 0, 0);
             this._accountDisplayTableLayout.Controls.Add(this._actionButtonTableLayout, 1, 0);
             this._accountDisplayTableLayout.Controls.Add(this._accountInfoTableLayout, 2, 0);
-            this._accountDisplayTableLayout.Controls.Add(this._loginButton, 3, 0);
+            this._accountDisplayTableLayout.Controls.Add(this._loginButtonLayout, 3, 0);
             this._accountDisplayTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this._accountDisplayTableLayout.Location = new System.Drawing.Point(0, 0);
             this._accountDisplayTableLayout.Margin = new System.Windows.Forms.Padding(0);
             this._accountDisplayTableLayout.Name = "_accountDisplayTableLayout";
             this._accountDisplayTableLayout.RowCount = 1;
             this._accountDisplayTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this._accountDisplayTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this._accountDisplayTableLayout.Size = new System.Drawing.Size(427, 100);
             this._accountDisplayTableLayout.TabIndex = 0;
             // 
@@ -175,17 +179,46 @@
             this._passwordInfo.TabIndex = 1;
             this._passwordInfo.Text = "Password Info";
             // 
-            // _loginButton
+            // _aruaLoginButton
             // 
-            this._loginButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this._loginButton.Font = new System.Drawing.Font("Arial", 10F);
-            this._loginButton.Location = new System.Drawing.Point(323, 12);
-            this._loginButton.Name = "_loginButton";
-            this._loginButton.Size = new System.Drawing.Size(100, 75);
-            this._loginButton.TabIndex = 3;
-            this._loginButton.Text = "Login";
-            this._loginButton.UseVisualStyleBackColor = true;
-            this._loginButton.Click += new System.EventHandler(this._loginButton_Click);
+            this._aruaLoginButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this._aruaLoginButton.Font = new System.Drawing.Font("Arial", 10F);
+            this._aruaLoginButton.Location = new System.Drawing.Point(3, 5);
+            this._aruaLoginButton.Name = "_aruaLoginButton";
+            this._aruaLoginButton.Size = new System.Drawing.Size(96, 36);
+            this._aruaLoginButton.TabIndex = 3;
+            this._aruaLoginButton.Text = "Arua";
+            this._aruaLoginButton.UseVisualStyleBackColor = true;
+            this._aruaLoginButton.Click += new System.EventHandler(this._aruaLoginButton_Click);
+            // 
+            // _loginButtonLayout
+            // 
+            this._loginButtonLayout.ColumnCount = 1;
+            this._loginButtonLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this._loginButtonLayout.Controls.Add(this._classicLoginButton, 0, 3);
+            this._loginButtonLayout.Controls.Add(this._aruaLoginButton, 0, 1);
+            this._loginButtonLayout.Location = new System.Drawing.Point(322, 3);
+            this._loginButtonLayout.Name = "_loginButtonLayout";
+            this._loginButtonLayout.RowCount = 5;
+            this._loginButtonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this._loginButtonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this._loginButtonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this._loginButtonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this._loginButtonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this._loginButtonLayout.Size = new System.Drawing.Size(102, 94);
+            this._loginButtonLayout.TabIndex = 3;
+            // 
+            // _classicLoginButton
+            // 
+            this._classicLoginButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this._classicLoginButton.Font = new System.Drawing.Font("Arial", 10F);
+            this._classicLoginButton.Location = new System.Drawing.Point(3, 51);
+            this._classicLoginButton.Name = "_classicLoginButton";
+            this._classicLoginButton.Size = new System.Drawing.Size(96, 36);
+            this._classicLoginButton.TabIndex = 4;
+            this._classicLoginButton.Text = "Classic";
+            this._classicLoginButton.UseVisualStyleBackColor = true;
+            this._classicLoginButton.Click += new System.EventHandler(this._classicLoginButton_Click);
             // 
             // AccountDisplay
             // 
@@ -204,6 +237,7 @@
             ((System.ComponentModel.ISupportInitialize)(this._deleteButton)).EndInit();
             this._accountInfoTableLayout.ResumeLayout(false);
             this._accountInfoTableLayout.PerformLayout();
+            this._loginButtonLayout.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -214,11 +248,13 @@
         private System.Windows.Forms.PictureBox _emblemPicutreBox;
         private System.Windows.Forms.TableLayoutPanel _actionButtonTableLayout;
         private System.Windows.Forms.TableLayoutPanel _accountInfoTableLayout;
-        private System.Windows.Forms.Button _loginButton;
+        private System.Windows.Forms.Button _aruaLoginButton;
         private System.Windows.Forms.PictureBox _moveUpArrow;
         private System.Windows.Forms.PictureBox _moveDownArrow;
         private System.Windows.Forms.PictureBox _deleteButton;
         private System.Windows.Forms.Label _accountNameLabel;
         private System.Windows.Forms.Label _passwordInfo;
+        private System.Windows.Forms.TableLayoutPanel _loginButtonLayout;
+        private System.Windows.Forms.Button _classicLoginButton;
     }
 }

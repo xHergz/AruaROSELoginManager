@@ -7,6 +7,8 @@
 
 using System;
 
+using AruaROSELoginManager.Enum;
+
 namespace AruaROSELoginManager.Data
 {
     public class AccountLoginEventArgs : EventArgs
@@ -15,6 +17,11 @@ namespace AruaROSELoginManager.Data
         /// The account name to login
         /// </summary>
         public string AccountName { get; set; }
+
+        /// <summary>
+        /// The server id to login to
+        /// </summary>
+        public Server ServerId { get; set; }
 
         /// <summary>
         /// The path to the rose folder
