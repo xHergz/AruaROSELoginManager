@@ -2,8 +2,10 @@
 // FILE     : Account.cs
 // PROJECT  : AruaROSE Login Manager
 // AUTHOR   : xHergz
-// DATE     : 2017-05-23
+// DATE     : 2018-10-18
 // 
+
+using System.Collections.Generic;
 
 namespace AruaROSELoginManager.Data
 {
@@ -12,43 +14,20 @@ namespace AruaROSELoginManager.Data
     /// </summary>
     public class Account
     {
-        /// <summary>
-        /// The account username
-        /// </summary>
-        private string _username;
+        public string Username { get; private set; }
 
-        /// <summary>
-        /// The account password 
-        /// </summary>
-        private string _password;
+        public string Password { get; private set; }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="username">The username to use</param>
-        /// <param name="password">The password to use</param>
-        public Account(string username, string password)
+        public string Description { get; private set; }
+
+        public List<string> Characters { get; private set; }
+
+        public Account(string username, string password, string description = "", List<string> characters = null)
         {
-            _username = username;
-            _password = password;
-        }
-
-        /// <summary>
-        /// Gets/Sets the Username of the account
-        /// </summary>
-        public string Username
-        {
-            get { return _username; }
-            set { _username = value; }
-        }
-
-        /// <summary>
-        /// Gets/Sets the Password of the account
-        /// </summary>
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
+            Username = username;
+            Password = password;
+            Description = description;
+            Characters = characters ?? new List<string>();
         }
     }
 }

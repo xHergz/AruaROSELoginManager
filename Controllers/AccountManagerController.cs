@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-using AruaROSELoginManager.Controls;
+using AruaRoseLoginManager.Controls;
 using AruaROSELoginManager.DAL;
 using AruaROSELoginManager.Data;
 using AruaROSELoginManager.Enum;
@@ -22,7 +22,7 @@ namespace AruaROSELoginManager.Controllers
         /// <summary>
         /// The view panel for the account manager
         /// </summary>
-        private AccountManagerPanel _viewPanel;
+        private ManagerPanel _viewPanel;
 
         /// <summary>
         /// The account datastore to access the accounts
@@ -38,7 +38,7 @@ namespace AruaROSELoginManager.Controllers
         /// Constructor
         /// </summary>
         /// <param name="panel">The view panel to reference</param>
-        public AccountManagerController(AccountManagerPanel panel)
+        public AccountManagerController(ManagerPanel panel)
         {
             _viewPanel = panel;
             _datastore = new XmlAccountDatastore();
