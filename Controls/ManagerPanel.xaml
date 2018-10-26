@@ -49,29 +49,38 @@
                             <RowDefinition Height="25" />
                             <RowDefinition Height="25" />
                             <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="25" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Grid.Column="0" Content="Account:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <TextBox  Grid.Row="0" Grid.Column="1" TabIndex="0" />
+                        <TextBox Name="_accountTextBox" Grid.Row="0" Grid.Column="1" TabIndex="0" />
                         <Label Grid.Row="1" Grid.Column="0" Content="Password:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <TextBox  Grid.Row="1" Grid.Column="1" TabIndex="1" />
+                        <TextBox Name="_passwordTextBox" Grid.Row="1" Grid.Column="1" TabIndex="1" />
                         <Label Grid.Row="2" Grid.Column="0" Content="Description:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <TextBox  Grid.Row="2" Grid.Column="1" TabIndex="2" />
+                        <TextBox Name="_descriptionTextBox" Grid.Row="2" Grid.Column="1" TabIndex="2" />
                         <Label Grid.Row="3" Grid.Column="0" Content="Character 1:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <TextBox  Grid.Row="3" Grid.Column="1" TabIndex="3" />
+                        <TextBox Name="_characterOneTextBox" Grid.Row="3" Grid.Column="1" TabIndex="3" />
+                        <CheckBox Name="_characterOneCheckBox" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Row="4" Grid.Column="0" Content="Character 2:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <TextBox  Grid.Row="4" Grid.Column="1" TabIndex="4" />
+                        <TextBox Name="_characterTwoTextBox" Grid.Row="4" Grid.Column="1" TabIndex="4" />
+                        <CheckBox Name="_characterTwoCheckBox" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Row="5" Grid.Column="0" Content="Character 3:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <TextBox  Grid.Row="5" Grid.Column="1" TabIndex="5" />
+                        <TextBox Name="_characterThreeTextBox" Grid.Row="5" Grid.Column="1" TabIndex="5" />
+                        <CheckBox Name="_characterThreeCheckBox" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Row="6" Grid.Column="0" Content="Character 4:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <TextBox  Grid.Row="6" Grid.Column="1" TabIndex="6" />
+                        <TextBox Name="_characterFourTextBox" Grid.Row="6" Grid.Column="1" TabIndex="6" />
+                        <CheckBox Name="_characterFourCheckBox" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Row="7" Grid.Column="0" Content="Character 5:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <TextBox  Grid.Row="7" Grid.Column="1" TabIndex="7" />
-                        <Button Grid.Row="9" Grid.Column="1" Content="Add New Account" TabIndex="8" Style="{StaticResource ButtonStyle}"/>
+                        <TextBox Name="_characterFiveTextBox" Grid.Row="7" Grid.Column="1" TabIndex="7" />
+                        <CheckBox Name="_characterFiveCheckBox" Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Grid.Row="8" Grid.Column="0" Content="Vending:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <CheckBox Name="_vendingCheckBox" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <Button Grid.Row="10" Grid.Column="1" Content="Add New Account" TabIndex="8" Style="{StaticResource ButtonStyle}"/>
                     </Grid>
                 </Grid>
             </TabItem>
