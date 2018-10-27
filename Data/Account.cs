@@ -7,7 +7,7 @@
 
 using System.Collections.Generic;
 
-namespace AruaROSELoginManager.Data
+namespace AruaRoseLoginManager.Data
 {
     /// <summary>
     /// Holds the information for an account

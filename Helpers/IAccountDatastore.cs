@@ -7,9 +7,9 @@
 
 using System.Collections.Generic;
 
-using AruaROSELoginManager.Data;
+using AruaRoseLoginManager.Data;
 
-namespace AruaROSELoginManager.DAL
+namespace AruaRoseLoginManager.DAL
 {
     /// <summary>
     /// Interface for the account datastore to adhere to so it can be changed easily

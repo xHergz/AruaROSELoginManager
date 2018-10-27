@@ -81,10 +81,11 @@
       <DependentUpon>ManagerPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Account.cs" />
-    <Compile Include="Data\AccountDisplayEventArgs.cs" />
     <Compile Include="Data\AccountLoginEventArgs.cs" />
     <Compile Include="Data\ColourPalette.cs" />
+    <Compile Include="Enum\LoginType.cs" />
     <Compile Include="Enum\Server.cs" />
+    <Compile Include="Enum\WindowSize.cs" />
     <Compile Include="Helpers\IAccountDatastore.cs" />
     <Compile Include="Helpers\IManagerPanel.cs" />
     <Compile Include="Helpers\MD5Generator.cs" />
@@ -113,14 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\accept_button.png" />
-    <Resource Include="Assets\add_button.png" />
-    <Resource Include="Assets\background.png" />
-    <Resource Include="Assets\delete.png" />
-    <Resource Include="Assets\move_down.png" />
-    <Resource Include="Assets\move_up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace AruaROSELoginManager.Enum
+﻿namespace AruaRoseLoginManager.Enum
 {
     public enum Server
     {

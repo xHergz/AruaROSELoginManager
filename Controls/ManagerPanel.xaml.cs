@@ -36,7 +36,7 @@ namespace AruaRoseLoginManager.Controls
             InitializeComponent();
         }
 
-        public void AddNewAccount(string accountName, string description, List<string> characters)
+        public void AddAccountToDisplay(string accountName, string description, List<string> characters)
         {
             throw new NotImplementedException();
         }

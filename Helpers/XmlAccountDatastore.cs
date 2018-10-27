@@ -10,9 +10,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 
-using AruaROSELoginManager.Data;
+using AruaRoseLoginManager.Data;
 
-namespace AruaROSELoginManager.DAL
+namespace AruaRoseLoginManager.DAL
 {
     /// <summary>
     /// Stores/Loads account information with an XML file

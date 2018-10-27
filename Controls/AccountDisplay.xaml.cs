@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AruaRoseLoginManager
+namespace AruaRoseLoginManager.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AccountDisplay.xaml
     /// </summary>
-    public partial class ManagerWindow : Window
+    public partial class AccountDisplay : UserControl
     {
-        public ManagerWindow()
+        public AccountDisplay()
         {
             InitializeComponent();
-        }
-
-        private void Window_Initialized(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
         }
     }
 }

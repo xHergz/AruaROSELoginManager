@@ -11,11 +11,11 @@ using System.Linq;
 using System.Threading;
 
 using AruaRoseLoginManager.Controls;
-using AruaROSELoginManager.DAL;
-using AruaROSELoginManager.Data;
-using AruaROSELoginManager.Enum;
+using AruaRoseLoginManager.DAL;
+using AruaRoseLoginManager.Data;
+using AruaRoseLoginManager.Enum;
 
-namespace AruaROSELoginManager.Controllers
+namespace AruaRoseLoginManager.Controllers
 {
     public class AccountManagerController
     {
@@ -52,8 +52,8 @@ namespace AruaROSELoginManager.Controllers
         public bool Initialize()
         {
             //Subscribe to the events
-            _viewPanel.LoginRequest += AccountManagerPanel_LoginRequest;
-            _viewPanel.AddAccountRequest += AccountManagerPanel_AddAccountRequest;
+            _viewPanel.Login += AccountManagerPanel_LoginRequest;
+            _viewPanel.AddAccount += AccountManagerPanel_AddAccountRequest;
 
             //Load the existing accounts
             _accountList = _datastore.GetAllAccounts();

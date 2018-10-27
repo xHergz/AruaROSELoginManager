@@ -1,4 +1,5 @@
-﻿using AruaROSELoginManager.Data;
+﻿using AruaRoseLoginManager.Enum;
+using AruaRoseLoginManager.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,19 @@ namespace AruaRoseLoginManager.Helpers
 
         bool RunAsAdmin { get; set; }
 
+        WindowSize Size { get; set; }
+
         event EventHandler<AccountLoginEventArgs> Login;
 
-        event EventHandler AddAccount;
+        event EventHandler<AccountEventArgs> AddAccount;
 
-        void AddNewAccount(string accountName, string description, List<string> characters);
+        event EventHandler<AccountEventArgs> DeleteAccount;
+
+        event EventHandler<AccountEventArgs> UpdateAccount;
+
+        event EventHandler<MoveAccountEventArgs> MoveAccount;
+
+        void AddAccountToDisplay(string accountName, bool passwordSaved, string description, List<string> characters);
 
         void PromptForPassword(string accountName);
     }
