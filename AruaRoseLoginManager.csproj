@@ -70,6 +70,10 @@
       <DependentUpon>AruaRoseLoginManager.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Controls\AccountDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ManagerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -77,13 +81,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountManagerController.cs" />
+    <Compile Include="Controls\AccountDisplay.xaml.cs">
+      <DependentUpon>AccountDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ManagerPanel.xaml.cs">
       <DependentUpon>ManagerPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Account.cs" />
+    <Compile Include="Data\AccountEventArgs.cs" />
     <Compile Include="Data\AccountLoginEventArgs.cs" />
-    <Compile Include="Data\ColourPalette.cs" />
+    <Compile Include="Data\MoveAccountEventArgs.cs" />
     <Compile Include="Enum\LoginType.cs" />
+    <Compile Include="Enum\MovementDirection.cs" />
     <Compile Include="Enum\Server.cs" />
     <Compile Include="Enum\WindowSize.cs" />
     <Compile Include="Helpers\IAccountDatastore.cs" />
@@ -114,6 +123,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\emblem1.png" />
+    <Resource Include="Assets\emblem10.png" />
+    <Resource Include="Assets\emblem11.png" />
+    <Resource Include="Assets\emblem12.png" />
+    <Resource Include="Assets\emblem13.png" />
+    <Resource Include="Assets\emblem14.png" />
+    <Resource Include="Assets\emblem15.png" />
+    <Resource Include="Assets\emblem2.png" />
+    <Resource Include="Assets\emblem3.png" />
+    <Resource Include="Assets\emblem4.png" />
+    <Resource Include="Assets\emblem5.png" />
+    <Resource Include="Assets\emblem6.png" />
+    <Resource Include="Assets\emblem7.png" />
+    <Resource Include="Assets\emblem8.png" />
+    <Resource Include="Assets\emblem9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
