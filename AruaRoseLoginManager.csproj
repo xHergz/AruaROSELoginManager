@@ -89,7 +89,7 @@
     </Compile>
     <Compile Include="Data\Account.cs" />
     <Compile Include="Data\AccountEventArgs.cs" />
-    <Compile Include="Data\AccountLoginEventArgs.cs" />
+    <Compile Include="Data\LoginEventArgs.cs" />
     <Compile Include="Data\MoveAccountEventArgs.cs" />
     <Compile Include="Enum\LoginType.cs" />
     <Compile Include="Enum\MovementDirection.cs" />
@@ -142,4 +142,7 @@
     <Resource Include="Assets\emblem9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>XCOPY "$(SolutionDir)Assets" "$(TargetDir)\Assets\" /S /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

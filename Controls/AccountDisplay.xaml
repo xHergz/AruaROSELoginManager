@@ -5,16 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AruaRoseLoginManager.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="325">
-    <Grid>
+             d:DesignHeight="50" d:DesignWidth="325">
+    <Grid Name="AccountDisplayGrid" Background="#EAEAEA">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <Image Name="Emblem" Grid.Row="0" Grid.Column="0" Width="45" Height="45" Source="../Assets/emblem1.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
@@ -26,20 +26,53 @@
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="25" />
             </Grid.ColumnDefinitions>
+            <Button Name="MoveUpButton" Grid.Row="0" Grid.Column="0" Width="20" Height="20" Click="MoveUpButton_Click">
+                <Image Source="../Assets/chevron-up-solid.png" />
+            </Button>
+            <Button Name="MoveDownButton" Grid.Row="1" Grid.Column="0" Width="20" Height="20" Click="MoveDownButton_Click">
+                <Image Source="../Assets/chevron-down-solid.png" />
+            </Button>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="AccountName" Grid.Row="0" Grid.Column="0" Text="Account Name" FontSize="12"/>
+                <Image Name="PasswordSaved" Grid.Row="0" Grid.Column="1" Source="../Assets/check-circle-solid.png"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="AccountDescription" Grid.Row="0" Grid.Column="0" Text="Description" FontSize="8"/>
+                <TextBlock Name="AccountCharacters" Grid.Row="1" Grid.Column="0" Text="Char, Char, Char, Char, Char" FontSize="8"/>
+            </Grid>
+            <Button Name="AruaLoginButton" Grid.Row="0" Grid.Column="2" Width="45" Height="20" Content="Arua" Click="AruaLoginButton_Click"/>
+            <Button Name="ClassicLoginButton" Grid.Row="1" Grid.Column="2" Width="45" Height="20" Content="Classic" Click="ClassicLoginButton_Click"/>
+            <Button Name="DeleteButton" Grid.Row="0" Grid.Column="3" Width="20" Height="20" Click="DeleteButton_Click">
+                <Image Source="../Assets/trash-alt-solid.png" />
+            </Button>
+            <Button Name="EditButton" Grid.Row="1" Grid.Column="3" Width="20" Height="20" Click="EditButton_Click">
+                <Image Source="../Assets/edit-solid.png" />
+            </Button>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-        </Grid>
-        <Image Grid.Row="0" Grid.Column="0" Width="45" Height="45" Source="../Assets/emblem1.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button Grid.Row="1" Grid.Column="0" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" />
     </Grid>
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#000000" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#7F0000" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#7F0000"/>
+        </Style>
+    </UserControl.Resources>
 </UserControl>

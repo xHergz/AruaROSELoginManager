@@ -14,6 +14,7 @@ using AruaRoseLoginManager.Controls;
 using AruaRoseLoginManager.DAL;
 using AruaRoseLoginManager.Data;
 using AruaRoseLoginManager.Enum;
+using AruaRoseLoginManager.Helpers;
 
 namespace AruaRoseLoginManager.Controllers
 {
@@ -22,7 +23,7 @@ namespace AruaRoseLoginManager.Controllers
         /// <summary>
         /// The view panel for the account manager
         /// </summary>
-        private ManagerPanel _viewPanel;
+        private IManagerPanel _viewPanel;
 
         /// <summary>
         /// The account datastore to access the accounts
@@ -59,8 +60,8 @@ namespace AruaRoseLoginManager.Controllers
             _accountList = _datastore.GetAllAccounts();
             RefreshList();
 
-            _viewPanel.SetRoseFolderPath(_datastore.GetFilePath());
-            _viewPanel.SetRunAsAdminCheckbox(_datastore.GetRunAsAdmin());
+            _viewPanel.RoseFolderPath = _datastore.GetFilePath();
+            _viewPanel.RunAsAdmin = _datastore.GetRunAsAdmin();
 
             return true;
         }
@@ -70,18 +71,7 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         public void Shutdown()
         {
-            IEnumerable<string> orderedAccountList = _viewPanel.GetAllAccountNames();
-            List<Account> saveList = new List<Account>();
-            foreach(string account in orderedAccountList)
-            {
-                Account foundAccount = _accountList.FirstOrDefault(a => a.Username == account);
-                if (foundAccount != null)
-                {
-                    saveList.Add(foundAccount);
-                }
-            }
-
-            _datastore.SaveAccountData(_viewPanel.RoseFolderPath, _viewPanel.RunAsAdmin, saveList);
+            _datastore.SaveAccountData(_viewPanel.RoseFolderPath, _viewPanel.RunAsAdmin, _accountList);
         }
 
         /// <summary>
@@ -89,7 +79,7 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         private void RefreshList()
         {
-            _accountList.ForEach(a => _viewPanel.AddAccount(a.Username, a.Password));
+            _accountList.ForEach(account => _viewPanel.AddAccountToDisplay(account));
         }
 
         /// <summary>
@@ -97,17 +87,16 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         /// <param name="username">The username to log in</param>
         /// <param name="password">The password to use</param>
-        private void AccountManagerPanel_LoginRequest(object sender, AccountLoginEventArgs e)
+        private void AccountManagerPanel_LoginRequest(object sender, LoginEventArgs e)
         {
-            //Look up the password
-            string password = _accountList.FirstOrDefault(a => a.Username == e.AccountName).Password;
+            string passwordHash = e.Account.PasswordHash;
 
             //Check if the passwords empty
-            if (password == string.Empty)
+            if (passwordHash == string.Empty)
             {
                 //Prompt the user for the password
-                password = _viewPanel.PromptForPassword(e.AccountName);
-                if (password == string.Empty)
+                passwordHash = _viewPanel.PromptForPassword(e.Account.Username);
+                if (passwordHash == string.Empty)
                 {
                     //If the password is still empty, just return
                     return;
@@ -115,7 +104,13 @@ namespace AruaRoseLoginManager.Controllers
             }
 
             //Start a thread for the new login process
-            Thread loginThread = new Thread(() => LoginAccountThread(e.AccountName, password, e.ServerId, e.FilePath, e.RunAsAdmin));
+            Thread loginThread = new Thread(() => LoginAccountThread(
+                e.Account.Username,
+                passwordHash,
+                e.ServerId,
+                e.FilePath,
+                e.RunAsAdmin
+            ));
             loginThread.Start();
         }
 
@@ -169,14 +164,14 @@ namespace AruaRoseLoginManager.Controllers
                 string accountName = string.Empty;
                 string password = string.Empty;
 
-                _viewPanel.PromptForAccountDetails(out accountName, out password);
+                //Account newAccount = _viewPanel.PromptForAccountDetails(out accountName, out password);
 
-                if (accountName != string.Empty)
+                /*if (accountName != string.Empty)
                 {
                     Account newAccount = new Account(accountName, password);
                     _accountList.Add(newAccount);
                     _viewPanel.AddAccount(accountName, password);
-                }
+                }*/
             }
         }
     }

@@ -16,16 +16,16 @@ namespace AruaRoseLoginManager.Data
     {
         public string Username { get; private set; }
 
-        public string Password { get; private set; }
+        public string PasswordHash { get; private set; }
 
         public string Description { get; private set; }
 
         public List<string> Characters { get; private set; }
 
-        public Account(string username, string password, string description = "", List<string> characters = null)
+        public Account(string username, string passwordHash, string description = "", List<string> characters = null)
         {
             Username = username;
-            Password = password;
+            PasswordHash = passwordHash;
             Description = description;
             Characters = characters ?? new List<string>();
         }

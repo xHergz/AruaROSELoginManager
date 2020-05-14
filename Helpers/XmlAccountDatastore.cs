@@ -175,7 +175,7 @@ namespace AruaRoseLoginManager.DAL
             {
                 XElement accountElement = new XElement(ACCOUNT_ELEMENT);
                 accountElement.Add(new XAttribute(USERNAME_ATTRIBUTE, account.Username));
-                accountElement.Add(new XAttribute(PASSWORD_ATTRIBUTE, account.Password));
+                accountElement.Add(new XAttribute(PASSWORD_ATTRIBUTE, account.PasswordHash));
 
                 managerElement.Add(accountElement);
             }

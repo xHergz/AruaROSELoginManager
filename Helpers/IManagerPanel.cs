@@ -16,7 +16,7 @@ namespace AruaRoseLoginManager.Helpers
 
         WindowSize Size { get; set; }
 
-        event EventHandler<AccountLoginEventArgs> Login;
+        event EventHandler<LoginEventArgs> Login;
 
         event EventHandler<AccountEventArgs> AddAccount;
 
@@ -26,8 +26,10 @@ namespace AruaRoseLoginManager.Helpers
 
         event EventHandler<MoveAccountEventArgs> MoveAccount;
 
-        void AddAccountToDisplay(string accountName, bool passwordSaved, string description, List<string> characters);
+        void AddAccountToDisplay(Account account);
 
-        void PromptForPassword(string accountName);
+        string PromptForPassword(string accountName);
+
+        void ShowMessageBox(string message);
     }
 }
