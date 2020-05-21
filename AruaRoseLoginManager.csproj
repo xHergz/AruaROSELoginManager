@@ -125,24 +125,32 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\emblem1.png" />
-    <Resource Include="Assets\emblem10.png" />
-    <Resource Include="Assets\emblem11.png" />
-    <Resource Include="Assets\emblem12.png" />
-    <Resource Include="Assets\emblem13.png" />
-    <Resource Include="Assets\emblem14.png" />
-    <Resource Include="Assets\emblem15.png" />
-    <Resource Include="Assets\emblem2.png" />
-    <Resource Include="Assets\emblem3.png" />
-    <Resource Include="Assets\emblem4.png" />
-    <Resource Include="Assets\emblem5.png" />
-    <Resource Include="Assets\emblem6.png" />
-    <Resource Include="Assets\emblem7.png" />
-    <Resource Include="Assets\emblem8.png" />
-    <Resource Include="Assets\emblem9.png" />
+    <Resource Include="Emblems\emblem1.png" />
+    <Resource Include="Emblems\emblem10.png" />
+    <Resource Include="Emblems\emblem11.png" />
+    <Resource Include="Emblems\emblem12.png" />
+    <Resource Include="Emblems\emblem13.png" />
+    <Resource Include="Emblems\emblem14.png" />
+    <Resource Include="Emblems\emblem15.png" />
+    <Resource Include="Emblems\emblem2.png" />
+    <Resource Include="Emblems\emblem3.png" />
+    <Resource Include="Emblems\emblem4.png" />
+    <Resource Include="Emblems\emblem5.png" />
+    <Resource Include="Emblems\emblem6.png" />
+    <Resource Include="Emblems\emblem7.png" />
+    <Resource Include="Emblems\emblem8.png" />
+    <Resource Include="Emblems\emblem9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\check-circle-solid.png" />
+    <Resource Include="Assets\chevron-down-solid.png" />
+    <Resource Include="Assets\chevron-up-solid.png" />
+    <Resource Include="Assets\edit-solid.png" />
+    <Resource Include="Assets\exclamation-circle-solid.png" />
+    <Resource Include="Assets\trash-alt-solid.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(SolutionDir)Assets" "$(TargetDir)\Assets\" /S /Y</PostBuildEvent>
+    <PostBuildEvent>XCOPY "$(SolutionDir)Emblems" "$(TargetDir)\Emblems\" /S /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AruaRoseLoginManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="500" Initialized="Window_Initialized" Closing="Window_Closing">
-    <DockPanel>
-        
+        Title="MainWindow" Height="650" Width="520" Initialized="Window_Initialized" Closing="Window_Closing" Padding="0">
+    <DockPanel x:Name="MainPanel" LastChildFill="True">
     </DockPanel>
 </Window>

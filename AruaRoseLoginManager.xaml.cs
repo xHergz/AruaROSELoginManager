@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AruaRoseLoginManager.Controllers;
+using AruaRoseLoginManager.Controls;
+using AruaRoseLoginManager.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +23,22 @@ namespace AruaRoseLoginManager
     /// </summary>
     public partial class ManagerWindow : Window
     {
+        private IManagerPanel _managerPanel;
+
+        private AccountManagerController _controller;
+
         public ManagerWindow()
         {
             InitializeComponent();
+            _managerPanel = new ManagerPanel();
+            MainPanel.Children.Add((UserControl)_managerPanel);
+            _controller = new AccountManagerController(_managerPanel);
+            _controller.Initialize();
         }
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

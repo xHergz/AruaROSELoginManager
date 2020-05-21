@@ -13,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using AruaRoseLoginManager.Enum;
 using System.IO;
 
@@ -26,14 +25,16 @@ namespace AruaRoseLoginManager.Controls
     {
         private List<BitmapImage> emblems;
 
-        public string RoseFolderPath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private int currentEmblemIndex;
 
-        public bool RunAsAdmin { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public WindowSize Size { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string RoseFolderPath { get; set; }
+
+        public bool RunAsAdmin { get; set; }
+        public WindowSize Size { get; set; }
 
         public event EventHandler<LoginEventArgs> Login;
 
-        public event EventHandler AddAccount;
+        public event EventHandler<AccountEventArgs> AddAccount;
         public event EventHandler<AccountEventArgs> DeleteAccount;
         public event EventHandler<AccountEventArgs> UpdateAccount;
         public event EventHandler<MoveAccountEventArgs> MoveAccount;
@@ -41,24 +42,19 @@ namespace AruaRoseLoginManager.Controls
         public ManagerPanel()
         {
             InitializeComponent();
-        }
-
-        event EventHandler<AccountEventArgs> IManagerPanel.AddAccount
-        {
-            add
-            {
-                throw new NotImplementedException();
-            }
-
-            remove
-            {
-                throw new NotImplementedException();
-            }
+            currentEmblemIndex = 0;
+            LoadEmblems();
         }
 
         public void AddAccountToDisplay(Account account)
         {
-            throw new NotImplementedException();
+            AccountDisplay newDisplay = new AccountDisplay(
+                AccountStackPanel.Children.Count + 1,
+                AccountStackPanel.Children.Count,
+                GetCurrentEmblem(),
+                account
+            );
+            AccountStackPanel.Children.Add((UserControl)newDisplay);
         }
 
         public string PromptForPassword(string accountName)
@@ -74,15 +70,28 @@ namespace AruaRoseLoginManager.Controls
         private void LoadEmblems()
         {
             int currentEmblem = 1;
-            string emblemPath = ".\\Images\\emblem";
+            string emblemDirectory = "Emblems";
+            string emblemPrefix = "emblem";
             string emblemExtension = ".png";
 
-            while (File.Exists($"{emblemPath}{currentEmblem}{emblemExtension}"))
+            emblems = new List<BitmapImage>();
+            while (File.Exists($"./{emblemDirectory}/{emblemPrefix}{currentEmblem}{emblemExtension}"))
             {
-                string iconPath = $"{emblemPath}{currentEmblem}{emblemExtension}";
+                string iconPath = Path.Combine(Environment.CurrentDirectory, emblemDirectory, $"{emblemPrefix}{currentEmblem}{emblemExtension}");
                 emblems.Add(new BitmapImage(new Uri(iconPath)));
                 ++currentEmblem;
             }
+        }
+
+        private BitmapImage GetCurrentEmblem()
+        {
+            BitmapImage currentEmblem = emblems.ElementAt(currentEmblemIndex);
+            currentEmblemIndex++;
+            if (currentEmblemIndex >= emblems.Count)
+            {
+                currentEmblemIndex = 0;
+            }
+            return currentEmblem;
         }
     }
 }

@@ -92,8 +92,8 @@ namespace AruaRoseLoginManager.Controls
         private BitmapImage GetPasswordSavedIcon(string passwordHash)
         {
             string iconPath = passwordHash == null
-                ? "../Assets/exclamation-circle-solid.png"
-                : "../Assets/check-circle-solid.png";
+                ? "pack://application:,,,/Assets/exclamation-circle-solid.png"
+                : "pack://application:,,,/Assets/check-circle-solid.png";
             return new BitmapImage(new Uri(iconPath));
         }
 

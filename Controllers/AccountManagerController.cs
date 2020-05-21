@@ -39,7 +39,7 @@ namespace AruaRoseLoginManager.Controllers
         /// Constructor
         /// </summary>
         /// <param name="panel">The view panel to reference</param>
-        public AccountManagerController(ManagerPanel panel)
+        public AccountManagerController(IManagerPanel panel)
         {
             _viewPanel = panel;
             _datastore = new XmlAccountDatastore();

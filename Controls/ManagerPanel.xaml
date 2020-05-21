@@ -11,23 +11,23 @@
             <TabItem Header="Accounts">
                 <Grid Background="#404040">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="25" />
+                        <RowDefinition Height="50" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="25" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="39*" />
-                        <ColumnDefinition Width="61*"/>
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Button Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Width="150" Margin="5" HorizontalAlignment="Right" Content="Add Account" />
+                    <StackPanel Name="AccountStackPanel" Grid.Row="1" Grid.Column="1">
 
                     </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Parties">
-                <Grid Background="#A7BBEC">
+                <Grid Background="#404040">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="*" />
@@ -57,28 +57,28 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Content="Account:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="0" Grid.Column="0" Content="Account:" HorizontalAlignment="Right" />
                         <TextBox Name="_accountTextBox" Grid.Row="0" Grid.Column="1" TabIndex="0" />
-                        <Label Grid.Row="1" Grid.Column="0" Content="Password:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="Password:" HorizontalAlignment="Right" />
                         <TextBox Name="_passwordTextBox" Grid.Row="1" Grid.Column="1" TabIndex="1" />
-                        <Label Grid.Row="2" Grid.Column="0" Content="Description:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Description:" HorizontalAlignment="Right" />
                         <TextBox Name="_descriptionTextBox" Grid.Row="2" Grid.Column="1" TabIndex="2" />
-                        <Label Grid.Row="3" Grid.Column="0" Content="Character 1:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="3" Grid.Column="0" Content="Character 1:" HorizontalAlignment="Right" />
                         <TextBox Name="_characterOneTextBox" Grid.Row="3" Grid.Column="1" TabIndex="3" />
-                        <Label Grid.Row="4" Grid.Column="0" Content="Character 2:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="4" Grid.Column="0" Content="Character 2:" HorizontalAlignment="Right" />
                         <TextBox Name="_characterTwoTextBox" Grid.Row="4" Grid.Column="1" TabIndex="4" />
-                        <Label Grid.Row="5" Grid.Column="0" Content="Character 3:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="5" Grid.Column="0" Content="Character 3:" HorizontalAlignment="Right" />
                         <TextBox Name="_characterThreeTextBox" Grid.Row="5" Grid.Column="1" TabIndex="5" />
-                        <Label Grid.Row="6" Grid.Column="0" Content="Character 4:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="6" Grid.Column="0" Content="Character 4:" HorizontalAlignment="Right" />
                         <TextBox Name="_characterFourTextBox" Grid.Row="6" Grid.Column="1" TabIndex="6" />
-                        <Label Grid.Row="7" Grid.Column="0" Content="Character 5:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="7" Grid.Column="0" Content="Character 5:" HorizontalAlignment="Right" />
                         <TextBox Name="_characterFiveTextBox" Grid.Row="7" Grid.Column="1" TabIndex="7" />
-                        <Button Grid.Row="9" Grid.Column="1" Content="Add New Account" TabIndex="8" Style="{StaticResource ButtonStyle}"/>
+                        <Button Grid.Row="9" Grid.Column="1" Content="Add New Account" TabIndex="8" />
                     </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Options">
-                <Grid Background="#A7BBEC">
+                <Grid Background="#404040">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25" />
                         <RowDefinition Height="*" />
@@ -108,12 +108,12 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="50" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Content="Rose Folder:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="0" Grid.Column="0" Content="Rose Folder:" HorizontalAlignment="Right" />
                         <TextBox  Grid.Row="0" Grid.Column="1" TabIndex="0" IsReadOnly="True" />
-                        <Button Grid.Row="0" Grid.Column="3" Content="Browse..." TabIndex="8" Style="{StaticResource ButtonStyle}"/>
-                        <Label Grid.Row="1" Grid.Column="0" Content="Run as Admin:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Button Grid.Row="0" Grid.Column="3" Content="Browse..." TabIndex="8" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="Run as Admin:" HorizontalAlignment="Right" />
                         <CheckBox Grid.Row="1" Grid.Column="1"  Margin="0,5,0,0" VerticalAlignment="Center"/>
-                        <Label Grid.Row="3" Grid.Column="0" Content="Manager Size:" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Row="3" Grid.Column="0" Content="Manager Size:" HorizontalAlignment="Right" />
                         <RadioButton Grid.Row="3" Grid.Column="1" Content="Small" GroupName="ManagerSize" IsChecked="True" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         <RadioButton Grid.Row="3" Grid.Column="1" Content="Medium" GroupName="ManagerSize" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <RadioButton Grid.Row="3" Grid.Column="1" Content="Large" GroupName="ManagerSize" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
@@ -121,7 +121,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Info">
-                <Grid Background="#A7BBEC">
+                <Grid Background="#404040">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25" />
                         <RowDefinition Height="*" />
@@ -135,51 +135,51 @@
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="15" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="125" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="50" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="AruaROSE Login Manager" FontSize="20" FontWeight="ExtraBold" HorizontalAlignment="Center" Style="{StaticResource LabelStyle}" />
-                        <Label Grid.Row="1" Grid.Column="0" Content="Created By:" FontWeight="Bold" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <Label Grid.Row="1" Grid.Column="1" Content="Justin (chug)" HorizontalAlignment="Left" Style="{StaticResource LabelStyle}" />
-                        <Label Grid.Row="2" Grid.Column="0" Content="Source Code:" FontWeight="Bold" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource LabelStyle}" >
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="AruaROSE Login Manager" FontSize="20" FontWeight="ExtraBold" HorizontalAlignment="Center" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="Created By:" FontWeight="Bold" HorizontalAlignment="Right" />
+                        <Label Grid.Row="1" Grid.Column="1" Content="Justin (chug)" HorizontalAlignment="Left" />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Source Code:" FontWeight="Bold" HorizontalAlignment="Right" />
+                        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" >
                             <Hyperlink NavigateUri="https://github.com/xHergz/AruaROSELoginManager/">
                                 On GitHub
                             </Hyperlink>
                         </Label>
-                        <Label Grid.Row="4" Grid.Column="0" Content="Arua Discord:" FontWeight="Bold" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <Label Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource LabelStyle}" >
+                        <Label Grid.Row="4" Grid.Column="0" Content="Arua Discord:" FontWeight="Bold" HorizontalAlignment="Right" />
+                        <Label Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" >
                             <Hyperlink NavigateUri="https://forum.aruarose.com/threads/discord-join-us.162890/">
                                 Forum topic with invitation
                             </Hyperlink>
                         </Label>
-                        <Label Grid.Row="5" Grid.Column="0" Content="Arua Armory:" FontWeight="Bold" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Style="{StaticResource LabelStyle}" >
+                        <Label Grid.Row="5" Grid.Column="0" Content="Arua Armory:" FontWeight="Bold" HorizontalAlignment="Right" />
+                        <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" >
                             <Hyperlink NavigateUri="https://armory.aruarose.com">
                                 Link
                             </Hyperlink>
                         </Label>
-                        <Label Grid.Row="7" Grid.Column="0" Content="Suggestions?" FontWeight="Bold" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <Label Grid.Row="7" Grid.Column="1"  HorizontalAlignment="Left" Style="{StaticResource LabelStyle}" >
+                        <Label Grid.Row="7" Grid.Column="0" Content="Suggestions?" FontWeight="Bold" HorizontalAlignment="Right" />
+                        <Label Grid.Row="7" Grid.Column="1"  HorizontalAlignment="Left" >
                             <Hyperlink NavigateUri="https://forum.aruarose.com/threads/aruarose-login-manager.166415/">
                                 Post them on the forum!
                             </Hyperlink>
                         </Label>
-                        <Label Grid.Row="8" Grid.Column="0" Content="Bugs?" FontWeight="Bold" HorizontalAlignment="Right" Style="{StaticResource LabelStyle}" />
-                        <Label Grid.Row="8" Grid.Column="1"  HorizontalAlignment="Left" Style="{StaticResource LabelStyle}" >
+                        <Label Grid.Row="8" Grid.Column="0" Content="Bugs?" FontWeight="Bold" HorizontalAlignment="Right" />
+                        <Label Grid.Row="8" Grid.Column="1"  HorizontalAlignment="Left" >
                             <Hyperlink NavigateUri="https://forum.aruarose.com/threads/aruarose-login-manager.166415/">
                                 Post them on the forum!
                             </Hyperlink>
@@ -222,14 +222,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="{x:Type Label}" x:Key="LabelStyle">
+        <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" >
                 <Setter.Value>
                     <SolidColorBrush Color="#020202"/>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
+        <Style TargetType="{x:Type Button}">
             <Setter Property="Background" >
                 <Setter.Value>
                     <SolidColorBrush Color="#705D56"/>
