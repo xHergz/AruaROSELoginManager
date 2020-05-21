@@ -149,6 +149,10 @@
     <Resource Include="Assets\exclamation-circle-solid.png" />
     <Resource Include="Assets\trash-alt-solid.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\chevron-down-solid-new.png" />
+    <Resource Include="Assets\chevron-up-solid-new.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(SolutionDir)Emblems" "$(TargetDir)\Emblems\" /S /Y</PostBuildEvent>

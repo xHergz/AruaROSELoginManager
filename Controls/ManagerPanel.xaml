@@ -21,9 +21,12 @@
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Width="150" Margin="5" HorizontalAlignment="Right" Content="Add Account" />
-                    <StackPanel Name="AccountStackPanel" Grid.Row="1" Grid.Column="1">
+                    <ScrollViewer Grid.Row="1" Grid.Column="1">
+                        <StackPanel Name="AccountStackPanel" Grid.Row="1" Grid.Column="1" >
 
-                    </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="Parties">

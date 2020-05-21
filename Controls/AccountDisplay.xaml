@@ -5,32 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AruaRoseLoginManager.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="325">
+             d:DesignHeight="80" d:DesignWidth="400">
     <Grid Name="AccountDisplayGrid" Background="#EAEAEA">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="80" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Image Name="Emblem" Grid.Row="0" Grid.Column="0" Width="45" Height="45" Source="../Assets/emblem1.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Image Name="Emblem" Grid.Row="0" Grid.Column="0" Width="60" Height="60" Source="../Emblems/emblem1.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25" />
+                <ColumnDefinition Width="35" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="25" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="35" />
             </Grid.ColumnDefinitions>
-            <Button Name="MoveUpButton" Grid.Row="0" Grid.Column="0" Width="20" Height="20" Click="MoveUpButton_Click">
-                <Image Source="../Assets/chevron-up-solid.png" />
+            <Button Name="MoveUpButton" Grid.Row="0" Grid.Column="0" Width="25" Height="25" Click="MoveUpButton_Click">
+                <Image Source="../Assets/chevron-up-solid-new.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Button>
-            <Button Name="MoveDownButton" Grid.Row="1" Grid.Column="0" Width="20" Height="20" Click="MoveDownButton_Click">
-                <Image Source="../Assets/chevron-down-solid.png" />
+            <Button Name="MoveDownButton" Grid.Row="1" Grid.Column="0" Width="25" Height="25" Click="MoveDownButton_Click">
+                <Image Source="../Assets/chevron-down-solid-new.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Button>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -40,7 +40,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="20" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="AccountName" Grid.Row="0" Grid.Column="0" Text="Account Name" FontSize="12"/>
+                <TextBlock Name="AccountName" Grid.Row="0" Grid.Column="0" Text="Account Name" FontSize="16"/>
                 <Image Name="PasswordSaved" Grid.Row="0" Grid.Column="1" Source="../Assets/check-circle-solid.png"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
@@ -51,15 +51,15 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="AccountDescription" Grid.Row="0" Grid.Column="0" Text="Description" FontSize="8"/>
-                <TextBlock Name="AccountCharacters" Grid.Row="1" Grid.Column="0" Text="Char, Char, Char, Char, Char" FontSize="8"/>
+                <TextBlock Name="AccountDescription" Grid.Row="0" Grid.Column="0" Text="Description" FontSize="12"/>
+                <TextBlock Name="AccountCharacters" Grid.Row="1" Grid.Column="0" Text="Char, Char, Char, Char, Char" FontSize="12"/>
             </Grid>
-            <Button Name="AruaLoginButton" Grid.Row="0" Grid.Column="2" Width="45" Height="20" Content="Arua" Click="AruaLoginButton_Click"/>
-            <Button Name="ClassicLoginButton" Grid.Row="1" Grid.Column="2" Width="45" Height="20" Content="Classic" Click="ClassicLoginButton_Click"/>
-            <Button Name="DeleteButton" Grid.Row="0" Grid.Column="3" Width="20" Height="20" Click="DeleteButton_Click">
+            <Button Name="AruaLoginButton" Grid.Row="0" Grid.Column="2" Width="65" Height="25" Content="Arua" FontWeight="Normal" Click="AruaLoginButton_Click"/>
+            <Button Name="ClassicLoginButton" Grid.Row="1" Grid.Column="2" Width="65" Height="25" Content="Classic" FontWeight="Normal" Click="ClassicLoginButton_Click"/>
+            <Button Name="DeleteButton" Grid.Row="0" Grid.Column="3" Width="25" Height="25" Click="DeleteButton_Click">
                 <Image Source="../Assets/trash-alt-solid.png" />
             </Button>
-            <Button Name="EditButton" Grid.Row="1" Grid.Column="3" Width="20" Height="20" Click="EditButton_Click">
+            <Button Name="EditButton" Grid.Row="1" Grid.Column="3" Width="25" Height="25" Click="EditButton_Click">
                 <Image Source="../Assets/edit-solid.png" />
             </Button>
         </Grid>

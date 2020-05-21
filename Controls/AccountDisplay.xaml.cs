@@ -70,7 +70,7 @@ namespace AruaRoseLoginManager.Controls
             _position = position;
             _accountInfo = info;
             _evenBackgroundColour = new SolidColorBrush(Color.FromRgb(EVEN_BACKGROUD_COLOUR_VALUE, EVEN_BACKGROUD_COLOUR_VALUE, EVEN_BACKGROUD_COLOUR_VALUE));
-            _oddBackgroundColour = new SolidColorBrush(Color.FromRgb(ODD_BACKGROUND_COLOUR_VALUE, EVEN_BACKGROUD_COLOUR_VALUE, EVEN_BACKGROUD_COLOUR_VALUE));
+            _oddBackgroundColour = new SolidColorBrush(Color.FromRgb(ODD_BACKGROUND_COLOUR_VALUE, ODD_BACKGROUND_COLOUR_VALUE, ODD_BACKGROUND_COLOUR_VALUE));
 
             // Fill in account info
             Emblem.Source = emblem;
@@ -102,12 +102,12 @@ namespace AruaRoseLoginManager.Controls
             // Even
             if (_position % 2 == 0)
             {
-                Background = _evenBackgroundColour;
+                AccountDisplayGrid.Background = _evenBackgroundColour;
             }
             // Odd
             else
             {
-                Background = _oddBackgroundColour;
+                AccountDisplayGrid.Background = _oddBackgroundColour;
             }
         }
 
