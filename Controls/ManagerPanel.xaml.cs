@@ -23,9 +23,11 @@ namespace AruaRoseLoginManager.Controls
     /// </summary>
     public partial class ManagerPanel : UserControl, IManagerPanel
     {
-        private List<BitmapImage> emblems;
+        private List<BitmapImage> _emblems;
 
-        private int currentEmblemIndex;
+        private int _currentEmblemIndex;
+
+        private AccountMode _accountMode = AccountMode.Select;
 
         public string RoseFolderPath { get; set; }
 
@@ -35,14 +37,17 @@ namespace AruaRoseLoginManager.Controls
         public event EventHandler<LoginEventArgs> Login;
 
         public event EventHandler<AccountEventArgs> AddAccount;
+
         public event EventHandler<AccountEventArgs> DeleteAccount;
+
         public event EventHandler<AccountEventArgs> UpdateAccount;
+
         public event EventHandler<MoveAccountEventArgs> MoveAccount;
 
         public ManagerPanel()
         {
             InitializeComponent();
-            currentEmblemIndex = 0;
+            _currentEmblemIndex = 0;
             LoadEmblems();
         }
 
@@ -54,6 +59,7 @@ namespace AruaRoseLoginManager.Controls
                 GetCurrentEmblem(),
                 account
             );
+            newDisplay.LoginAccount += ManagerPanel_LoginRequest;
             AccountStackPanel.Children.Add((UserControl)newDisplay);
         }
 
@@ -74,24 +80,49 @@ namespace AruaRoseLoginManager.Controls
             string emblemPrefix = "emblem";
             string emblemExtension = ".png";
 
-            emblems = new List<BitmapImage>();
+            _emblems = new List<BitmapImage>();
             while (File.Exists($"./{emblemDirectory}/{emblemPrefix}{currentEmblem}{emblemExtension}"))
             {
                 string iconPath = Path.Combine(Environment.CurrentDirectory, emblemDirectory, $"{emblemPrefix}{currentEmblem}{emblemExtension}");
-                emblems.Add(new BitmapImage(new Uri(iconPath)));
+                _emblems.Add(new BitmapImage(new Uri(iconPath)));
                 ++currentEmblem;
             }
         }
 
         private BitmapImage GetCurrentEmblem()
         {
-            BitmapImage currentEmblem = emblems.ElementAt(currentEmblemIndex);
-            currentEmblemIndex++;
-            if (currentEmblemIndex >= emblems.Count)
+            BitmapImage currentEmblem = _emblems.ElementAt(_currentEmblemIndex);
+            _currentEmblemIndex++;
+            if (_currentEmblemIndex >= _emblems.Count)
             {
-                currentEmblemIndex = 0;
+                _currentEmblemIndex = 0;
             }
             return currentEmblem;
+        }
+
+        private void ManagerPanel_LoginRequest(object sender, LoginEventArgs e)
+        {
+            if (sender != null && e != null && Login != null)
+            {
+                e.RunAsAdmin = RunAsAdmin;
+                e.FilePath = RoseFolderPath;
+                Login(sender, e);
+            }
+        }
+
+        private void SwitchAccountPanels(AccountMode newMode)
+        {
+            switch(newMode)
+            {
+                case AccountMode.New:
+                    break;
+                case AccountMode.Edit:
+                    break;
+                case AccountMode.Login:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

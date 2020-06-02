@@ -43,7 +43,7 @@ namespace AruaRoseLoginManager
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            _controller.Shutdown();
         }
     }
 }

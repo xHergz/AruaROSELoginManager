@@ -79,7 +79,10 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         private void RefreshList()
         {
-            _accountList.ForEach(account => _viewPanel.AddAccountToDisplay(account));
+            _accountList.ForEach(account => {
+                _viewPanel.Login += AccountManagerPanel_LoginRequest;
+                _viewPanel.AddAccountToDisplay(account);
+            });
         }
 
         /// <summary>

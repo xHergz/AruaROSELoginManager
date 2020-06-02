@@ -41,43 +41,6 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Content="Account:" HorizontalAlignment="Right" />
-                        <TextBox Name="_accountTextBox" Grid.Row="0" Grid.Column="1" TabIndex="0" />
-                        <Label Grid.Row="1" Grid.Column="0" Content="Password:" HorizontalAlignment="Right" />
-                        <TextBox Name="_passwordTextBox" Grid.Row="1" Grid.Column="1" TabIndex="1" />
-                        <Label Grid.Row="2" Grid.Column="0" Content="Description:" HorizontalAlignment="Right" />
-                        <TextBox Name="_descriptionTextBox" Grid.Row="2" Grid.Column="1" TabIndex="2" />
-                        <Label Grid.Row="3" Grid.Column="0" Content="Character 1:" HorizontalAlignment="Right" />
-                        <TextBox Name="_characterOneTextBox" Grid.Row="3" Grid.Column="1" TabIndex="3" />
-                        <Label Grid.Row="4" Grid.Column="0" Content="Character 2:" HorizontalAlignment="Right" />
-                        <TextBox Name="_characterTwoTextBox" Grid.Row="4" Grid.Column="1" TabIndex="4" />
-                        <Label Grid.Row="5" Grid.Column="0" Content="Character 3:" HorizontalAlignment="Right" />
-                        <TextBox Name="_characterThreeTextBox" Grid.Row="5" Grid.Column="1" TabIndex="5" />
-                        <Label Grid.Row="6" Grid.Column="0" Content="Character 4:" HorizontalAlignment="Right" />
-                        <TextBox Name="_characterFourTextBox" Grid.Row="6" Grid.Column="1" TabIndex="6" />
-                        <Label Grid.Row="7" Grid.Column="0" Content="Character 5:" HorizontalAlignment="Right" />
-                        <TextBox Name="_characterFiveTextBox" Grid.Row="7" Grid.Column="1" TabIndex="7" />
-                        <Button Grid.Row="9" Grid.Column="1" Content="Add New Account" TabIndex="8" />
-                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Options">

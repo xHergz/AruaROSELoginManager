@@ -78,6 +78,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\AccountForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountManagerController.cs" />
@@ -87,10 +91,14 @@
     <Compile Include="Controls\ManagerPanel.xaml.cs">
       <DependentUpon>ManagerPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AccountForm.xaml.cs">
+      <DependentUpon>AccountForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\Account.cs" />
     <Compile Include="Data\AccountEventArgs.cs" />
     <Compile Include="Data\LoginEventArgs.cs" />
     <Compile Include="Data\MoveAccountEventArgs.cs" />
+    <Compile Include="Enum\AccountMode.cs" />
     <Compile Include="Enum\LoginType.cs" />
     <Compile Include="Enum\MovementDirection.cs" />
     <Compile Include="Enum\Server.cs" />

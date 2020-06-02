@@ -35,6 +35,11 @@ namespace AruaRoseLoginManager.DAL
         private const string ACCOUNT_ELEMENT = "Account";
 
         /// <summary>
+        /// The character element name
+        /// </summary>
+        private const string CHARACTER_ELEMENT = "Character";
+
+        /// <summary>
         /// The parent elements attribute to hold the ROSE folder path
         /// </summary>
         private const string FOLDER_ATTRIBUTE = "roseFolder";
@@ -53,6 +58,11 @@ namespace AruaRoseLoginManager.DAL
         /// The account elements attribute to hold the password
         /// </summary>
         private const string PASSWORD_ATTRIBUTE = "password";
+
+        /// <summary>
+        /// The account elements attribute to hold the description
+        /// </summary>
+        private const string DESCRIPTION_ATTRIBUTE = "description";
 
         /// <summary>
         /// The document object of the save file
@@ -104,7 +114,13 @@ namespace AruaRoseLoginManager.DAL
                 {
                     string currentUsername = (string)accountElement.Attribute(USERNAME_ATTRIBUTE);
                     string currentPassword = (string)accountElement.Attribute(PASSWORD_ATTRIBUTE);
-                    Account current = new Account(currentUsername, currentPassword);
+                    string description = (string)accountElement.Attribute(DESCRIPTION_ATTRIBUTE);
+                    List<string> characters = new List<string>();
+                    foreach (XElement characterElement in accountElement.Descendants(CHARACTER_ELEMENT))
+                    {
+                        characters.Add(characterElement.Value);
+                    }
+                    Account current = new Account(currentUsername, currentPassword, description, characters);
                     loadedAccounts.Add(current);
                 }
             }            
@@ -176,6 +192,14 @@ namespace AruaRoseLoginManager.DAL
                 XElement accountElement = new XElement(ACCOUNT_ELEMENT);
                 accountElement.Add(new XAttribute(USERNAME_ATTRIBUTE, account.Username));
                 accountElement.Add(new XAttribute(PASSWORD_ATTRIBUTE, account.PasswordHash));
+                if (!string.IsNullOrWhiteSpace(account.Description))
+                {
+                    accountElement.Add(new XAttribute(DESCRIPTION_ATTRIBUTE, account.Description));
+                }
+                foreach(string characterName in account.Characters)
+                {
+                    accountElement.Add(new XElement(CHARACTER_ELEMENT, characterName));
+                }
 
                 managerElement.Add(accountElement);
             }
