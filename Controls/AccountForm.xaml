@@ -9,52 +9,65 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
-            <RowDefinition Height="30" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="30" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="30" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="30" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="30" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="30" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="30" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="25" />
             <RowDefinition Height="40" />
             <RowDefinition Height="25" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Content="Username*" />
-        <Label Name="_usernameError" Grid.Row="0" Content="Username is required" HorizontalContentAlignment="Right" Foreground="Red" Visibility="Hidden" TextInput="_usernameError_TextInput"/>
-        <TextBox Name="_usernameTextBox" Grid.Row="1" TabIndex="0" />
-        <Label Grid.Row="2" Content="Password" />
-        <TextBox Name="_passwordTextBox" Grid.Row="3" TabIndex="1" />
-        <Label Grid.Row="4" Content="Description" />
-        <TextBox Name="_descriptionTextBox" Grid.Row="5" TabIndex="2" />
-        <Label Grid.Row="6" Content="Character 1" />
-        <TextBox Name="_characterOneTextBox" Grid.Row="7" TabIndex="3" />
-        <Label Grid.Row="8" Content="Character 2" />
-        <TextBox Name="_characterTwoTextBox" Grid.Row="9" TabIndex="4" />
-        <Label Grid.Row="10" Content="Character 3" />
-        <TextBox Name="_characterThreeTextBox" Grid.Row="11" TabIndex="5" />
-        <Label Grid.Row="12" Content="Character 4" />
-        <TextBox Name="_characterFourTextBox" Grid.Row="13" TabIndex="6" />
-        <Label Grid.Row="14" Content="Character 5" />
-        <TextBox Name="_characterFiveTextBox" Grid.Row="15" TabIndex="7" />
-        <Button Name="_saveAccountButton" Grid.Row="17" Content="Save Account" TabIndex="8" Click="SaveAccountButton_Click" />
+        <Label Grid.Row="0" Content="Username*" Grid.ColumnSpan="2" />
+        <Label Name="_usernameError" Grid.Row="0" Content="Username is required" HorizontalContentAlignment="Right" Foreground="Red" Visibility="Hidden" TextInput="_usernameError_TextInput" Grid.ColumnSpan="2"/>
+        <TextBox Name="_usernameTextBox" Grid.Row="1" TabIndex="0" Grid.ColumnSpan="2" FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"/>
+        <Label Grid.Row="2" Content="Password" Grid.ColumnSpan="2" />
+        <PasswordBox Name="_passwordTextBox" Grid.Row="3" TabIndex="1" Grid.ColumnSpan="2" />
+        <Label Grid.Row="4" Content="Description" Grid.ColumnSpan="2" />
+        <TextBox Name="_descriptionTextBox" Grid.Row="5" TabIndex="2" Grid.ColumnSpan="2" />
+        <Label Grid.Row="6" Content="Character 1" Grid.ColumnSpan="2" />
+        <TextBox Name="_characterOneTextBox" Grid.Row="7" TabIndex="3" Grid.ColumnSpan="2" />
+        <Label Grid.Row="8" Content="Character 2" Grid.ColumnSpan="2" />
+        <TextBox Name="_characterTwoTextBox" Grid.Row="9" TabIndex="4" Grid.ColumnSpan="2" />
+        <Label Grid.Row="10" Content="Character 3" Grid.ColumnSpan="2" />
+        <TextBox Name="_characterThreeTextBox" Grid.Row="11" TabIndex="5" Grid.ColumnSpan="2" />
+        <Label Grid.Row="12" Content="Character 4" Grid.ColumnSpan="2" />
+        <TextBox Name="_characterFourTextBox" Grid.Row="13" TabIndex="6" Grid.ColumnSpan="2" />
+        <Label Grid.Row="14" Content="Character 5" Grid.ColumnSpan="2" />
+        <TextBox Name="_characterFiveTextBox" Grid.Row="15" TabIndex="7" Grid.ColumnSpan="2" />
+        <Grid Grid.Row="17">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="25" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Name="_cancelButton" Grid.Column="0" Content="Cancel" TabIndex="9" IsCancel="True" Click="CancelButton_Click" />
+            <Button Name="_saveAccountButton" Grid.Column="2" Content="Save" TabIndex="8" IsDefault="True" Click="SaveAccountButton_Click" />
+        </Grid>
+        
     </Grid>
     <UserControl.Resources>
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="#FFFFFF" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="12" />
         </Style>
         <Style TargetType="Button">
             <Setter Property="Background" Value="#7F0000" />

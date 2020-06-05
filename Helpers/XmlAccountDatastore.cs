@@ -22,7 +22,7 @@ namespace AruaRoseLoginManager.DAL
         /// <summary>
         /// The save files name
         /// </summary>
-        private const string FILE_NAME = "AccountManager.xml";
+        private const string FILE_NAME = "AccountManager_New.xml";
 
         /// <summary>
         /// The parent element name

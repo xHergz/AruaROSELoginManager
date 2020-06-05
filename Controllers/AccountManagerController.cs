@@ -160,21 +160,15 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event args</param>
-        private void AccountManagerPanel_AddAccountRequest(object sender, EventArgs e)
+        private void AccountManagerPanel_AddAccountRequest(object sender, AccountEventArgs e)
         {
             if (sender != null)
             {
-                string accountName = string.Empty;
-                string password = string.Empty;
-
-                //Account newAccount = _viewPanel.PromptForAccountDetails(out accountName, out password);
-
-                /*if (accountName != string.Empty)
+                if (!string.IsNullOrWhiteSpace(e.Account.Username))
                 {
-                    Account newAccount = new Account(accountName, password);
-                    _accountList.Add(newAccount);
-                    _viewPanel.AddAccount(accountName, password);
-                }*/
+                    _accountList.Add(e.Account);
+                    _viewPanel.AddAccountToDisplay(e.Account);
+                }
             }
         }
     }

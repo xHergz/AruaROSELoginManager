@@ -5,17 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AruaRoseLoginManager.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="400">
+             d:DesignHeight="90" d:DesignWidth="400">
     <Grid Name="AccountDisplayGrid" Background="#EAEAEA">
         <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Image Name="Emblem" Grid.Row="0" Grid.Column="0" Width="60" Height="60" Source="../Emblems/emblem1.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Grid Grid.Row="0" Grid.Column="1">
+        <Image Name="Emblem" Grid.Row="1" Grid.Column="0" Width="60" Height="60" Source="../Emblems/emblem1.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />

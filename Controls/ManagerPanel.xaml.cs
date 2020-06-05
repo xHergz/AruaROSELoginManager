@@ -112,16 +112,46 @@ namespace AruaRoseLoginManager.Controls
 
         private void SwitchAccountPanels(AccountMode newMode)
         {
+            _addAccountButton.Visibility = Visibility.Hidden;
+            AccountStackPanel.Visibility = Visibility.Hidden;
+            _accountDisplayScrollViewer.Visibility = Visibility.Hidden;
+            _accountForm.Visibility = Visibility.Hidden;
             switch(newMode)
             {
                 case AccountMode.New:
+                    _accountForm.Visibility = Visibility.Visible;
                     break;
                 case AccountMode.Edit:
+                    _accountForm.Visibility = Visibility.Visible;
                     break;
                 case AccountMode.Login:
+                    
                     break;
+                case AccountMode.Select:
                 default:
+                    _addAccountButton.Visibility = Visibility.Visible;
+                    AccountStackPanel.Visibility = Visibility.Visible;
+                    _accountDisplayScrollViewer.Visibility = Visibility.Visible;
                     break;
+            }
+        }
+
+        private void AddAccountButton_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchAccountPanels(AccountMode.New);
+        }
+
+        private void AccountForm_Cancel(object sender, EventArgs e)
+        {
+            SwitchAccountPanels(AccountMode.Select);
+        }
+
+        private void AccountForm_SaveAccount(object sender, AccountEventArgs e)
+        {
+            if (sender != null && AddAccount != null)
+            {
+                AddAccount(sender, e);
+                SwitchAccountPanels(AccountMode.Select);
             }
         }
     }

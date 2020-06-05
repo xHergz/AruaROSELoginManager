@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
 using AruaRoseLoginManager.Data;
+using AruaRoseLoginManager.Helpers;
 
 namespace AruaRoseLoginManager.Controls
 {
@@ -12,11 +14,33 @@ namespace AruaRoseLoginManager.Controls
     /// </summary>
     public partial class AccountForm : UserControl
     {
-        public EventHandler<AccountEventArgs> SaveAccount;
+        private List<TextBox> _characterTextBoxes;
+
+        [Browsable(true)]
+        public event EventHandler Cancel;
+
+        [Browsable(true)]
+        public event EventHandler<AccountEventArgs> SaveAccount;
 
         public AccountForm()
         {
             InitializeComponent();
+            _characterTextBoxes = new List<TextBox>()
+            {
+                _characterOneTextBox,
+                _characterTwoTextBox,
+                _characterThreeTextBox,
+                _characterFourTextBox,
+                _characterFiveTextBox
+            };
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            if (sender != null && Cancel != null)
+            {
+                Cancel(this, EventArgs.Empty);
+            }
         }
 
         private void SaveAccountButton_Click(object sender, RoutedEventArgs e)
@@ -28,20 +52,22 @@ namespace AruaRoseLoginManager.Controls
 
             if (sender != null && SaveAccount != null)
             {
+                List<string> characters = new List<string>();
+                foreach(TextBox charTextBox in _characterTextBoxes)
+                {
+                    if (!string.IsNullOrWhiteSpace(charTextBox.Text))
+                    {
+                        characters.Add(charTextBox.Text);
+                    }
+                }
+
                 AccountEventArgs args = new AccountEventArgs()
                 {
                     Account = new Account(
                         _usernameTextBox.Text,
-                        _passwordTextBox.Text,
+                        MD5Generator.GetMd5Hash(_passwordTextBox.Password),
                         _descriptionTextBox.Text,
-                        new List<string>()
-                        {
-                            _characterOneTextBox.Text,
-                            _characterTwoTextBox.Text,
-                            _characterThreeTextBox.Text,
-                            _characterFourTextBox.Text,
-                            _characterFiveTextBox.Text
-                        }
+                        characters
                     )
                 };
                 SaveAccount(this, args);
