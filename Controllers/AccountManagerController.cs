@@ -33,7 +33,7 @@ namespace AruaRoseLoginManager.Controllers
         /// <summary>
         /// The list of all the accounts
         /// </summary>
-        private List<Account> _accountList;
+        private Dictionary<string, Account> _accountList;
 
         /// <summary>
         /// Constructor
@@ -43,7 +43,7 @@ namespace AruaRoseLoginManager.Controllers
         {
             _viewPanel = panel;
             _datastore = new XmlAccountDatastore();
-            _accountList = new List<Account>();
+            _accountList = new Dictionary<string, Account>();
         }
 
         /// <summary>
@@ -55,9 +55,10 @@ namespace AruaRoseLoginManager.Controllers
             //Subscribe to the events
             _viewPanel.Login += AccountManagerPanel_LoginRequest;
             _viewPanel.AddAccount += AccountManagerPanel_AddAccountRequest;
+            _viewPanel.UpdateAccount += AccountManagerPanel_UpdateAccountRequest;
 
             //Load the existing accounts
-            _accountList = _datastore.GetAllAccounts();
+            _accountList = _datastore.GetAllAccounts().ToDictionary(account => account.Username);
             RefreshList();
 
             _viewPanel.RoseFolderPath = _datastore.GetFilePath();
@@ -71,7 +72,11 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         public void Shutdown()
         {
-            _datastore.SaveAccountData(_viewPanel.RoseFolderPath, _viewPanel.RunAsAdmin, _accountList);
+            _datastore.SaveAccountData(
+                _viewPanel.RoseFolderPath,
+                _viewPanel.RunAsAdmin,
+                _accountList.Values.ToList()
+            );
         }
 
         /// <summary>
@@ -79,10 +84,11 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         private void RefreshList()
         {
-            _accountList.ForEach(account => {
+            _viewPanel.ClearDisplay();
+            foreach (Account account in _accountList.Values) {
                 _viewPanel.Login += AccountManagerPanel_LoginRequest;
                 _viewPanel.AddAccountToDisplay(account);
-            });
+            };
         }
 
         /// <summary>
@@ -166,9 +172,27 @@ namespace AruaRoseLoginManager.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(e.Account.Username))
                 {
-                    _accountList.Add(e.Account);
+                    _accountList.Add(e.Account.Username, e.Account);
                     _viewPanel.AddAccountToDisplay(e.Account);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Handles the event raised when updating an account
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
+        private void AccountManagerPanel_UpdateAccountRequest(object sender, AccountEventArgs e)
+        {
+            if (
+                sender != null
+                && !string.IsNullOrWhiteSpace(e.Account.Username)
+                && _accountList.ContainsKey(e.Account.Username)
+            )
+            {
+                _accountList[e.Account.Username] = e.Account;
+                RefreshList();
             }
         }
     }

@@ -35,6 +35,18 @@ namespace AruaRoseLoginManager.Controls
             };
         }
 
+        public void PopulateFields(Account account)
+        {
+            _usernameTextBox.Text = account.Username;
+            _usernameTextBox.IsEnabled = false;
+            _reinputPasswordTip.Visibility = Visibility.Visible;
+            _descriptionTextBox.Text = account.Description;
+            for(short i = 0; i < account.Characters.Count && i < _characterTextBoxes.Count; i++)
+            {
+                _characterTextBoxes[i].Text = account.Characters[i];
+            }
+        }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             if (sender != null && Cancel != null)
@@ -61,11 +73,15 @@ namespace AruaRoseLoginManager.Controls
                     }
                 }
 
+                string passwordHash = string.IsNullOrWhiteSpace(_passwordTextBox.Password)
+                    ? string.Empty
+                    : MD5Generator.GetMd5Hash(_passwordTextBox.Password);
+
                 AccountEventArgs args = new AccountEventArgs()
                 {
                     Account = new Account(
                         _usernameTextBox.Text,
-                        MD5Generator.GetMd5Hash(_passwordTextBox.Password),
+                        passwordHash,
                         _descriptionTextBox.Text,
                         characters
                     )

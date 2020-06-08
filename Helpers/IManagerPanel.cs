@@ -28,6 +28,8 @@ namespace AruaRoseLoginManager.Helpers
 
         void AddAccountToDisplay(Account account);
 
+        void ClearDisplay();
+
         string PromptForPassword(string accountName);
 
         void ShowMessageBox(string message);

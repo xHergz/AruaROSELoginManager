@@ -36,6 +36,7 @@
         <Label Name="_usernameError" Grid.Row="0" Content="Username is required" HorizontalContentAlignment="Right" Foreground="Red" Visibility="Hidden" TextInput="_usernameError_TextInput" Grid.ColumnSpan="2"/>
         <TextBox Name="_usernameTextBox" Grid.Row="1" TabIndex="0" Grid.ColumnSpan="2" FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"/>
         <Label Grid.Row="2" Content="Password" Grid.ColumnSpan="2" />
+        <Label Name="_reinputPasswordTip" Grid.Row="2" Content="Reinput password to save it again" HorizontalContentAlignment="Right" Foreground="Yellow" Visibility="Hidden"/>
         <PasswordBox Name="_passwordTextBox" Grid.Row="3" TabIndex="1" Grid.ColumnSpan="2" />
         <Label Grid.Row="4" Content="Description" Grid.ColumnSpan="2" />
         <TextBox Name="_descriptionTextBox" Grid.Row="5" TabIndex="2" Grid.ColumnSpan="2" />

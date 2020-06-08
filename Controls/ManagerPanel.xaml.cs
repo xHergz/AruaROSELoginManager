@@ -60,7 +60,13 @@ namespace AruaRoseLoginManager.Controls
                 account
             );
             newDisplay.LoginAccount += ManagerPanel_LoginRequest;
-            AccountStackPanel.Children.Add((UserControl)newDisplay);
+            newDisplay.EditAccount += AccountDisplay_EditRequest;
+            AccountStackPanel.Children.Add(newDisplay);
+        }
+
+        public void ClearDisplay()
+        {
+            AccountStackPanel.Children.Clear();
         }
 
         public string PromptForPassword(string accountName)
@@ -110,12 +116,22 @@ namespace AruaRoseLoginManager.Controls
             }
         }
 
+        private void AccountDisplay_EditRequest(object sender, AccountEventArgs e)
+        {
+            if (sender != null)
+            {
+                _accountForm.PopulateFields(e.Account);
+                SwitchAccountPanels(AccountMode.Edit);
+            }
+        }
+
         private void SwitchAccountPanels(AccountMode newMode)
         {
             _addAccountButton.Visibility = Visibility.Hidden;
             AccountStackPanel.Visibility = Visibility.Hidden;
             _accountDisplayScrollViewer.Visibility = Visibility.Hidden;
             _accountForm.Visibility = Visibility.Hidden;
+            _accountMode = newMode;
             switch(newMode)
             {
                 case AccountMode.New:
@@ -148,9 +164,12 @@ namespace AruaRoseLoginManager.Controls
 
         private void AccountForm_SaveAccount(object sender, AccountEventArgs e)
         {
-            if (sender != null && AddAccount != null)
+            EventHandler<AccountEventArgs> actionHandler = _accountMode == AccountMode.New
+                ? AddAccount
+                : UpdateAccount;
+            if (sender != null && actionHandler != null)
             {
-                AddAccount(sender, e);
+                actionHandler(sender, e);
                 SwitchAccountPanels(AccountMode.Select);
             }
         }
