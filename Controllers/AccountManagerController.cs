@@ -56,6 +56,8 @@ namespace AruaRoseLoginManager.Controllers
             _viewPanel.Login += AccountManagerPanel_LoginRequest;
             _viewPanel.AddAccount += AccountManagerPanel_AddAccountRequest;
             _viewPanel.UpdateAccount += AccountManagerPanel_UpdateAccountRequest;
+            _viewPanel.MoveAccount += AccountManagerPanel_MoveAccountRequest;
+            _viewPanel.DeleteAccount += AccountManagerPanel_DeleteAccountRequest;
 
             //Load the existing accounts
             _accountList = _datastore.GetAllAccounts().ToDictionary(account => account.Username);
@@ -192,6 +194,31 @@ namespace AruaRoseLoginManager.Controllers
             )
             {
                 _accountList[e.Account.Username] = e.Account;
+                RefreshList();
+            }
+        }
+
+        private void AccountManagerPanel_MoveAccountRequest(object sender, MoveAccountEventArgs e)
+        {
+            List<Account> orderedList = _accountList.Values.ToList();
+            int currentIndex = orderedList.FindIndex(account => account.Username == e.Account.Username);
+            if (sender != null && currentIndex != -1)
+            {
+                int newIndex = e.Direction == MovementDirection.Up
+                    ? currentIndex - 1
+                    : currentIndex + 1;
+                orderedList.RemoveAt(currentIndex);
+                orderedList.Insert(newIndex, e.Account);
+                _accountList = orderedList.ToDictionary(account => account.Username);
+                RefreshList();
+            }
+        }
+
+        private void AccountManagerPanel_DeleteAccountRequest(object sender, AccountEventArgs e)
+        {
+            if (sender != null)
+            {
+                _accountList.Remove(e.Account.Username);
                 RefreshList();
             }
         }

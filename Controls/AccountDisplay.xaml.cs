@@ -114,7 +114,7 @@ namespace AruaRoseLoginManager.Controls
         private void UpdateButtons(int totalDisplays)
         {
             // Hide the move up button if it's the first one
-            if (_position == 1)
+            if (_position == 0)
             {
                 MoveUpButton.Visibility = Visibility.Hidden;
             }
@@ -124,13 +124,13 @@ namespace AruaRoseLoginManager.Controls
             }
 
             // Hide the move down button if it's the last one
-            if (_position == totalDisplays)
+            if (_position == totalDisplays - 1)
             {
                 MoveDownButton.Visibility = Visibility.Hidden;
             }
             else
             {
-                MoveUpButton.Visibility = Visibility.Visible;
+                MoveDownButton.Visibility = Visibility.Visible;
             }
         }
 
