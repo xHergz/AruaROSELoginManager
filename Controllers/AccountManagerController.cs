@@ -101,13 +101,14 @@ namespace AruaRoseLoginManager.Controllers
         /// <param name="password">The password to use</param>
         private void AccountManagerPanel_LoginRequest(object sender, LoginEventArgs e)
         {
-            string passwordHash = e.Account.PasswordHash;
+            Account account = _accountList[e.Id];
+            string passwordHash = account.PasswordHash;
 
             //Check if the passwords empty
             if (passwordHash == string.Empty)
             {
                 //Prompt the user for the password
-                passwordHash = _viewPanel.PromptForPassword(e.Account.Username);
+                passwordHash = _viewPanel.PromptForPassword(account.Username);
                 if (passwordHash == string.Empty)
                 {
                     //If the password is still empty, just return
@@ -117,7 +118,7 @@ namespace AruaRoseLoginManager.Controllers
 
             //Start a thread for the new login process
             Thread loginThread = new Thread(() => LoginAccountThread(
-                e.Account.Username,
+                account.Username,
                 passwordHash,
                 e.ServerId,
                 e.FilePath,
@@ -199,17 +200,18 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
-        private void AccountManagerPanel_MoveAccountRequest(object sender, MoveAccountEventArgs e)
+        private void AccountManagerPanel_MoveAccountRequest(object sender, MoveListItemEventArgs e)
         {
             List<Account> orderedList = _accountList.Values.ToList();
-            int currentIndex = orderedList.FindIndex(account => account.Username == e.Account.Username);
+            Account accountToMove = orderedList.Find(account => account.Username == e.Id);
+            int currentIndex = orderedList.IndexOf(accountToMove);
             if (sender != null && currentIndex != -1)
             {
                 int newIndex = e.Direction == MovementDirection.Up
                     ? currentIndex - 1
                     : currentIndex + 1;
                 orderedList.RemoveAt(currentIndex);
-                orderedList.Insert(newIndex, e.Account);
+                orderedList.Insert(newIndex, accountToMove);
                 _accountList = orderedList.ToDictionary(account => account.Username);
                 RefreshList();
             }

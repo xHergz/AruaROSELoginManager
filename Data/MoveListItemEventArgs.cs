@@ -4,9 +4,9 @@ using AruaRoseLoginManager.Enum;
 
 namespace AruaRoseLoginManager.Data
 {
-    public class MoveAccountEventArgs : EventArgs
+    public class MoveListItemEventArgs : EventArgs
     {
-        public Account Account;
+        public string Id;
 
         public MovementDirection Direction;
     }

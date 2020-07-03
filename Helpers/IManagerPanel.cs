@@ -24,7 +24,7 @@ namespace AruaRoseLoginManager.Helpers
 
         event EventHandler<AccountEventArgs> UpdateAccount;
 
-        event EventHandler<MoveAccountEventArgs> MoveAccount;
+        event EventHandler<MoveListItemEventArgs> MoveAccount;
 
         event EventHandler LoginParty;
 

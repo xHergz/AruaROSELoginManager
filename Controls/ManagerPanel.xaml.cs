@@ -32,6 +32,7 @@ namespace AruaRoseLoginManager.Controls
         public string RoseFolderPath { get; set; }
 
         public bool RunAsAdmin { get; set; }
+
         public WindowSize Size { get; set; }
 
         public event EventHandler<LoginEventArgs> Login;
@@ -42,7 +43,7 @@ namespace AruaRoseLoginManager.Controls
 
         public event EventHandler<AccountEventArgs> UpdateAccount;
 
-        public event EventHandler<MoveAccountEventArgs> MoveAccount;
+        public event EventHandler<MoveListItemEventArgs> MoveAccount;
 
         public event EventHandler LoginParty;
 
@@ -55,20 +56,19 @@ namespace AruaRoseLoginManager.Controls
 
         public void AddAccountToDisplay(Account account)
         {
-            AccountDisplay newDisplay = new AccountDisplay(
+            ListDisplay newDisplay = new ListDisplay(
                 AccountStackPanel.Children.Count,
-                AccountStackPanel.Children.Count + 1,
-                GetCurrentEmblem(),
-                account
+                account,
+                GetCurrentEmblem()
             );
-            newDisplay.LoginAccount += ManagerPanel_LoginRequest;
-            newDisplay.EditAccount += AccountDisplay_EditRequest;
-            newDisplay.MoveAccount += AccountDisplay_MoveRequest;
-            newDisplay.DeleteAccount += AccountDisplay_DeleteRequest;
+            newDisplay.Login += ManagerPanel_LoginRequest;
+            newDisplay.EditListItem += AccountDisplay_EditRequest;
+            newDisplay.MoveListItem += AccountDisplay_MoveRequest;
+            newDisplay.DeleteListItem += AccountDisplay_DeleteRequest;
             AccountStackPanel.Children.Add(newDisplay);
             for(int i = 0; i < AccountStackPanel.Children.Count; i++)
             {
-                AccountDisplay display = (AccountDisplay)AccountStackPanel.Children[i];
+                ListDisplay display = (ListDisplay)AccountStackPanel.Children[i];
                 display.UpdateDisplay(i, AccountStackPanel.Children.Count);
             }
         }
@@ -126,16 +126,17 @@ namespace AruaRoseLoginManager.Controls
             }
         }
 
-        private void AccountDisplay_EditRequest(object sender, AccountEventArgs e)
+        private void AccountDisplay_EditRequest(object sender, ListEventArgs e)
         {
             if (sender != null)
             {
-                _accountForm.PopulateFields(e.Account);
+                //Account account = 
+                //_accountForm.PopulateFields(e.Account);
                 SwitchAccountPanels(AccountMode.Edit);
             }
         }
 
-        private void AccountDisplay_MoveRequest(object sender, MoveAccountEventArgs e)
+        private void AccountDisplay_MoveRequest(object sender, MoveListItemEventArgs e)
         {
             if (sender != null && MoveAccount != null)
             {
@@ -143,11 +144,11 @@ namespace AruaRoseLoginManager.Controls
             }
         }
 
-        private void AccountDisplay_DeleteRequest(object sender, AccountEventArgs e)
+        private void AccountDisplay_DeleteRequest(object sender, ListEventArgs e)
         {
             if (sender != null && DeleteAccount != null)
             {
-                DeleteAccount(sender, e);
+                //DeleteAccount(sender, e);
             }
         }
 

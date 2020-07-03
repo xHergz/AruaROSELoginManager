@@ -13,14 +13,9 @@ namespace AruaRoseLoginManager.Data
     public class LoginEventArgs : EventArgs
     {
         /// <summary>
-        /// The account to login
+        /// The identifier of the entity to login
         /// </summary>
-        public Account Account { get; set; }
-
-        /// <summary>
-        /// The character name to login (Not available atm)
-        /// </summary>
-        public string CharacterName { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// The server id to login to

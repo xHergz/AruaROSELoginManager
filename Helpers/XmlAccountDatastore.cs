@@ -108,15 +108,16 @@ namespace AruaRoseLoginManager.DAL
             if (File.Exists(_completeFilePath))
             {
                 _saveFile = XDocument.Load(_completeFilePath);
+                XElement root = _saveFile.Element(MANAGER_ELEMENT);
 
                 //Loop through the Account elements
-                foreach (XElement accountElement in _saveFile.Descendants(ACCOUNT_ELEMENT))
+                foreach (XElement accountElement in root.Elements(ACCOUNT_ELEMENT))
                 {
                     string currentUsername = (string)accountElement.Attribute(USERNAME_ATTRIBUTE);
                     string currentPassword = (string)accountElement.Attribute(PASSWORD_ATTRIBUTE);
                     string description = (string)accountElement.Attribute(DESCRIPTION_ATTRIBUTE);
                     List<string> characters = new List<string>();
-                    foreach (XElement characterElement in accountElement.Descendants(CHARACTER_ELEMENT))
+                    foreach (XElement characterElement in accountElement.Elements(CHARACTER_ELEMENT))
                     {
                         characters.Add(characterElement.Value);
                     }

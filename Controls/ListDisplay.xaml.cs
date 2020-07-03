@@ -12,7 +12,7 @@ namespace AruaRoseLoginManager.Controls
     /// <summary>
     /// Interaction logic for AccountDisplay.xaml
     /// </summary>
-    public partial class AccountDisplay : UserControl
+    public partial class ListDisplay : UserControl
     {
         /// <summary>
         /// Used to make #EAEAEA/rgb(234, 234, 234)
@@ -30,9 +30,9 @@ namespace AruaRoseLoginManager.Controls
         private int _position;
 
         /// <summary>
-        /// The account info for the display
+        /// Unique identifier for actions carried out on the list
         /// </summary>
-        private Account _accountInfo;
+        private string _itemIdentifier;
 
         /// <summary>
         /// The background colour to use for odd positions
@@ -42,44 +42,58 @@ namespace AruaRoseLoginManager.Controls
         /// <summary>
         /// The background colour to use for even positions
         /// </summary>
-        private SolidColorBrush _evenBackgroundColour;        
+        private SolidColorBrush _evenBackgroundColour;
 
         /// <summary>
         /// Event to raise when the delete button is pressed
         /// </summary>
-        public event EventHandler<AccountEventArgs> DeleteAccount;
+        public event EventHandler<ListEventArgs> DeleteListItem;
 
         /// <summary>
         /// Event to raise when the edit button is pressed
         /// </summary>
-        public event EventHandler<AccountEventArgs> EditAccount;
+        public event EventHandler<ListEventArgs> EditListItem;
 
         /// <summary>
         /// Event to raise when the Arua/Classic login buttons are pressed
         /// </summary>
-        public event EventHandler<LoginEventArgs> LoginAccount;
+        public event EventHandler<LoginEventArgs> Login;
 
         /// <summary>
         /// Event to raise when the move up/down buttons are pressed
         /// </summary>
-        public event EventHandler<MoveAccountEventArgs> MoveAccount;
+        public event EventHandler<MoveListItemEventArgs> MoveListItem;
 
-        public AccountDisplay(int position, int totalDisplays, ImageSource emblem, Account info)
+        private ListDisplay(int position)
         {
             InitializeComponent();
             _position = position;
-            _accountInfo = info;
             _evenBackgroundColour = new SolidColorBrush(Color.FromRgb(EVEN_BACKGROUD_COLOUR_VALUE, EVEN_BACKGROUD_COLOUR_VALUE, EVEN_BACKGROUD_COLOUR_VALUE));
             _oddBackgroundColour = new SolidColorBrush(Color.FromRgb(ODD_BACKGROUND_COLOUR_VALUE, ODD_BACKGROUND_COLOUR_VALUE, ODD_BACKGROUND_COLOUR_VALUE));
+        }
 
+        public ListDisplay(int position, Account info, ImageSource emblem) : this(position)
+        {
+            _itemIdentifier = info.Username;
+            
             // Fill in account info
             Emblem.Source = emblem;
-            AccountName.Text = info.Username;
-            PasswordSaved.Source = GetPasswordSavedIcon(info.PasswordHash);
-            AccountDescription.Text = info.Description;
-            AccountCharacters.Text = string.Join(", ", info.Characters.ToArray());
+            ListItemIdentifier.Text = info.Username;
+            AllInfoIncluded.Source = GetPasswordSavedIcon(info.PasswordHash);
+            ListItemDescription.Text = info.Description;
+            ListItemDetails.Text = string.Join(", ", info.Characters.ToArray());
+        }
 
-            UpdateDisplay(position, totalDisplays);
+        public ListDisplay(int position, Party info) : this(position)
+        {
+            _itemIdentifier = info.Name;
+
+            // Fill in party info
+            ListDisplayGrid.ColumnDefinitions[0].Width = new GridLength(0);
+            ListItemIdentifier.Text = info.Name;
+            AllInfoIncluded.Visibility = Visibility.Hidden;
+            ListItemDescription.Text = info.Description;
+            ListItemDetails.Text = string.Join(", ", info.Accounts.ToArray());
         }
 
         public void UpdateDisplay(int newPosition, int totalDisplays)
@@ -102,12 +116,12 @@ namespace AruaRoseLoginManager.Controls
             // Even
             if (_position % 2 == 0)
             {
-                AccountDisplayGrid.Background = _evenBackgroundColour;
+                ListDisplayGrid.Background = _evenBackgroundColour;
             }
             // Odd
             else
             {
-                AccountDisplayGrid.Background = _oddBackgroundColour;
+                ListDisplayGrid.Background = _oddBackgroundColour;
             }
         }
 
@@ -136,77 +150,77 @@ namespace AruaRoseLoginManager.Controls
 
         private void AruaLoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender != null && LoginAccount != null)
+            if (sender != null && Login != null)
             {
                 LoginEventArgs args = new LoginEventArgs()
                 {
-                    Account = _accountInfo,
+                    Id = _itemIdentifier,
                     ServerId = Server.Arua
                 };
-                LoginAccount(this, args);
+                Login(this, args);
             }
         }
 
         private void ClassicLoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender != null && LoginAccount != null)
+            if (sender != null && Login != null)
             {
                 LoginEventArgs args = new LoginEventArgs()
                 {
-                    Account = _accountInfo,
+                    Id = _itemIdentifier,
                     ServerId = Server.Classic
                 };
-                LoginAccount(this, args);
+                Login(this, args);
             }
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender != null && DeleteAccount != null)
+            if (sender != null && DeleteListItem != null)
             {
-                AccountEventArgs args = new AccountEventArgs()
+                ListEventArgs args = new ListEventArgs()
                 {
-                    Account = _accountInfo
+                    Id = _itemIdentifier
                 };
-                DeleteAccount(this, args);
+                DeleteListItem(this, args);
             }
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender != null && EditAccount != null)
+            if (sender != null && EditListItem != null)
             {
-                AccountEventArgs args = new AccountEventArgs()
+                ListEventArgs args = new ListEventArgs()
                 {
-                    Account = _accountInfo
+                    Id = _itemIdentifier
                 };
-                EditAccount(this, args);
+                EditListItem(this, args);
             }
         }
 
         private void MoveUpButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender != null && MoveAccount != null)
+            if (sender != null && MoveListItem != null)
             {
-                MoveAccountEventArgs args = new MoveAccountEventArgs()
+                MoveListItemEventArgs args = new MoveListItemEventArgs()
                 {
-                    Account = _accountInfo,
+                    Id = _itemIdentifier,
                     Direction = MovementDirection.Up
                 };
-                MoveAccount(this, args);
+                MoveListItem(this, args);
             }
         }
 
         private void MoveDownButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender != null && MoveAccount != null)
+            if (sender != null && MoveListItem != null)
             {
-                MoveAccountEventArgs args = new MoveAccountEventArgs()
+                MoveListItemEventArgs args = new MoveListItemEventArgs()
                 {
-                    Account = _accountInfo,
+                    Id = _itemIdentifier,
                     Direction = MovementDirection.Down
                 };
-                MoveAccount(this, args);
+                MoveListItem(this, args);
             }
         }
     }

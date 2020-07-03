@@ -72,10 +72,6 @@
       <DependentUpon>AruaRoseLoginManager.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\AccountDisplay.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\ManagerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,36 +80,28 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\PartyDisplay.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\TestControl.xaml">
+    <Page Include="Controls\ListDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountManagerController.cs" />
-    <Compile Include="Controls\AccountDisplay.xaml.cs">
-      <DependentUpon>AccountDisplay.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ManagerPanel.xaml.cs">
       <DependentUpon>ManagerPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\AccountForm.xaml.cs">
       <DependentUpon>AccountForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\PartyDisplay.xaml.cs">
-      <DependentUpon>PartyDisplay.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\TestControl.xaml.cs">
-      <DependentUpon>TestControl.xaml</DependentUpon>
+    <Compile Include="Controls\ListDisplay.xaml.cs">
+      <DependentUpon>ListDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Account.cs" />
     <Compile Include="Data\AccountEventArgs.cs" />
+    <Compile Include="Data\ListEventArgs.cs" />
     <Compile Include="Data\LoginEventArgs.cs" />
-    <Compile Include="Data\MoveAccountEventArgs.cs" />
+    <Compile Include="Data\MoveListItemEventArgs.cs" />
+    <Compile Include="Data\Party.cs" />
     <Compile Include="Enum\AccountMode.cs" />
     <Compile Include="Enum\LoginType.cs" />
     <Compile Include="Enum\MovementDirection.cs" />
