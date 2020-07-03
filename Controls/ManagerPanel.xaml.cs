@@ -44,6 +44,8 @@ namespace AruaRoseLoginManager.Controls
 
         public event EventHandler<MoveAccountEventArgs> MoveAccount;
 
+        public event EventHandler LoginParty;
+
         public ManagerPanel()
         {
             InitializeComponent();
@@ -196,6 +198,11 @@ namespace AruaRoseLoginManager.Controls
                 actionHandler(sender, e);
                 SwitchAccountPanels(AccountMode.Select);
             }
+        }
+
+        private void NewPartyButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginParty(sender, e);
         }
     }
 }

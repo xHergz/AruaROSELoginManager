@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="AruaRoseLoginManager.Controls.PartyDisplay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AruaRoseLoginManager.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="400">
+    <Grid Name="AccountDisplayGrid" Background="#EAEAEA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="35" />
+            </Grid.ColumnDefinitions>
+            <Button Name="MoveUpButton" Grid.Row="0" Grid.Column="0" Width="25" Height="25" Click="MoveUpButton_Click">
+                <Image Source="../Assets/chevron-up-solid-new.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Button>
+            <Button Name="MoveDownButton" Grid.Row="1" Grid.Column="0" Width="25" Height="25" Click="MoveDownButton_Click">
+                <Image Source="../Assets/chevron-down-solid-new.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+            <TextBlock Name="PartyName" Grid.Row="0" Grid.Column="1" Text="Party Name" FontSize="16"/>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="PartyDescription" Grid.Row="0" Grid.Column="0" Text="Description" FontSize="12"/>
+                <TextBlock Name="PartyAccounts" Grid.Row="1" Grid.Column="0" Text="Account, Account, Account" FontSize="12"/>
+            </Grid>
+            <Button Name="AruaLoginButton" Grid.Row="0" Grid.Column="2" Width="65" Height="25" Content="Arua" FontWeight="Normal" Click="AruaLoginButton_Click"/>
+            <Button Name="ClassicLoginButton" Grid.Row="1" Grid.Column="2" Width="65" Height="25" Content="Classic" FontWeight="Normal" Click="ClassicLoginButton_Click"/>
+            <Button Name="DeleteButton" Grid.Row="0" Grid.Column="3" Width="25" Height="25" Click="DeleteButton_Click">
+                <Image Source="../Assets/trash-alt-solid.png" />
+            </Button>
+            <Button Name="EditButton" Grid.Row="1" Grid.Column="3" Width="25" Height="25" Click="EditButton_Click">
+                <Image Source="../Assets/edit-solid.png" />
+            </Button>
+        </Grid>
+    </Grid>
+    <UserControl.Resources>
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#000000" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="Background" Value="#7F0000" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
+        <Setter Property="BorderBrush" Value="#7F0000"/>
+    </Style>
+    </UserControl.Resources>
+</UserControl>

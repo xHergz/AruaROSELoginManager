@@ -40,6 +40,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -82,6 +84,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\PartyDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TestControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountManagerController.cs" />
@@ -93,6 +103,12 @@
     </Compile>
     <Compile Include="Controls\AccountForm.xaml.cs">
       <DependentUpon>AccountForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PartyDisplay.xaml.cs">
+      <DependentUpon>PartyDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TestControl.xaml.cs">
+      <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Account.cs" />
     <Compile Include="Data\AccountEventArgs.cs" />

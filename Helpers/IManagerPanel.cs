@@ -26,6 +26,8 @@ namespace AruaRoseLoginManager.Helpers
 
         event EventHandler<MoveAccountEventArgs> MoveAccount;
 
+        event EventHandler LoginParty;
+
         void AddAccountToDisplay(Account account);
 
         void ClearDisplay();

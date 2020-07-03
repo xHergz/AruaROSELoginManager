@@ -58,6 +58,7 @@ namespace AruaRoseLoginManager.Controllers
             _viewPanel.UpdateAccount += AccountManagerPanel_UpdateAccountRequest;
             _viewPanel.MoveAccount += AccountManagerPanel_MoveAccountRequest;
             _viewPanel.DeleteAccount += AccountManagerPanel_DeleteAccountRequest;
+            _viewPanel.LoginParty += AccountManagerPanel_LoginPartyRequest;
 
             //Load the existing accounts
             _accountList = _datastore.GetAllAccounts().ToDictionary(account => account.Username);
@@ -221,6 +222,16 @@ namespace AruaRoseLoginManager.Controllers
                 _accountList.Remove(e.Account.Username);
                 RefreshList();
             }
+        }
+
+        private void AccountManagerPanel_LoginPartyRequest(object sender, EventArgs e)
+        {
+            LoginAccountThread("chug", string.Empty, Server.Arua, "C:\\AruaROSE", true);
+            LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
+            LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
+            LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
+            //LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
+            //LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
         }
     }
 }

@@ -13,7 +13,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="25" />
+                        <RowDefinition Height="45" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50" />
@@ -34,15 +34,21 @@
             <TabItem Header="Parties">
                 <Grid Background="#404040">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="45"/>
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="25" />
+                        <RowDefinition Height="45" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
+                    <Button Name="_addPartyButton" Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Right" Margin="0 0 0 5" Content="New Party" Click="NewPartyButton_Click" />
+                    <ScrollViewer Name="_partyDisplayScrollViewer" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Name="PartyStackPanel" Grid.Row="1" Grid.Column="1" >
+
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="Options">
