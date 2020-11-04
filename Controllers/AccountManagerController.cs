@@ -228,12 +228,7 @@ namespace AruaRoseLoginManager.Controllers
 
         private void AccountManagerPanel_LoginPartyRequest(object sender, EventArgs e)
         {
-            LoginAccountThread("chug", string.Empty, Server.Arua, "C:\\AruaROSE", true);
-            LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
-            LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
-            LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
-            //LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
-            //LoginAccountThread("present1", string.Empty, Server.Arua, "C:\\AruaROSE", true);
+            
         }
     }
 }
