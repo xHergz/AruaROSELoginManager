@@ -93,6 +93,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\PartyForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountManagerController.cs" />
@@ -104,6 +108,9 @@
     </Compile>
     <Compile Include="Controls\ListDisplay.xaml.cs">
       <DependentUpon>ListDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PartyForm.xaml.cs">
+      <DependentUpon>PartyForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Account.cs" />
     <Compile Include="Data\AccountEventArgs.cs" />
