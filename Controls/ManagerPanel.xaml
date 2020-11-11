@@ -65,29 +65,29 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
-                            <RowDefinition Height="25" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="125" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="75" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Grid.Column="0" Content="Rose Folder:" HorizontalAlignment="Right" />
-                        <TextBox  Grid.Row="0" Grid.Column="1" TabIndex="0" IsReadOnly="True" />
-                        <Button Grid.Row="0" Grid.Column="3" Content="Browse..." TabIndex="8" />
-                        <Label Grid.Row="1" Grid.Column="0" Content="Run as Admin:" HorizontalAlignment="Right" />
-                        <CheckBox Grid.Row="1" Grid.Column="1"  Margin="0,5,0,0" VerticalAlignment="Center"/>
-                        <Label Grid.Row="3" Grid.Column="0" Content="Manager Size:" HorizontalAlignment="Right" />
+                        <TextBox Name="_folderTextBox" Grid.Row="0" Grid.Column="1" TabIndex="0" IsReadOnly="True" />
+                        <Button Grid.Row="0" Grid.Column="3" Content="Browse..." TabIndex="8" Click="BrowseFolderButton_Click"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Run as Admin:" HorizontalAlignment="Right"/>
+                        <CheckBox Name="_runAsAdminCheckbox" Grid.Row="1" Grid.Column="1"  Margin="0,5,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Window Size:" HorizontalAlignment="Right" />
                         <RadioButton Grid.Row="3" Grid.Column="1" Content="Small" GroupName="ManagerSize" IsChecked="True" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         <RadioButton Grid.Row="3" Grid.Column="1" Content="Medium" GroupName="ManagerSize" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <RadioButton Grid.Row="3" Grid.Column="1" Content="Large" GroupName="ManagerSize" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>

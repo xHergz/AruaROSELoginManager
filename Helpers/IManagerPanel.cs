@@ -20,7 +20,9 @@ namespace AruaRoseLoginManager.Helpers
 
         event EventHandler<AccountEventArgs> AddAccount;
 
-        event EventHandler<AccountEventArgs> DeleteAccount;
+        event EventHandler<ListEventArgs> DeleteAccount;
+
+        event EventHandler<ListEventArgs> EditAccount;
 
         event EventHandler<AccountEventArgs> UpdateAccount;
 
@@ -31,6 +33,8 @@ namespace AruaRoseLoginManager.Helpers
         void AddAccountToDisplay(Account account);
 
         void ClearDisplay();
+
+        void PromptForAccount(Account info);
 
         string PromptForPassword(string accountName);
 

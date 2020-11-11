@@ -45,6 +45,11 @@ namespace AruaRoseLoginManager.Controls
         private SolidColorBrush _evenBackgroundColour;
 
         /// <summary>
+        /// The current account info for the display
+        /// </summary>
+        private Account _currentInfo;
+
+        /// <summary>
         /// Event to raise when the delete button is pressed
         /// </summary>
         public event EventHandler<ListEventArgs> DeleteListItem;
@@ -74,6 +79,7 @@ namespace AruaRoseLoginManager.Controls
 
         public ListDisplay(int position, Account info, ImageSource emblem) : this(position)
         {
+            _currentInfo = info;
             _itemIdentifier = info.Username;
             
             // Fill in account info
@@ -130,21 +136,21 @@ namespace AruaRoseLoginManager.Controls
             // Hide the move up button if it's the first one
             if (_position == 0)
             {
-                MoveUpButton.Visibility = Visibility.Hidden;
+                MoveUpButton.IsEnabled = false;
             }
             else
             {
-                MoveUpButton.Visibility = Visibility.Visible;
+                MoveUpButton.IsEnabled = true;
             }
 
             // Hide the move down button if it's the last one
             if (_position == totalDisplays - 1)
             {
-                MoveDownButton.Visibility = Visibility.Hidden;
+                MoveDownButton.IsEnabled = false;
             }
             else
             {
-                MoveDownButton.Visibility = Visibility.Visible;
+                MoveDownButton.IsEnabled = true;
             }
         }
 

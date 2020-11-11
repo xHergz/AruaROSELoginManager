@@ -55,6 +55,7 @@ namespace AruaRoseLoginManager.Controllers
             //Subscribe to the events
             _viewPanel.Login += AccountManagerPanel_LoginRequest;
             _viewPanel.AddAccount += AccountManagerPanel_AddAccountRequest;
+            _viewPanel.EditAccount += AccountManagerPanel_EditAccountRequest;
             _viewPanel.UpdateAccount += AccountManagerPanel_UpdateAccountRequest;
             _viewPanel.MoveAccount += AccountManagerPanel_MoveAccountRequest;
             _viewPanel.DeleteAccount += AccountManagerPanel_DeleteAccountRequest;
@@ -89,7 +90,6 @@ namespace AruaRoseLoginManager.Controllers
         {
             _viewPanel.ClearDisplay();
             foreach (Account account in _accountList.Values) {
-                _viewPanel.Login += AccountManagerPanel_LoginRequest;
                 _viewPanel.AddAccountToDisplay(account);
             };
         }
@@ -182,6 +182,17 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
+        private void AccountManagerPanel_EditAccountRequest(object sender, ListEventArgs e)
+        {
+            if (sender != null)
+            {
+                if (_accountList.ContainsKey(e.Id))
+                {
+                    _viewPanel.PromptForAccount(_accountList[e.Id]);
+                }
+            }
+        }
+
         /// <summary>
         /// Handles the event raised when updating an account
         /// </summary>
@@ -217,11 +228,11 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
-        private void AccountManagerPanel_DeleteAccountRequest(object sender, AccountEventArgs e)
+        private void AccountManagerPanel_DeleteAccountRequest(object sender, ListEventArgs e)
         {
             if (sender != null)
             {
-                _accountList.Remove(e.Account.Username);
+                _accountList.Remove(e.Id);
                 RefreshList();
             }
         }

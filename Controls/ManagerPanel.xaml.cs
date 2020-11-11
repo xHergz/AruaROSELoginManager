@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using AruaRoseLoginManager.Enum;
 using System.IO;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace AruaRoseLoginManager.Controls
 {
@@ -29,9 +30,17 @@ namespace AruaRoseLoginManager.Controls
 
         private AccountMode _accountMode = AccountMode.Select;
 
-        public string RoseFolderPath { get; set; }
+        public string RoseFolderPath
+        {
+            get { return _folderTextBox.Text; }
+            set { _folderTextBox.Text = value; }
+        }
 
-        public bool RunAsAdmin { get; set; }
+        public bool RunAsAdmin
+        {
+            get { return _runAsAdminCheckbox.IsChecked == null ? false : _runAsAdminCheckbox.IsChecked.Value; }
+            set { _runAsAdminCheckbox.IsChecked = value; }
+        }
 
         public WindowSize Size { get; set; }
 
@@ -39,7 +48,9 @@ namespace AruaRoseLoginManager.Controls
 
         public event EventHandler<AccountEventArgs> AddAccount;
 
-        public event EventHandler<AccountEventArgs> DeleteAccount;
+        public event EventHandler<ListEventArgs> DeleteAccount;
+
+        public event EventHandler<ListEventArgs> EditAccount;
 
         public event EventHandler<AccountEventArgs> UpdateAccount;
 
@@ -52,6 +63,8 @@ namespace AruaRoseLoginManager.Controls
             InitializeComponent();
             _currentEmblemIndex = 0;
             LoadEmblems();
+
+            DataContext = this;
         }
 
         public void AddAccountToDisplay(Account account)
@@ -87,6 +100,12 @@ namespace AruaRoseLoginManager.Controls
         public void ShowMessageBox(string message)
         {
 
+        }
+
+        public void PromptForAccount(Account info)
+        {
+            _accountForm.PopulateFields(info);
+            SwitchAccountPanels(AccountMode.Edit);
         }
 
         private void LoadEmblems()
@@ -130,9 +149,7 @@ namespace AruaRoseLoginManager.Controls
         {
             if (sender != null)
             {
-                //Account account = 
-                //_accountForm.PopulateFields(e.Account);
-                SwitchAccountPanels(AccountMode.Edit);
+                EditAccount(sender, e);
             }
         }
 
@@ -148,7 +165,7 @@ namespace AruaRoseLoginManager.Controls
         {
             if (sender != null && DeleteAccount != null)
             {
-                //DeleteAccount(sender, e);
+                DeleteAccount(sender, e);
             }
         }
 
@@ -162,6 +179,7 @@ namespace AruaRoseLoginManager.Controls
             switch(newMode)
             {
                 case AccountMode.New:
+                    _accountForm.ClearFields();
                     _accountForm.Visibility = Visibility.Visible;
                     break;
                 case AccountMode.Edit:
@@ -204,6 +222,17 @@ namespace AruaRoseLoginManager.Controls
         private void NewPartyButton_Click(object sender, RoutedEventArgs e)
         {
             LoginParty(sender, e);
+        }
+
+        private void BrowseFolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            CommonFileDialogResult result = dialog.ShowDialog();
+            if (result == CommonFileDialogResult.Ok)
+            {
+                RoseFolderPath = dialog.FileName;
+            }
         }
     }
 }

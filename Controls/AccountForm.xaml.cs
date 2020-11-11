@@ -47,6 +47,18 @@ namespace AruaRoseLoginManager.Controls
             }
         }
 
+        public void ClearFields()
+        {
+            _usernameTextBox.Clear();
+            _passwordTextBox.Clear();
+            _reinputPasswordTip.Visibility = Visibility.Hidden;
+            _descriptionTextBox.Clear();
+            foreach (TextBox textbox in _characterTextBoxes)
+            {
+                textbox.Clear();
+            }
+        }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             if (sender != null && Cancel != null)
