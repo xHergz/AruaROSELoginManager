@@ -15,11 +15,15 @@
             <ColumnDefinition Width="35" />
         </Grid.ColumnDefinitions>
         <TextBlock Name="_descriptionLabel" Text="Description" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
-        <Button Name="_deleteButton" Grid.Row="0" Grid.Column="3" Width="25" Height="25" Click="DeleteButton_Click">
+        <Button Name="_deleteButton" Grid.Row="0" Grid.Column="3" Width="25" Height="25" Click="DeleteButton_Click" Margin="5">
             <Image Source="../Assets/trash-alt-solid.png" />
         </Button>
     </Grid>
     <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#000000" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
         <Style TargetType="Button">
             <Setter Property="Background" Value="#7F0000" />
             <Setter Property="Foreground" Value="#FFFFFF" />

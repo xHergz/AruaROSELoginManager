@@ -50,7 +50,7 @@ namespace AruaRoseLoginManager.Controls
             }
         }
 
-        public void PopulateAccounts(List<string> availableAccounts)
+        public void PopulateAccounts(IEnumerable<string> availableAccounts)
         {
             _availableAccounts = availableAccounts.Where(x => !_selectedAccounts.Any(account => account == x)).ToList();
             _accountComboBox.ItemsSource = _availableAccounts;

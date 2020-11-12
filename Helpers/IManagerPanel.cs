@@ -28,13 +28,29 @@ namespace AruaRoseLoginManager.Helpers
 
         event EventHandler<MoveListItemEventArgs> MoveAccount;
 
-        event EventHandler LoginParty;
+        event EventHandler<ListEventArgs> LoginParty;
+
+        event EventHandler<EventArgs> NewParty;
+
+        event EventHandler<DataEventArgs<Party>> AddParty;
+
+        event EventHandler<ListEventArgs> DeleteParty;
+
+        event EventHandler<ListEventArgs> EditParty;
+
+        event EventHandler<DataEventArgs<Party>> UpdateParty;
+
+        event EventHandler<MoveListItemEventArgs> MoveParty;
 
         void AddAccountToDisplay(Account account);
 
         void ClearDisplay();
 
         void PromptForAccount(Account info);
+
+        void PromptForParty(IEnumerable<string> accounts);
+
+        void PromptForParty(IEnumerable<string> accounts, Party party);
 
         string PromptForPassword(string accountName);
 

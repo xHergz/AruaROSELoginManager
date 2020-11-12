@@ -58,7 +58,19 @@ namespace AruaRoseLoginManager.Controls
 
         public event EventHandler<MoveListItemEventArgs> MoveAccount;
 
-        public event EventHandler LoginParty;
+        public event EventHandler<ListEventArgs> LoginParty;
+
+        public event EventHandler<EventArgs> NewParty;
+
+        public event EventHandler<DataEventArgs<Party>> AddParty;
+
+        public event EventHandler<ListEventArgs> DeleteParty;
+
+        public event EventHandler<ListEventArgs> EditParty;
+
+        public event EventHandler<DataEventArgs<Party>> UpdateParty;
+
+        public event EventHandler<MoveListItemEventArgs> MoveParty;
 
         public ManagerPanel()
         {
@@ -108,6 +120,20 @@ namespace AruaRoseLoginManager.Controls
         {
             _accountForm.PopulateFields(info);
             SwitchAccountPanels(PanelMode.Edit);
+        }
+
+        public void PromptForParty(IEnumerable<string> accounts)
+        {
+            _partyForm.ClearFields();
+            _partyForm.PopulateAccounts(accounts);
+            SwitchPartyPanels(PanelMode.New);
+        }
+
+        public void PromptForParty(IEnumerable<string> accounts, Party party)
+        {
+            _partyForm.PopulateAccounts(accounts);
+            _partyForm.PopulateFields(party);
+            SwitchPartyPanels(PanelMode.Edit);
         }
 
         private void LoadEmblems()
@@ -251,12 +277,15 @@ namespace AruaRoseLoginManager.Controls
 
         private void NewPartyButton_Click(object sender, RoutedEventArgs e)
         {
-            SwitchPartyPanels(PanelMode.New);
+            if (sender != null && NewParty != null)
+            {
+                NewParty(this, EventArgs.Empty);
+            }
         }
 
         private void PartyForm_Cancel(object sender, EventArgs e)
         {
-            //SwitchAccountPanels(AccountMode.Select);
+            SwitchPartyPanels(PanelMode.Select);
         }
 
         private void PartyForm_SaveParty(object sender, DataEventArgs<Party> e)

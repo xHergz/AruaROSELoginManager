@@ -60,6 +60,7 @@ namespace AruaRoseLoginManager.Controllers
             _viewPanel.MoveAccount += AccountManagerPanel_MoveAccountRequest;
             _viewPanel.DeleteAccount += AccountManagerPanel_DeleteAccountRequest;
             _viewPanel.LoginParty += AccountManagerPanel_LoginPartyRequest;
+            _viewPanel.NewParty += AccountManagerPanel_NewPartyRequest;
 
             //Load the existing accounts
             _accountList = _datastore.GetAllAccounts().ToDictionary(account => account.Username);
@@ -237,9 +238,18 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
-        private void AccountManagerPanel_LoginPartyRequest(object sender, EventArgs e)
+        private void AccountManagerPanel_LoginPartyRequest(object sender, ListEventArgs e)
         {
             
+        }
+
+        private void AccountManagerPanel_NewPartyRequest(object sender, EventArgs e)
+        {
+            if (sender != null)
+            {
+                IEnumerable<string> accounts = _accountList.Values.Select(x => x.Username);
+                _viewPanel.PromptForParty(accounts);
+            }
         }
     }
 }
