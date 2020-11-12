@@ -81,6 +81,10 @@
       <DependentUpon>AruaRoseLoginManager.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Controls\BasicListDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ManagerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountManagerController.cs" />
+    <Compile Include="Controls\BasicListDisplay.xaml.cs">
+      <DependentUpon>BasicListDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ManagerPanel.xaml.cs">
       <DependentUpon>ManagerPanel.xaml</DependentUpon>
     </Compile>
@@ -118,7 +125,8 @@
     <Compile Include="Data\LoginEventArgs.cs" />
     <Compile Include="Data\MoveListItemEventArgs.cs" />
     <Compile Include="Data\Party.cs" />
-    <Compile Include="Enum\AccountMode.cs" />
+    <Compile Include="Data\DataEventArgs.cs" />
+    <Compile Include="Enum\PanelMode.cs" />
     <Compile Include="Enum\LoginType.cs" />
     <Compile Include="Enum\MovementDirection.cs" />
     <Compile Include="Enum\Server.cs" />

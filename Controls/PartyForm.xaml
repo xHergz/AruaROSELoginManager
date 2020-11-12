@@ -40,10 +40,12 @@
         <TextBox Name="_descriptionTextBox" Grid.Row="3" TabIndex="2" Grid.ColumnSpan="2" />
         <Label Grid.Row="4" Content="Select Accounts" Grid.ColumnSpan="2" />
         <ComboBox Name="_accountComboBox" Grid.Row="5" TabIndex="3" Grid.ColumnSpan="1" />
-        <Button Name="_addAccountButton" Grid.Row="5"  Grid.Column="1" TabIndex="4" Content="Add"/>
-        <ListBox Name="_accountListBox" Grid.Row="7" Grid.RowSpan="9" Grid.ColumnSpan="2">
+        <Button Name="_addAccountButton" Grid.Row="5"  Grid.Column="1" TabIndex="4" Content="Add" Click="AddAccountButton_Click"/>
+        <ScrollViewer Name="_partyListScrollViewer" Grid.Row="7" Grid.RowSpan="9" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel Name="_partyListStackPanel">
 
-        </ListBox>
+            </StackPanel>
+        </ScrollViewer>
         <Grid Grid.Row="17" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -54,7 +56,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Name="_cancelButton" Grid.Column="0" Content="Cancel" TabIndex="9" IsCancel="True" Click="CancelButton_Click" />
-            <Button Name="_saveAccountButton" Grid.Column="2" Content="Save" TabIndex="8" IsDefault="True" Click="SaveAccountButton_Click" />
+            <Button Name="_savePartyButton" Grid.Column="2" Content="Save" TabIndex="8" IsDefault="True" Click="SavePartyButton_Click" />
         </Grid>
 
     </Grid>

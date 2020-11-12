@@ -49,6 +49,9 @@
 
                         </StackPanel>
                     </ScrollViewer>
+                    <local:PartyForm x:Name="_partyForm" Grid.Row="1" Grid.Column="1" Visibility="Hidden" Cancel="PartyForm_Cancel" SaveParty="PartyForm_SaveParty">
+
+                    </local:PartyForm>
                 </Grid>
             </TabItem>
             <TabItem Header="Options">

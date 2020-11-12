@@ -28,7 +28,9 @@ namespace AruaRoseLoginManager.Controls
 
         private int _currentEmblemIndex;
 
-        private AccountMode _accountMode = AccountMode.Select;
+        private PanelMode _accountMode = PanelMode.Select;
+
+        private PanelMode _partyMode = PanelMode.Select;
 
         public string RoseFolderPath
         {
@@ -105,7 +107,7 @@ namespace AruaRoseLoginManager.Controls
         public void PromptForAccount(Account info)
         {
             _accountForm.PopulateFields(info);
-            SwitchAccountPanels(AccountMode.Edit);
+            SwitchAccountPanels(PanelMode.Edit);
         }
 
         private void LoadEmblems()
@@ -169,7 +171,7 @@ namespace AruaRoseLoginManager.Controls
             }
         }
 
-        private void SwitchAccountPanels(AccountMode newMode)
+        private void SwitchAccountPanels(PanelMode newMode)
         {
             _addAccountButton.Visibility = Visibility.Hidden;
             AccountStackPanel.Visibility = Visibility.Hidden;
@@ -178,17 +180,17 @@ namespace AruaRoseLoginManager.Controls
             _accountMode = newMode;
             switch(newMode)
             {
-                case AccountMode.New:
+                case PanelMode.New:
                     _accountForm.ClearFields();
                     _accountForm.Visibility = Visibility.Visible;
                     break;
-                case AccountMode.Edit:
+                case PanelMode.Edit:
                     _accountForm.Visibility = Visibility.Visible;
                     break;
-                case AccountMode.Login:
+                case PanelMode.Login:
                     
                     break;
-                case AccountMode.Select:
+                case PanelMode.Select:
                 default:
                     _addAccountButton.Visibility = Visibility.Visible;
                     AccountStackPanel.Visibility = Visibility.Visible;
@@ -199,29 +201,74 @@ namespace AruaRoseLoginManager.Controls
 
         private void AddAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            SwitchAccountPanels(AccountMode.New);
+            SwitchAccountPanels(PanelMode.New);
         }
 
         private void AccountForm_Cancel(object sender, EventArgs e)
         {
-            SwitchAccountPanels(AccountMode.Select);
+            SwitchAccountPanels(PanelMode.Select);
         }
 
         private void AccountForm_SaveAccount(object sender, AccountEventArgs e)
         {
-            EventHandler<AccountEventArgs> actionHandler = _accountMode == AccountMode.New
+            EventHandler<AccountEventArgs> actionHandler = _accountMode == PanelMode.New
+                ? AddAccount
+                : UpdateAccount;
+            if (sender != null && actionHandler != null)
+            {
+                actionHandler(sender, e);
+                SwitchAccountPanels(PanelMode.Select);
+            }
+        }
+
+        private void SwitchPartyPanels(PanelMode newMode)
+        {
+            _addPartyButton.Visibility = Visibility.Hidden;
+            PartyStackPanel.Visibility = Visibility.Hidden;
+            _partyDisplayScrollViewer.Visibility = Visibility.Hidden;
+            _partyForm.Visibility = Visibility.Hidden;
+            _partyMode = newMode;
+            switch (newMode)
+            {
+                case PanelMode.New:
+                    _partyForm.ClearFields();
+                    _partyForm.Visibility = Visibility.Visible;
+                    break;
+                case PanelMode.Edit:
+                    _partyForm.Visibility = Visibility.Visible;
+                    break;
+                case PanelMode.Login:
+
+                    break;
+                case PanelMode.Select:
+                default:
+                    _addPartyButton.Visibility = Visibility.Visible;
+                    PartyStackPanel.Visibility = Visibility.Visible;
+                    _partyDisplayScrollViewer.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
+
+        private void NewPartyButton_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchPartyPanels(PanelMode.New);
+        }
+
+        private void PartyForm_Cancel(object sender, EventArgs e)
+        {
+            //SwitchAccountPanels(AccountMode.Select);
+        }
+
+        private void PartyForm_SaveParty(object sender, DataEventArgs<Party> e)
+        {
+            /*EventHandler<AccountEventArgs> actionHandler = _accountMode == AccountMode.New
                 ? AddAccount
                 : UpdateAccount;
             if (sender != null && actionHandler != null)
             {
                 actionHandler(sender, e);
                 SwitchAccountPanels(AccountMode.Select);
-            }
-        }
-
-        private void NewPartyButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoginParty(sender, e);
+            }*/
         }
 
         private void BrowseFolderButton_Click(object sender, RoutedEventArgs e)

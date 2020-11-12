@@ -1,6 +1,6 @@
 ﻿namespace AruaRoseLoginManager.Enum
 {
-    public enum AccountMode
+    public enum PanelMode
     {
         Select,
         New,

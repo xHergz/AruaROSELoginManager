@@ -53,7 +53,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="ListItemDescription" Grid.Row="0" Grid.Column="0" Text="Description" FontSize="12"/>
+                <TextBlock Name="ListItemDescription" Grid.Row="0" Grid.Column="0" Text="Description" TextTrimming="CharacterEllipsis" FontSize="12"/>
                 <TextBlock Name="ListItemDetails" Grid.Row="1" Grid.Column="0" Text="Detail, Detail, Detail, Detail, Detail" TextTrimming="CharacterEllipsis" FontSize="12"/>
             </Grid>
             <Button Name="AruaLoginButton" Grid.Row="0" Grid.Column="2" Width="65" Height="25" Content="Arua" FontWeight="Normal" Click="AruaLoginButton_Click"/>
