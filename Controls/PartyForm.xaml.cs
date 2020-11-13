@@ -1,6 +1,7 @@
 ﻿using AruaRoseLoginManager.Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace AruaRoseLoginManager.Controls
     {
         private List<string> _selectedAccounts;
 
-        private List<string> _availableAccounts;
+        private ObservableCollection<string> _availableAccounts;
 
         [Browsable(true)]
         public event EventHandler Cancel;
@@ -52,7 +53,7 @@ namespace AruaRoseLoginManager.Controls
 
         public void PopulateAccounts(IEnumerable<string> availableAccounts)
         {
-            _availableAccounts = availableAccounts.Where(x => !_selectedAccounts.Any(account => account == x)).ToList();
+            _availableAccounts = new ObservableCollection<string>(availableAccounts.Where(x => !_selectedAccounts.Any(account => account == x)));
             _accountComboBox.ItemsSource = _availableAccounts;
         }
 
@@ -105,7 +106,14 @@ namespace AruaRoseLoginManager.Controls
                 _partyNameError.Visibility = Visibility.Visible;
                 return false;
             }
+            else if (_selectedAccounts.Count < 2)
+            {
+                _partyNameError.Visibility = Visibility.Hidden;
+                _partyMembersError.Visibility = Visibility.Visible;
+                return false;
+            }
 
+            _partyMembersError.Visibility = Visibility.Hidden;
             _partyNameError.Visibility = Visibility.Hidden;
             return true;
         }

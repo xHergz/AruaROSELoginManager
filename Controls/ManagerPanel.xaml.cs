@@ -290,14 +290,14 @@ namespace AruaRoseLoginManager.Controls
 
         private void PartyForm_SaveParty(object sender, DataEventArgs<Party> e)
         {
-            /*EventHandler<AccountEventArgs> actionHandler = _accountMode == AccountMode.New
-                ? AddAccount
-                : UpdateAccount;
+            EventHandler<DataEventArgs<Party>> actionHandler = _partyMode == PanelMode.New
+                ? AddParty
+                : UpdateParty;
             if (sender != null && actionHandler != null)
             {
                 actionHandler(sender, e);
-                SwitchAccountPanels(AccountMode.Select);
-            }*/
+                SwitchPartyPanels(PanelMode.Select);
+            }
         }
 
         private void BrowseFolderButton_Click(object sender, RoutedEventArgs e)

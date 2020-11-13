@@ -39,8 +39,11 @@
         <Label Grid.Row="2" Content="Description" Grid.ColumnSpan="2" />
         <TextBox Name="_descriptionTextBox" Grid.Row="3" TabIndex="2" Grid.ColumnSpan="2" />
         <Label Grid.Row="4" Content="Select Accounts" Grid.ColumnSpan="2" />
-        <ComboBox Name="_accountComboBox" Grid.Row="5" TabIndex="3" Grid.ColumnSpan="1" />
+        <ComboBox Name="_accountComboBox" Grid.Row="5" TabIndex="3" Grid.ColumnSpan="1" Margin="0 0 5 0"/>
         <Button Name="_addAccountButton" Grid.Row="5"  Grid.Column="1" TabIndex="4" Content="Add" Click="AddAccountButton_Click"/>
+        <Label Grid.Row="6" Content="Party Members" Grid.ColumnSpan="2" />
+        <Label Name="_partyMembersError" Grid.Row="6" Content="At least 2 party members are required" HorizontalContentAlignment="Right" Foreground="Red" Visibility="Hidden" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="7" Content="None" Grid.ColumnSpan="2" FontStyle="Italic"/>
         <ScrollViewer Name="_partyListScrollViewer" Grid.Row="7" Grid.RowSpan="9" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
             <StackPanel Name="_partyListStackPanel">
 

@@ -35,6 +35,8 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         private Dictionary<string, Account> _accountList;
 
+        private Dictionary<string, Party> _partyList;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -61,9 +63,11 @@ namespace AruaRoseLoginManager.Controllers
             _viewPanel.DeleteAccount += AccountManagerPanel_DeleteAccountRequest;
             _viewPanel.LoginParty += AccountManagerPanel_LoginPartyRequest;
             _viewPanel.NewParty += AccountManagerPanel_NewPartyRequest;
+            _viewPanel.AddParty += AccountManagerPanel_AddPartyRequest;
 
             //Load the existing accounts
             _accountList = _datastore.GetAllAccounts().ToDictionary(account => account.Username);
+            _partyList = new Dictionary<string, Party>();
             RefreshList();
 
             _viewPanel.RoseFolderPath = _datastore.GetFilePath();
@@ -249,6 +253,18 @@ namespace AruaRoseLoginManager.Controllers
             {
                 IEnumerable<string> accounts = _accountList.Values.Select(x => x.Username);
                 _viewPanel.PromptForParty(accounts);
+            }
+        }
+
+        private void AccountManagerPanel_AddPartyRequest(object sender, DataEventArgs<Party> e)
+        {
+            if (sender != null)
+            {
+                if (!string.IsNullOrWhiteSpace(e.Data.Name))
+                {
+                    _partyList.Add(e.Data.Name, e.Data);
+                    //_viewPanel.AddPartyToDisplay(e.Data);
+                }
             }
         }
     }
