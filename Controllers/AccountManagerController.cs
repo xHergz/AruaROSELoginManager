@@ -126,8 +126,8 @@ namespace AruaRoseLoginManager.Controllers
                 account.Username,
                 passwordHash,
                 e.ServerId,
-                e.FilePath,
-                e.RunAsAdmin
+                _viewPanel.RoseFolderPath,
+                _viewPanel.RunAsAdmin
             ));
             loginThread.Start();
         }

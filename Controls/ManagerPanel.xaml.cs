@@ -167,8 +167,6 @@ namespace AruaRoseLoginManager.Controls
         {
             if (sender != null && e != null && Login != null)
             {
-                e.RunAsAdmin = RunAsAdmin;
-                e.FilePath = RoseFolderPath;
                 Login(sender, e);
             }
         }

@@ -132,7 +132,10 @@
     <Compile Include="Enum\Server.cs" />
     <Compile Include="Enum\WindowSize.cs" />
     <Compile Include="Helpers\IAccountDatastore.cs" />
+    <Compile Include="Helpers\IAccountDisplay.cs" />
+    <Compile Include="Helpers\ILoginDisplay.cs" />
     <Compile Include="Helpers\IManagerPanel.cs" />
+    <Compile Include="Helpers\IPartyDisplay.cs" />
     <Compile Include="Helpers\MD5Generator.cs" />
     <Compile Include="Helpers\XmlAccountDatastore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

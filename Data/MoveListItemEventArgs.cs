@@ -1,13 +1,9 @@
-﻿using System;
-
-using AruaRoseLoginManager.Enum;
+﻿using AruaRoseLoginManager.Enum;
 
 namespace AruaRoseLoginManager.Data
 {
-    public class MoveListItemEventArgs : EventArgs
+    public class MoveListItemEventArgs : ListEventArgs
     {
-        public string Id;
-
         public MovementDirection Direction;
     }
 }
