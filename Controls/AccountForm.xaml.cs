@@ -20,7 +20,7 @@ namespace AruaRoseLoginManager.Controls
         public event EventHandler Cancel;
 
         [Browsable(true)]
-        public event EventHandler<AccountEventArgs> SaveAccount;
+        public event EventHandler<DataEventArgs<Account>> SaveAccount;
 
         public AccountForm()
         {
@@ -89,9 +89,9 @@ namespace AruaRoseLoginManager.Controls
                     ? string.Empty
                     : MD5Generator.GetMd5Hash(_passwordTextBox.Password);
 
-                AccountEventArgs args = new AccountEventArgs()
+                DataEventArgs<Account> args = new DataEventArgs<Account>()
                 {
-                    Account = new Account(
+                    Data = new Account(
                         _usernameTextBox.Text,
                         passwordHash,
                         _descriptionTextBox.Text,

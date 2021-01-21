@@ -40,6 +40,16 @@ namespace AruaRoseLoginManager.DAL
         private const string CHARACTER_ELEMENT = "Character";
 
         /// <summary>
+        /// The party element name
+        /// </summary>
+        private const string PARTY_ELEMENT = "Party";
+
+        /// <summary>
+        /// The member element name (account that is part of a party)
+        /// </summary>
+        private const string MEMBER_ELEMENT = "Member";
+
+        /// <summary>
         /// The parent elements attribute to hold the ROSE folder path
         /// </summary>
         private const string FOLDER_ATTRIBUTE = "roseFolder";
@@ -63,6 +73,11 @@ namespace AruaRoseLoginManager.DAL
         /// The account elements attribute to hold the description
         /// </summary>
         private const string DESCRIPTION_ATTRIBUTE = "description";
+
+        /// <summary>
+        /// The party element's attribute to hold the name.
+        /// </summary>
+        private const string NAME_ATTRIBUTE = "name";
 
         /// <summary>
         /// The document object of the save file
@@ -129,6 +144,33 @@ namespace AruaRoseLoginManager.DAL
             return loadedAccounts;
         }
 
+        public List<Party> GetAllParties()
+        {
+            List<Party> loadedParties = new List<Party>();
+
+            if (File.Exists(_completeFilePath))
+            {
+                _saveFile = XDocument.Load(_completeFilePath);
+                XElement root = _saveFile.Element(MANAGER_ELEMENT);
+
+                //Loop through the Account elements
+                foreach (XElement partyElement in root.Elements(PARTY_ELEMENT))
+                {
+                    string currentPartyName = (string)partyElement.Attribute(NAME_ATTRIBUTE);
+                    string description = (string)partyElement.Attribute(DESCRIPTION_ATTRIBUTE);
+                    List<string> accounts = new List<string>();
+                    foreach (XElement accountElement in partyElement.Elements(MEMBER_ELEMENT))
+                    {
+                        accounts.Add(accountElement.Value);
+                    }
+                    Party current = new Party(currentPartyName, accounts, description);
+                    loadedParties.Add(current);
+                }
+            }
+
+            return loadedParties;
+        }
+
         /// <summary>
         /// Gets the file path for the ROSE folder
         /// </summary>
@@ -178,7 +220,7 @@ namespace AruaRoseLoginManager.DAL
         /// </summary>
         /// <param name="filePath">The path to the ROSE folder</param>
         /// <param name="allAccounts">The list of accounts to save</param>
-        public void SaveAccountData(string filePath, bool runAdAdmin, List<Account> allAccounts)
+        public void SaveManagerData(string filePath, bool runAdAdmin, List<Account> allAccounts, List<Party> allParties)
         {
             _saveFile = new XDocument();
 
@@ -203,6 +245,23 @@ namespace AruaRoseLoginManager.DAL
                 }
 
                 managerElement.Add(accountElement);
+            }
+
+            // Create the party elements
+            foreach(Party party in allParties)
+            {
+                XElement partyElement = new XElement(PARTY_ELEMENT);
+                partyElement.Add(new XAttribute(NAME_ATTRIBUTE, party.Name));
+                if (!string.IsNullOrWhiteSpace(party.Description))
+                {
+                    partyElement.Add(new XAttribute(DESCRIPTION_ATTRIBUTE, party.Description));
+                }
+                foreach (string accountName in party.Accounts)
+                {
+                    partyElement.Add(new XElement(MEMBER_ELEMENT, accountName));
+                }
+
+                managerElement.Add(partyElement);
             }
 
             _saveFile.Add(managerElement);

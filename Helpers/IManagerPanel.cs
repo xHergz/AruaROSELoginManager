@@ -16,41 +16,9 @@ namespace AruaRoseLoginManager.Helpers
 
         WindowSize Size { get; set; }
 
-        event EventHandler<LoginEventArgs> Login;
+        IAccountDisplay AccountDisplay { get; }
 
-        event EventHandler<AccountEventArgs> AddAccount;
-
-        event EventHandler<ListEventArgs> DeleteAccount;
-
-        event EventHandler<ListEventArgs> EditAccount;
-
-        event EventHandler<AccountEventArgs> UpdateAccount;
-
-        event EventHandler<MoveListItemEventArgs> MoveAccount;
-
-        event EventHandler<ListEventArgs> LoginParty;
-
-        event EventHandler<EventArgs> NewParty;
-
-        event EventHandler<DataEventArgs<Party>> AddParty;
-
-        event EventHandler<ListEventArgs> DeleteParty;
-
-        event EventHandler<ListEventArgs> EditParty;
-
-        event EventHandler<DataEventArgs<Party>> UpdateParty;
-
-        event EventHandler<MoveListItemEventArgs> MoveParty;
-
-        void AddAccountToDisplay(Account account);
-
-        void ClearDisplay();
-
-        void PromptForAccount(Account info);
-
-        void PromptForParty(IEnumerable<string> accounts);
-
-        void PromptForParty(IEnumerable<string> accounts, Party party);
+        IPartyDisplay PartyDisplay { get; }
 
         string PromptForPassword(string accountName);
 

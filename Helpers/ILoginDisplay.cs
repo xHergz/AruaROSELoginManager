@@ -14,9 +14,9 @@ namespace AruaRoseLoginManager.Helpers
 
         event EventHandler<ListEventArgs> EditRequest;
 
-        event EventHandler<DataEventArgs<T>> UpdateAccount;
+        event EventHandler<DataEventArgs<T>> UpdateRequest;
 
-        event EventHandler<MoveListItemEventArgs> MoveAccount;
+        event EventHandler<MoveListItemEventArgs> MoveRequest;
 
         void AddToDisplay(T newItem);
 

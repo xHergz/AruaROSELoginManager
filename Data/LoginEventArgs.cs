@@ -16,4 +16,12 @@ namespace AruaRoseLoginManager.Data
         /// </summary>
         public Server ServerId { get; set; }
     }
+
+    public class LoginWithPassEventArgs : LoginEventArgs
+    {
+        /// <summary>
+        /// The unhashed password from the prompt.
+        /// </summary>
+        public string Password { get; set; }
+    }
 }

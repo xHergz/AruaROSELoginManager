@@ -64,15 +64,10 @@
 
     </Grid>
     <UserControl.Resources>
-        <Style TargetType="Label">
-            <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="12" />
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#7F0000" />
-            <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="BorderBrush" Value="#7F0000"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 </UserControl>

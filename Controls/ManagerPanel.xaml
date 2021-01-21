@@ -8,53 +8,13 @@
              d:DesignHeight="650" d:DesignWidth="500">
     <DockPanel Background="#404040">
         <TabControl TabStripPlacement="Top" BorderThickness="0" Padding="0">
-            <TabItem Header="Accounts">
-                <Grid Background="#404040">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="45" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="50" />
-                    </Grid.ColumnDefinitions>
-                    <Button Name="_addAccountButton" Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Right" Margin="0 0 0 5" Content="Add Account" Click="AddAccountButton_Click" />
-                    <ScrollViewer Name="_accountDisplayScrollViewer" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
-                        <StackPanel Name="AccountStackPanel" Grid.Row="1" Grid.Column="1" >
-
-                        </StackPanel>
-                    </ScrollViewer>
-                    <local:AccountForm x:Name="_accountForm" Grid.Row="1" Grid.Column="1" Visibility="Hidden" Cancel="AccountForm_Cancel" SaveAccount="AccountForm_SaveAccount">
-                        
-                    </local:AccountForm>
-                </Grid>
+            <TabItem Header="_Accounts">
+                <local:AccountDisplay x:Name="_accountDisplay" />
             </TabItem>
-            <TabItem Header="Parties">
-                <Grid Background="#404040">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="45" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="50" />
-                    </Grid.ColumnDefinitions>
-                    <Button Name="_addPartyButton" Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Right" Margin="0 0 0 5" Content="New Party" Click="NewPartyButton_Click" />
-                    <ScrollViewer Name="_partyDisplayScrollViewer" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
-                        <StackPanel Name="PartyStackPanel" Grid.Row="1" Grid.Column="1" >
-
-                        </StackPanel>
-                    </ScrollViewer>
-                    <local:PartyForm x:Name="_partyForm" Grid.Row="1" Grid.Column="1" Visibility="Hidden" Cancel="PartyForm_Cancel" SaveParty="PartyForm_SaveParty">
-
-                    </local:PartyForm>
-                </Grid>
+            <TabItem Header="_Parties">
+                <local:PartyDisplay x:Name="_partyDisplay" />
             </TabItem>
-            <TabItem Header="Options">
+            <TabItem Header="_Options">
                 <Grid Background="#404040">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25" />
@@ -91,13 +51,12 @@
                         <Label Grid.Row="1" Grid.Column="0" Content="Run as Admin:" HorizontalAlignment="Right"/>
                         <CheckBox Name="_runAsAdminCheckbox" Grid.Row="1" Grid.Column="1"  Margin="0,5,0,0" VerticalAlignment="Center"/>
                         <Label Grid.Row="3" Grid.Column="0" Content="Window Size:" HorizontalAlignment="Right" />
-                        <RadioButton Grid.Row="3" Grid.Column="1" Content="Small" GroupName="ManagerSize" IsChecked="True" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <RadioButton Grid.Row="3" Grid.Column="1" Content="Medium" GroupName="ManagerSize" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <RadioButton Grid.Row="3" Grid.Column="1" Content="Large" GroupName="ManagerSize" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <RadioButton Name="_normalButton" Grid.Row="3" Grid.Column="1" Content="Normal" GroupName="ManagerSize" IsChecked="True" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="SizeOption_Click"/>
+                        <RadioButton Name="_compactButton" Grid.Row="3" Grid.Column="1" Content="Compact" GroupName="ManagerSize" Margin="0,5,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="SizeOption_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Info">
+            <TabItem Header="_Info">
                 <Grid Background="#404040">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25" />
@@ -167,49 +126,10 @@
         </TabControl>
     </DockPanel>
     <UserControl.Resources>
-        <Style TargetType="{x:Type TabItem}">
-            <Setter Property="Height" Value="50" />
-            <Setter Property="Width" Value="124" />
-            <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabItem}">
-                        <Grid>
-                            <Border Name="Border" Margin="0,0,0,0" Background="Transparent" CornerRadius="0">
-                                <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="0" RecognizesAccessKey="True">
-                                </ContentPresenter>
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="BorderThickness" Value="5" />
-                            </Style>
-                        </ControlTemplate.Resources>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#AF0000" />
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="#7F0000" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="{x:Type Label}">
-            <Setter Property="Foreground" >
-                <Setter.Value>
-                    <SolidColorBrush Color="#020202"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#7F0000" />
-            <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="BorderBrush" Value="#7F0000"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 </UserControl>

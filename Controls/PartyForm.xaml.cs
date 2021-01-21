@@ -137,10 +137,13 @@ namespace AruaRoseLoginManager.Controls
 
         private void AddAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            string selectedAccount = _accountComboBox.SelectedItem.ToString();
-            _selectedAccounts.Add(selectedAccount);
-            _availableAccounts.Remove(selectedAccount);
-            AddAccountToList(selectedAccount);
+            if (_accountComboBox.SelectedItem != null)
+            {
+                string selectedAccount = _accountComboBox.SelectedItem.ToString();
+                _selectedAccounts.Add(selectedAccount);
+                _availableAccounts.Remove(selectedAccount);
+                AddAccountToList(selectedAccount);
+            }
         }
     }
 }

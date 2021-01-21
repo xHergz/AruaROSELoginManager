@@ -81,7 +81,15 @@
       <DependentUpon>AruaRoseLoginManager.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Controls\AccountDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\BasicListDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LoginForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,15 +105,29 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\PartyDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PartyForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Resource Include="Resources\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountManagerController.cs" />
+    <Compile Include="Controls\AccountDisplay.xaml.cs">
+      <DependentUpon>AccountDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\BasicListDisplay.xaml.cs">
       <DependentUpon>BasicListDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoginForm.xaml.cs">
+      <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ManagerPanel.xaml.cs">
       <DependentUpon>ManagerPanel.xaml</DependentUpon>
@@ -115,6 +137,9 @@
     </Compile>
     <Compile Include="Controls\ListDisplay.xaml.cs">
       <DependentUpon>ListDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PartyDisplay.xaml.cs">
+      <DependentUpon>PartyDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PartyForm.xaml.cs">
       <DependentUpon>PartyForm.xaml</DependentUpon>
@@ -131,6 +156,7 @@
     <Compile Include="Enum\MovementDirection.cs" />
     <Compile Include="Enum\Server.cs" />
     <Compile Include="Enum\WindowSize.cs" />
+    <Compile Include="Helpers\ButtonCommand.cs" />
     <Compile Include="Helpers\IAccountDatastore.cs" />
     <Compile Include="Helpers\IAccountDisplay.cs" />
     <Compile Include="Helpers\ILoginDisplay.cs" />
@@ -162,7 +188,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Resource Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Emblems\emblem1.png" />

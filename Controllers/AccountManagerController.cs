@@ -55,20 +55,26 @@ namespace AruaRoseLoginManager.Controllers
         public bool Initialize()
         {
             //Subscribe to the events
-            _viewPanel.Login += AccountManagerPanel_LoginRequest;
-            _viewPanel.AddAccount += AccountManagerPanel_AddAccountRequest;
-            _viewPanel.EditAccount += AccountManagerPanel_EditAccountRequest;
-            _viewPanel.UpdateAccount += AccountManagerPanel_UpdateAccountRequest;
-            _viewPanel.MoveAccount += AccountManagerPanel_MoveAccountRequest;
-            _viewPanel.DeleteAccount += AccountManagerPanel_DeleteAccountRequest;
-            _viewPanel.LoginParty += AccountManagerPanel_LoginPartyRequest;
-            _viewPanel.NewParty += AccountManagerPanel_NewPartyRequest;
-            _viewPanel.AddParty += AccountManagerPanel_AddPartyRequest;
+            _viewPanel.AccountDisplay.LoginRequest += AccountManagerPanel_LoginRequest;
+            _viewPanel.AccountDisplay.PromptedLoginRequest += AccountManagerPanel_PromptedLoginRequest;
+            _viewPanel.AccountDisplay.AddRequest += AccountManagerPanel_AddAccountRequest;
+            _viewPanel.AccountDisplay.EditRequest += AccountManagerPanel_EditAccountRequest;
+            _viewPanel.AccountDisplay.UpdateRequest += AccountManagerPanel_UpdateAccountRequest;
+            _viewPanel.AccountDisplay.MoveRequest += AccountManagerPanel_MoveAccountRequest;
+            _viewPanel.AccountDisplay.DeleteRequest += AccountManagerPanel_DeleteAccountRequest;
+            _viewPanel.PartyDisplay.LoginRequest += AccountManagerPanel_LoginPartyRequest;
+            _viewPanel.PartyDisplay.NewRequest += AccountManagerPanel_NewPartyRequest;
+            _viewPanel.PartyDisplay.AddRequest += AccountManagerPanel_AddPartyRequest;
+            _viewPanel.PartyDisplay.EditRequest += AccountManagerPanel_EditPartyRequest;
+            _viewPanel.PartyDisplay.UpdateRequest += AccountManagerPanel_UpdatePartyRequest;
+            _viewPanel.PartyDisplay.MoveRequest += AccountManagerPanel_MovePartyRequest;
+            _viewPanel.PartyDisplay.DeleteRequest += AccountManagerPanel_DeletePartyRequest;
 
             //Load the existing accounts
             _accountList = _datastore.GetAllAccounts().ToDictionary(account => account.Username);
-            _partyList = new Dictionary<string, Party>();
-            RefreshList();
+            _partyList = _datastore.GetAllParties().ToDictionary(party => party.Name);
+            RefreshAccountList();
+            RefreshPartyList();
 
             _viewPanel.RoseFolderPath = _datastore.GetFilePath();
             _viewPanel.RunAsAdmin = _datastore.GetRunAsAdmin();
@@ -81,22 +87,32 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         public void Shutdown()
         {
-            _datastore.SaveAccountData(
+            _datastore.SaveManagerData(
                 _viewPanel.RoseFolderPath,
                 _viewPanel.RunAsAdmin,
-                _accountList.Values.ToList()
+                _accountList.Values.ToList(),
+                _partyList.Values.ToList()
             );
         }
 
         /// <summary>
         /// Refreshes the list
         /// </summary>
-        private void RefreshList()
+        private void RefreshAccountList()
         {
-            _viewPanel.ClearDisplay();
+            _viewPanel.AccountDisplay.ClearDisplay();
             foreach (Account account in _accountList.Values) {
-                _viewPanel.AddAccountToDisplay(account);
+                _viewPanel.AccountDisplay.AddToDisplay(account);
             };
+        }
+
+        private void RefreshPartyList()
+        {
+            _viewPanel.PartyDisplay.ClearDisplay();
+            foreach(Party party in _partyList.Values)
+            {
+                _viewPanel.PartyDisplay.AddToDisplay(party);
+            }
         }
 
         /// <summary>
@@ -106,28 +122,31 @@ namespace AruaRoseLoginManager.Controllers
         /// <param name="password">The password to use</param>
         private void AccountManagerPanel_LoginRequest(object sender, LoginEventArgs e)
         {
-            Account account = _accountList[e.Id];
+            LoginAccount(_accountList[e.Id], e.ServerId, _viewPanel.RoseFolderPath, _viewPanel.RunAsAdmin);
+        }
+
+        private void AccountManagerPanel_PromptedLoginRequest(object sender, LoginWithPassEventArgs e)
+        {
+            string passwordHash = MD5Generator.GetMd5Hash(e.Password);
+            Account account = new Account(e.Id, passwordHash);
+            LoginAccount(account, e.ServerId, _viewPanel.RoseFolderPath, _viewPanel.RunAsAdmin);
+        }
+
+        private void LoginAccount(Account account, Server serverId, string roseFolderPath, bool runAsAdmin)
+        {
             string passwordHash = account.PasswordHash;
-
-            //Check if the passwords empty
-            if (passwordHash == string.Empty)
+            if (string.IsNullOrWhiteSpace(passwordHash))
             {
-                //Prompt the user for the password
-                passwordHash = _viewPanel.PromptForPassword(account.Username);
-                if (passwordHash == string.Empty)
-                {
-                    //If the password is still empty, just return
-                    return;
-                }
+                _viewPanel.AccountDisplay.PromptForPassword(account.Username, serverId);
+                return;
             }
-
             //Start a thread for the new login process
             Thread loginThread = new Thread(() => LoginAccountThread(
                 account.Username,
-                passwordHash,
-                e.ServerId,
-                _viewPanel.RoseFolderPath,
-                _viewPanel.RunAsAdmin
+                account.PasswordHash,
+                serverId,
+                roseFolderPath,
+                runAsAdmin
             ));
             loginThread.Start();
         }
@@ -143,8 +162,10 @@ namespace AruaRoseLoginManager.Controllers
         {
             //Start the process for TRose.exe
             System.Diagnostics.Process process = new System.Diagnostics.Process();
-            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-            startInfo.FileName = @"TRose.exe";
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = @"TRose.exe"
+            };
             if (roseFilePath == string.Empty)
             {
                 _viewPanel.ShowMessageBox("Please select your AruaROSE folder below!");
@@ -175,26 +196,23 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event args</param>
-        private void AccountManagerPanel_AddAccountRequest(object sender, AccountEventArgs e)
+        private void AccountManagerPanel_AddAccountRequest(object sender, DataEventArgs<Account> e)
         {
             if (sender != null)
             {
-                if (!string.IsNullOrWhiteSpace(e.Account.Username))
+                if (!string.IsNullOrWhiteSpace(e.Data.Username))
                 {
-                    _accountList.Add(e.Account.Username, e.Account);
-                    _viewPanel.AddAccountToDisplay(e.Account);
+                    _accountList.Add(e.Data.Username, e.Data);
+                    _viewPanel.AccountDisplay.AddToDisplay(e.Data);
                 }
             }
         }
 
         private void AccountManagerPanel_EditAccountRequest(object sender, ListEventArgs e)
         {
-            if (sender != null)
+            if (sender != null && _accountList.ContainsKey(e.Id))
             {
-                if (_accountList.ContainsKey(e.Id))
-                {
-                    _viewPanel.PromptForAccount(_accountList[e.Id]);
-                }
+                _viewPanel.AccountDisplay.Prompt(_accountList[e.Id]);
             }
         }
 
@@ -203,16 +221,16 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event args</param>
-        private void AccountManagerPanel_UpdateAccountRequest(object sender, AccountEventArgs e)
+        private void AccountManagerPanel_UpdateAccountRequest(object sender, DataEventArgs<Account> e)
         {
             if (
                 sender != null
-                && !string.IsNullOrWhiteSpace(e.Account.Username)
-                && _accountList.ContainsKey(e.Account.Username)
+                && !string.IsNullOrWhiteSpace(e.Data.Username)
+                && _accountList.ContainsKey(e.Data.Username)
             )
             {
-                _accountList[e.Account.Username] = e.Account;
-                RefreshList();
+                _accountList[e.Data.Username] = e.Data;
+                RefreshAccountList();
             }
         }
 
@@ -229,7 +247,7 @@ namespace AruaRoseLoginManager.Controllers
                 orderedList.RemoveAt(currentIndex);
                 orderedList.Insert(newIndex, accountToMove);
                 _accountList = orderedList.ToDictionary(account => account.Username);
-                RefreshList();
+                RefreshAccountList();
             }
         }
 
@@ -238,21 +256,27 @@ namespace AruaRoseLoginManager.Controllers
             if (sender != null)
             {
                 _accountList.Remove(e.Id);
-                RefreshList();
+                RefreshAccountList();
             }
         }
 
-        private void AccountManagerPanel_LoginPartyRequest(object sender, ListEventArgs e)
+        private void AccountManagerPanel_LoginPartyRequest(object sender, LoginEventArgs e)
         {
-            
+            Party party = _partyList[e.Id];
+            foreach(string account in party.Accounts)
+            {
+                LoginAccount(_accountList[account], e.ServerId, _viewPanel.RoseFolderPath, _viewPanel.RunAsAdmin);
+            }
         }
 
         private void AccountManagerPanel_NewPartyRequest(object sender, EventArgs e)
         {
             if (sender != null)
             {
-                IEnumerable<string> accounts = _accountList.Values.Select(x => x.Username);
-                _viewPanel.PromptForParty(accounts);
+                IEnumerable<string> accounts = _accountList.Values
+                    .Where(x => !string.IsNullOrWhiteSpace(x.PasswordHash))
+                    .Select(x => x.Username);
+                _viewPanel.PartyDisplay.Prompt(accounts);
             }
         }
 
@@ -263,8 +287,55 @@ namespace AruaRoseLoginManager.Controllers
                 if (!string.IsNullOrWhiteSpace(e.Data.Name))
                 {
                     _partyList.Add(e.Data.Name, e.Data);
-                    //_viewPanel.AddPartyToDisplay(e.Data);
+                    _viewPanel.PartyDisplay.AddToDisplay(e.Data);
                 }
+            }
+        }
+
+        private void AccountManagerPanel_EditPartyRequest(object sender, ListEventArgs e)
+        {
+            if (sender != null && _partyList.ContainsKey(e.Id))
+            {
+                _viewPanel.AccountDisplay.Prompt(_accountList[e.Id]);
+            }
+        }
+
+        private void AccountManagerPanel_UpdatePartyRequest(object sender, DataEventArgs<Party> e)
+        {
+            if (
+                sender != null
+                && !string.IsNullOrWhiteSpace(e.Data.Name)
+                && _partyList.ContainsKey(e.Data.Name)
+            )
+            {
+                _partyList[e.Data.Name] = e.Data;
+                RefreshPartyList();
+            }
+        }
+
+        private void AccountManagerPanel_MovePartyRequest(object sender, MoveListItemEventArgs e)
+        {
+            List<Party> orderedList = _partyList.Values.ToList();
+            Party partyToMove = orderedList.Find(party => party.Name == e.Id);
+            int currentIndex = orderedList.IndexOf(partyToMove);
+            if (sender != null && currentIndex != -1)
+            {
+                int newIndex = e.Direction == MovementDirection.Up
+                    ? currentIndex - 1
+                    : currentIndex + 1;
+                orderedList.RemoveAt(currentIndex);
+                orderedList.Insert(newIndex, partyToMove);
+                _partyList = orderedList.ToDictionary(party => party.Name);
+                RefreshPartyList();
+            }
+        }
+
+        private void AccountManagerPanel_DeletePartyRequest(object sender, ListEventArgs e)
+        {
+            if (sender != null)
+            {
+                _partyList.Remove(e.Id);
+                RefreshPartyList();
             }
         }
     }
