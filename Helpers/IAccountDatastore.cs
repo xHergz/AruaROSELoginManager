@@ -41,12 +41,18 @@ namespace AruaRoseLoginManager.DAL
         bool GetRunAsAdmin();
 
         /// <summary>
+        /// Gets the height and width saved for the window
+        /// </summary>
+        /// <returns>The window size object</returns>
+        WindowSize GetWindowSize();
+
+        /// <summary>
         /// Saves all the accounts to the datastore
         /// </summary>
         /// <param name="filePath">The file path of the ROSE directory</param>
         /// <param name="runAdAdmin">Whether or not to run as admin</param>
         /// <param name="allAccounts">The list of accounts to save</param>
         /// <param name="allParties">The list of parties to save</param>
-        void SaveManagerData(string filePath, bool runAdAdmin, List<Account> allAccounts, List<Party> allParties);
+        void SaveManagerData(string filePath, bool runAdAdmin, WindowSize size, List<Account> allAccounts, List<Party> allParties);
     }
 }

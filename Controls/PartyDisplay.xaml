@@ -13,13 +13,15 @@
             <RowDefinition Height="45" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="50" />
+            <ColumnDefinition MinWidth="5" MaxWidth="50"/>
+            <ColumnDefinition Width="*" MinWidth="240"/>
+            <ColumnDefinition MinWidth="5" MaxWidth="50"/>
         </Grid.ColumnDefinitions>
-        <Button Name="_addPartyButton" Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Right" Margin="0 0 0 5" Content="_New Party" Click="NewPartyButton_Click" />
+        <Button Name="_addPartyButton" Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Right" Margin="0 5 0 5" Click="NewPartyButton_Click" >
+            <Label Content="_New Party" FontSize="16"/>
+        </Button>
         <ScrollViewer Name="_partyDisplayScrollViewer" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
-            <StackPanel Name="PartyStackPanel" Grid.Row="1" Grid.Column="1" >
+            <StackPanel Name="_partyStackPanel" Grid.Row="1" Grid.Column="1" >
 
             </StackPanel>
         </ScrollViewer>

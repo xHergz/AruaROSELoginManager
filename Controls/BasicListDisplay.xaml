@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:AruaRoseLoginManager.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="35" d:DesignWidth="200">
-    <Grid Name="ListDisplayGrid" Background="#EAEAEA">
+    <Grid Name="_listDisplayGrid" Background="#EAEAEA">
         <Grid.RowDefinitions>                          
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -14,9 +14,9 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="35" />
         </Grid.ColumnDefinitions>
-        <TextBlock Name="_descriptionLabel" Text="Description" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Name="_descriptionLabel" Text="Description" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="5 0 0 0"/>
         <Button Name="_deleteButton" Grid.Row="0" Grid.Column="3" Width="25" Height="25" Click="DeleteButton_Click" Margin="5">
-            <Image Source="../Assets/trash-alt-solid.png" />
+            <Image Source="../Assets/delete-icon.png" />
         </Button>
     </Grid>
     <UserControl.Resources>

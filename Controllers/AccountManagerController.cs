@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-using AruaRoseLoginManager.Controls;
 using AruaRoseLoginManager.DAL;
 using AruaRoseLoginManager.Data;
 using AruaRoseLoginManager.Enum;
@@ -35,6 +34,9 @@ namespace AruaRoseLoginManager.Controllers
         /// </summary>
         private Dictionary<string, Account> _accountList;
 
+        /// <summary>
+        /// The list of all the parties
+        /// </summary>
         private Dictionary<string, Party> _partyList;
 
         /// <summary>
@@ -78,6 +80,7 @@ namespace AruaRoseLoginManager.Controllers
 
             _viewPanel.RoseFolderPath = _datastore.GetFilePath();
             _viewPanel.RunAsAdmin = _datastore.GetRunAsAdmin();
+            _viewPanel.Size = _datastore.GetWindowSize();
 
             return true;
         }
@@ -90,13 +93,14 @@ namespace AruaRoseLoginManager.Controllers
             _datastore.SaveManagerData(
                 _viewPanel.RoseFolderPath,
                 _viewPanel.RunAsAdmin,
+                _viewPanel.Size,
                 _accountList.Values.ToList(),
                 _partyList.Values.ToList()
             );
         }
 
         /// <summary>
-        /// Refreshes the list
+        /// Refreshes the account list
         /// </summary>
         private void RefreshAccountList()
         {
@@ -106,6 +110,9 @@ namespace AruaRoseLoginManager.Controllers
             };
         }
 
+        /// <summary>
+        /// Refreshes the party list
+        /// </summary>
         private void RefreshPartyList()
         {
             _viewPanel.PartyDisplay.ClearDisplay();
@@ -118,13 +125,18 @@ namespace AruaRoseLoginManager.Controllers
         /// <summary>
         /// Opens a ROSE client with the given credentials to log in
         /// </summary>
-        /// <param name="username">The username to log in</param>
-        /// <param name="password">The password to use</param>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_LoginRequest(object sender, LoginEventArgs e)
         {
             LoginAccount(_accountList[e.Id], e.ServerId, _viewPanel.RoseFolderPath, _viewPanel.RunAsAdmin);
         }
 
+        /// <summary>
+        /// Opens a ROSE client with the credentials given when the user enters the password
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_PromptedLoginRequest(object sender, LoginWithPassEventArgs e)
         {
             string passwordHash = MD5Generator.GetMd5Hash(e.Password);
@@ -132,6 +144,13 @@ namespace AruaRoseLoginManager.Controllers
             LoginAccount(account, e.ServerId, _viewPanel.RoseFolderPath, _viewPanel.RunAsAdmin);
         }
 
+        /// <summary>
+        /// Checks if the required information is there before starting a thread to open the ROSE client
+        /// </summary>
+        /// <param name="account">The account information to log in</param>
+        /// <param name="serverId">The server to select</param>
+        /// <param name="roseFolderPath">Path to the folder containing the rose client</param>
+        /// <param name="runAsAdmin">Whether to run as admin or not</param>
         private void LoginAccount(Account account, Server serverId, string roseFolderPath, bool runAsAdmin)
         {
             string passwordHash = account.PasswordHash;
@@ -168,31 +187,29 @@ namespace AruaRoseLoginManager.Controllers
             };
             if (roseFilePath == string.Empty)
             {
-                _viewPanel.ShowMessageBox("Please select your AruaROSE folder below!");
+                _viewPanel.ShowMessageBox("Please select your AruaROSE folder in the Options tab.");
+                return;
             }
-            else
+            startInfo.WorkingDirectory = roseFilePath;
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            startInfo.Arguments = "_account " + username + " _passwordMD5 " + password + " _server " + serverId.ToString("D") + " _channel 1";
+            if (runAsAdmin)
             {
-                startInfo.WorkingDirectory = roseFilePath;
-                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-                startInfo.Arguments = "_account " + username + " _passwordMD5 " + password + " _server " + serverId.ToString("D") + " _channel 1";
-                if (runAsAdmin)
-                {
-                    startInfo.Verb = "runas";
-                }
-                process.StartInfo = startInfo;
-                try
-                {
-                    process.Start();
-                }
-                catch(Exception ex)
-                {
-                    _viewPanel.ShowMessageBox(ex.Message);
-                }
+                startInfo.Verb = "runas";
+            }
+            process.StartInfo = startInfo;
+            try
+            {
+                process.Start();
+            }
+            catch (Exception ex)
+            {
+                _viewPanel.ShowMessageBox(ex.Message);
             }
         }
 
         /// <summary>
-        /// Handles the event raised when adding an account
+        /// Event handler for adding an account
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event args</param>
@@ -208,6 +225,11 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Event handler for editting an account
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_EditAccountRequest(object sender, ListEventArgs e)
         {
             if (sender != null && _accountList.ContainsKey(e.Id))
@@ -217,7 +239,7 @@ namespace AruaRoseLoginManager.Controllers
         }
 
         /// <summary>
-        /// Handles the event raised when updating an account
+        /// Event handler for an account
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Event args</param>
@@ -234,6 +256,11 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Event handler for moving an account
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_MoveAccountRequest(object sender, MoveListItemEventArgs e)
         {
             List<Account> orderedList = _accountList.Values.ToList();
@@ -251,15 +278,31 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Event handler for deleting an account
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_DeleteAccountRequest(object sender, ListEventArgs e)
         {
             if (sender != null)
             {
                 _accountList.Remove(e.Id);
+                List<Party> affectedParties = _partyList.Values.Where(x => x.Accounts.Contains(e.Id)).ToList();
+                foreach (Party party in affectedParties)
+                {
+                    _partyList.Remove(party.Name);
+                }
                 RefreshAccountList();
+                RefreshPartyList();
             }
         }
 
+        /// <summary>
+        /// Event handler for logging in a party
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_LoginPartyRequest(object sender, LoginEventArgs e)
         {
             Party party = _partyList[e.Id];
@@ -269,6 +312,11 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Event handler for prompting for a new party
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_NewPartyRequest(object sender, EventArgs e)
         {
             if (sender != null)
@@ -280,6 +328,11 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Event handler for adding a new party
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_AddPartyRequest(object sender, DataEventArgs<Party> e)
         {
             if (sender != null)
@@ -292,14 +345,27 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Event handler for editing a party
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_EditPartyRequest(object sender, ListEventArgs e)
         {
             if (sender != null && _partyList.ContainsKey(e.Id))
             {
-                _viewPanel.AccountDisplay.Prompt(_accountList[e.Id]);
+                IEnumerable<string> accounts = _accountList.Values
+                    .Where(x => !string.IsNullOrWhiteSpace(x.PasswordHash))
+                    .Select(x => x.Username);
+                _viewPanel.PartyDisplay.Prompt(accounts, _partyList[e.Id]);
             }
         }
 
+        /// <summary>
+        /// Event handler for updating a party
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_UpdatePartyRequest(object sender, DataEventArgs<Party> e)
         {
             if (
@@ -313,6 +379,11 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Event handler for moving a party
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_MovePartyRequest(object sender, MoveListItemEventArgs e)
         {
             List<Party> orderedList = _partyList.Values.ToList();
@@ -330,6 +401,11 @@ namespace AruaRoseLoginManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Event handler for deleting a party
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void AccountManagerPanel_DeletePartyRequest(object sender, ListEventArgs e)
         {
             if (sender != null)

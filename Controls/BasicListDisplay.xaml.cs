@@ -1,4 +1,11 @@
-﻿using System;
+﻿//
+// FILE     : BasicListDisplay.xaml.cs
+// PROJECT  : AruaROSE Login Manager
+// AUTHOR   : xHergz
+// DATE     : 2021-02-18
+// 
+
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,6 +18,9 @@ namespace AruaRoseLoginManager.Controls
     /// </summary>
     public partial class BasicListDisplay : UserControl
     {
+        /// <summary>
+        /// Unique identifier for the list item
+        /// </summary>
         private string _identifier;
 
         /// <summary>
@@ -18,6 +28,11 @@ namespace AruaRoseLoginManager.Controls
         /// </summary>
         public event EventHandler<ListEventArgs> DeleteListItem;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">A unqiue identifier for the list item</param>
+        /// <param name="description">Description to display for the list item</param>
         public BasicListDisplay(string id, string description)
         {
             InitializeComponent();
@@ -25,6 +40,11 @@ namespace AruaRoseLoginManager.Controls
             _descriptionLabel.Text = description;
         }
 
+        /// <summary>
+        /// Event handler for the delete button
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (sender != null && DeleteListItem != null)

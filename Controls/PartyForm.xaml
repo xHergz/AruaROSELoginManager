@@ -24,23 +24,24 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
+            <RowDefinition Height="15" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="25" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="25"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Content="Party Name*" Grid.ColumnSpan="2" />
         <Label Name="_partyNameError" Grid.Row="0" Content="Party Name is required" HorizontalContentAlignment="Right" Foreground="Red" Visibility="Hidden" TextInput="_partyNameError_TextInput" Grid.ColumnSpan="2"/>
-        <TextBox Name="_partyNameTextBox" Grid.Row="1" TabIndex="0" Grid.ColumnSpan="2" FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"/>
+        <TextBox Name="_partyNameTextBox" Grid.Row="1" TabIndex="0" Grid.ColumnSpan="2"/>
         <Label Grid.Row="2" Content="Description" Grid.ColumnSpan="2" />
         <TextBox Name="_descriptionTextBox" Grid.Row="3" TabIndex="2" Grid.ColumnSpan="2" />
         <Label Grid.Row="4" Content="Select Accounts" Grid.ColumnSpan="2" />
-        <ComboBox Name="_accountComboBox" Grid.Row="5" TabIndex="3" Grid.ColumnSpan="1" Margin="0 0 5 0"/>
-        <Button Name="_addAccountButton" Grid.Row="5"  Grid.Column="1" TabIndex="4" Content="Add" Click="AddAccountButton_Click"/>
+        <ComboBox Name="_accountComboBox" Grid.Row="5" TabIndex="3" Grid.ColumnSpan="1" />
+        <Button Name="_addAccountButton" Grid.Row="5"  Grid.Column="1" TabIndex="4" Click="AddAccountButton_Click">
+            <Image Source="/Assets/add-icon.png" />
+        </Button>
         <Label Grid.Row="6" Content="Party Members" Grid.ColumnSpan="2" />
         <Label Name="_partyMembersError" Grid.Row="6" Content="At least 2 party members are required" HorizontalContentAlignment="Right" Foreground="Red" Visibility="Hidden" Grid.ColumnSpan="2"/>
         <Label Grid.Row="7" Content="None" Grid.ColumnSpan="2" FontStyle="Italic"/>

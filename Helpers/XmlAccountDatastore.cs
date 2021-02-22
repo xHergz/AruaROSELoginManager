@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 
 using AruaRoseLoginManager.Data;
@@ -22,7 +23,7 @@ namespace AruaRoseLoginManager.DAL
         /// <summary>
         /// The save files name
         /// </summary>
-        private const string FILE_NAME = "AccountManager_New.xml";
+        private const string FILE_NAME = "AccountManager.xml";
 
         /// <summary>
         /// The parent element name
@@ -58,6 +59,16 @@ namespace AruaRoseLoginManager.DAL
         /// The parent elements attribute to hold the run as admin flag
         /// </summary>
         private const string RUN_AS_ADMIN_ATTRIBUTE = "runAsAdmin";
+
+        /// <summary>
+        /// The parent elements attribute to hold the window height
+        /// </summary>
+        private const string WINDOW_HEIGHT_ATTRIBUTE = "windowHeight";
+
+        /// <summary>
+        /// The parent elements attribute to hold window width
+        /// </summary>
+        private const string WINDOW_WIDTH_ATTRIBUTE = "windowWidth";
 
         /// <summary>
         /// The account elements attribute to hold the username
@@ -144,6 +155,10 @@ namespace AruaRoseLoginManager.DAL
             return loadedAccounts;
         }
 
+        /// <summary>
+        /// Loads all the parties from the XML document
+        /// </summary>
+        /// <returns>The list of parties</returns>
         public List<Party> GetAllParties()
         {
             List<Party> loadedParties = new List<Party>();
@@ -216,11 +231,38 @@ namespace AruaRoseLoginManager.DAL
         }
 
         /// <summary>
-        /// Saves all the accounts to the XML file
+        /// Loads the window size from the XML document
+        /// </summary>
+        /// <returns>The window size with width and height</returns>
+        public WindowSize GetWindowSize()
+        {
+            WindowSize windowSize = WindowSize.Default;
+
+            if (File.Exists(_completeFilePath))
+            {
+                _saveFile = XDocument.Load(_completeFilePath);
+                XElement accountManagerElement =_saveFile.Descendants(MANAGER_ELEMENT).FirstOrDefault();
+                if (
+                    accountManagerElement != null
+                    && accountManagerElement.Attribute(WINDOW_WIDTH_ATTRIBUTE) != null
+                    && accountManagerElement.Attribute(WINDOW_HEIGHT_ATTRIBUTE) != null
+                    && int.TryParse(accountManagerElement.Attribute(WINDOW_WIDTH_ATTRIBUTE).Value, out int width)
+                    && int.TryParse(accountManagerElement.Attribute(WINDOW_HEIGHT_ATTRIBUTE).Value, out int height)
+                )
+                {
+                    windowSize = new WindowSize() { Height = height, Width = width };
+                }
+            }
+
+            return windowSize;
+        }
+
+        /// <summary>
+        /// Saves all the login manager data to the XML file
         /// </summary>
         /// <param name="filePath">The path to the ROSE folder</param>
         /// <param name="allAccounts">The list of accounts to save</param>
-        public void SaveManagerData(string filePath, bool runAdAdmin, List<Account> allAccounts, List<Party> allParties)
+        public void SaveManagerData(string filePath, bool runAdAdmin, WindowSize size, List<Account> allAccounts, List<Party> allParties)
         {
             _saveFile = new XDocument();
 
@@ -228,9 +270,11 @@ namespace AruaRoseLoginManager.DAL
             XElement managerElement = new XElement(MANAGER_ELEMENT);
             managerElement.Add(new XAttribute(FOLDER_ATTRIBUTE, filePath));
             managerElement.Add(new XAttribute(RUN_AS_ADMIN_ATTRIBUTE, runAdAdmin));
-            
+            managerElement.Add(new XAttribute(WINDOW_HEIGHT_ATTRIBUTE, size.Height));
+            managerElement.Add(new XAttribute(WINDOW_WIDTH_ATTRIBUTE, size.Width));
+
             //Create the account elements
-            foreach(Account account in allAccounts)
+            foreach (Account account in allAccounts)
             {
                 XElement accountElement = new XElement(ACCOUNT_ELEMENT);
                 accountElement.Add(new XAttribute(USERNAME_ATTRIBUTE, account.Username));

@@ -24,9 +24,8 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
+            <RowDefinition Height="15" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="25" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -34,7 +33,7 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Content="Username*" Grid.ColumnSpan="2" />
         <Label Name="_usernameError" Grid.Row="0" Content="Username is required" HorizontalContentAlignment="Right" Foreground="Red" Visibility="Hidden" TextInput="_usernameError_TextInput" Grid.ColumnSpan="2"/>
-        <TextBox Name="_usernameTextBox" Grid.Row="1" TabIndex="0" Grid.ColumnSpan="2" FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"/>
+        <TextBox Name="_usernameTextBox" Grid.Row="1" TabIndex="0" Grid.ColumnSpan="2"/>
         <Label Grid.Row="2" Content="Password" Grid.ColumnSpan="2" />
         <Label Name="_reinputPasswordTip" Grid.Row="2" Content="Reinput password to save it again" HorizontalContentAlignment="Right" Foreground="Yellow" Visibility="Hidden"/>
         <PasswordBox Name="_passwordTextBox" Grid.Row="3" TabIndex="1" Grid.ColumnSpan="2" />
@@ -59,10 +58,9 @@
                 <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Name="_cancelButton" Grid.Column="0" Content="Cancel" TabIndex="9" IsCancel="True" Click="CancelButton_Click" />
-            <Button Name="_saveAccountButton" Grid.Column="2" Content="Save" TabIndex="8" IsDefault="True" Click="SaveAccountButton_Click" />
+            <Button Name="_cancelButton" Grid.Column="0" Content="Cancel" TabIndex="9" IsCancel="True" VerticalContentAlignment="Center" Click="CancelButton_Click" />
+            <Button Name="_saveAccountButton" Grid.Column="2" Content="Save" TabIndex="8" IsDefault="True"  VerticalContentAlignment="Center" Click="SaveAccountButton_Click" />
         </Grid>
-        
     </Grid>
     <UserControl.Resources>
         <ResourceDictionary>

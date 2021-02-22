@@ -36,10 +36,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>loginmanager.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.WindowsAPICodePack-Core.1.1.0.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
@@ -89,6 +95,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\LinkButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\LoginForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +123,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TabButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Resource Include="Resources\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +139,9 @@
     </Compile>
     <Compile Include="Controls\BasicListDisplay.xaml.cs">
       <DependentUpon>BasicListDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LinkButton.xaml.cs">
+      <DependentUpon>LinkButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
@@ -144,19 +161,20 @@
     <Compile Include="Controls\PartyForm.xaml.cs">
       <DependentUpon>PartyForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TabButton.xaml.cs">
+      <DependentUpon>TabButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\Account.cs" />
-    <Compile Include="Data\AccountEventArgs.cs" />
     <Compile Include="Data\ListEventArgs.cs" />
     <Compile Include="Data\LoginEventArgs.cs" />
     <Compile Include="Data\MoveListItemEventArgs.cs" />
     <Compile Include="Data\Party.cs" />
     <Compile Include="Data\DataEventArgs.cs" />
+    <Compile Include="Enum\DisplayPanel.cs" />
     <Compile Include="Enum\PanelMode.cs" />
-    <Compile Include="Enum\LoginType.cs" />
     <Compile Include="Enum\MovementDirection.cs" />
     <Compile Include="Enum\Server.cs" />
-    <Compile Include="Enum\WindowSize.cs" />
-    <Compile Include="Helpers\ButtonCommand.cs" />
+    <Compile Include="Data\WindowSize.cs" />
     <Compile Include="Helpers\IAccountDatastore.cs" />
     <Compile Include="Helpers\IAccountDisplay.cs" />
     <Compile Include="Helpers\ILoginDisplay.cs" />
@@ -208,16 +226,47 @@
     <Resource Include="Emblems\emblem9.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\check-circle-solid.png" />
-    <Resource Include="Assets\chevron-down-solid.png" />
-    <Resource Include="Assets\chevron-up-solid.png" />
-    <Resource Include="Assets\edit-solid.png" />
-    <Resource Include="Assets\exclamation-circle-solid.png" />
-    <Resource Include="Assets\trash-alt-solid.png" />
+    <Resource Include="Assets\check-icon.png" />
+    <Resource Include="Assets\edit-icon.png" />
+    <Resource Include="Assets\exclamation-icon.png" />
+    <Resource Include="Assets\delete-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\chevron-down-solid-new.png" />
-    <Resource Include="Assets\chevron-up-solid-new.png" />
+    <Resource Include="Assets\chevron-down.png" />
+    <Resource Include="Assets\chevron-up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\discord-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\arua-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\github-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\bug-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\lightbulb-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\accounts-icon.png" />
+    <Resource Include="Assets\info-icon.png" />
+    <Resource Include="Assets\parties-icon.png" />
+    <Resource Include="Assets\settings-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\search-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\add-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\loginmanager.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="loginmanager.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

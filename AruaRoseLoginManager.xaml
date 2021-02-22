@@ -5,7 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AruaRoseLoginManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="650" Initialized="Window_Initialized" Closing="Window_Closing" Padding="0">
+        Title="AruaROSE Login Manager" Height="650" Width="650" Closing="Window_Closing" Padding="0" Icon="Assets/loginmanager.ico" WindowStartupLocation="CenterScreen">
     <DockPanel x:Name="MainPanel" LastChildFill="True">
     </DockPanel>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 </Window>
