@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="AruaRoseLoginManager.Controls.PartyForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AruaRoseLoginManager.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="525" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="15" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Content="Party Name*" Grid.ColumnSpan="2" />
+        <Label Name="_partyNameError" Grid.Row="0" Content="Party Name is required" HorizontalContentAlignment="Right" Foreground="Red" Visibility="Hidden" TextInput="_partyNameError_TextInput" Grid.ColumnSpan="2"/>
+        <TextBox Name="_partyNameTextBox" Grid.Row="1" TabIndex="0" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="2" Content="Description" Grid.ColumnSpan="2" />
+        <TextBox Name="_descriptionTextBox" Grid.Row="3" TabIndex="2" Grid.ColumnSpan="2" />
+        <Label Grid.Row="4" Content="Select Accounts" Grid.ColumnSpan="2" />
+        <ComboBox Name="_accountComboBox" Grid.Row="5" TabIndex="3" Grid.ColumnSpan="1" />
+        <Button Name="_addAccountButton" Grid.Row="5"  Grid.Column="1" TabIndex="4" Click="AddAccountButton_Click">
+            <Image Source="/Assets/add-icon.png" />
+        </Button>
+        <Label Grid.Row="6" Content="Party Members" Grid.ColumnSpan="2" />
+        <Label Name="_partyMembersError" Grid.Row="6" Content="At least 2 party members are required" HorizontalContentAlignment="Right" Foreground="Red" Visibility="Hidden" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="7" Content="None" Grid.ColumnSpan="2" FontStyle="Italic"/>
+        <ScrollViewer Name="_partyListScrollViewer" Grid.Row="7" Grid.RowSpan="9" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel Name="_partyListStackPanel">
+
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="17" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="25" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Name="_cancelButton" Grid.Column="0" Content="Cancel" TabIndex="9" IsCancel="True" Click="CancelButton_Click" />
+            <Button Name="_savePartyButton" Grid.Column="2" Content="Save" TabIndex="8" IsDefault="True" Click="SavePartyButton_Click" />
+        </Grid>
+
+    </Grid>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+</UserControl>

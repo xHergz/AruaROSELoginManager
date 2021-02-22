@@ -8,7 +8,7 @@
 using System.Text;
 using System.Security.Cryptography;
 
-namespace AruaROSELoginManager.Helpers
+namespace AruaRoseLoginManager.Helpers
 {
     /// <summary>
     /// Generates MD5 hashes from strings

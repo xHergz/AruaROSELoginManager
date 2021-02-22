@@ -41,9 +41,8 @@ The installer will provide 15 emblems that are taken from the game itself. These
 ![](https://imgur.com/uri6n1f.png)
 
 ## Assets
-+ The background is a screenshot taken by me in [AruaROSE](http://www.aruarose.com).
-+ The "+" button was made by me in paint.
-+ The up/down arrows and the delete button are from [FatCow](http://www.fatcow.com/free-icons)
++ The icons (Circle checkmark, exclamation point, edit, and delete) are from [FontAwerome's](https://fontawesome.com/icons?d=gallery&m=free) free icons.
+  + I modified the colour of these icons to fit the purposes of the application and converted them to PNGs. The image names are still the same so you can find the originals on the website.
 + The emblems that come with the installer are taken from the [AruaROSE Armory](http://armory.aruarose.com)
 
 <!-- Imgur album with the pictures: https://imgur.com/a/wWsqK)) -->

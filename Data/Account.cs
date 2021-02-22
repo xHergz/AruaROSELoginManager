@@ -2,10 +2,12 @@
 // FILE     : Account.cs
 // PROJECT  : AruaROSE Login Manager
 // AUTHOR   : xHergz
-// DATE     : 2017-05-23
+// DATE     : 2018-10-18
 // 
 
-namespace AruaROSELoginManager.Data
+using System.Collections.Generic;
+
+namespace AruaRoseLoginManager.Data
 {
     /// <summary>
     /// Holds the information for an account
@@ -13,42 +15,38 @@ namespace AruaROSELoginManager.Data
     public class Account
     {
         /// <summary>
-        /// The account username
+        /// Account username
         /// </summary>
-        private string _username;
+        public string Username { get; private set; }
 
         /// <summary>
-        /// The account password 
+        /// Account MD5 password hash
         /// </summary>
-        private string _password;
+        public string PasswordHash { get; private set; }
+
+        /// <summary>
+        /// A description of the account
+        /// </summary>
+        public string Description { get; private set; }
+
+        /// <summary>
+        /// Characters on the account
+        /// </summary>
+        public List<string> Characters { get; private set; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="username">The username to use</param>
-        /// <param name="password">The password to use</param>
-        public Account(string username, string password)
+        /// <param name="username">The account username</param>
+        /// <param name="passwordHash">The account MD5 password hash</param>
+        /// <param name="description">A description of the account</param>
+        /// <param name="characters">Characters on the account</param>
+        public Account(string username, string passwordHash, string description = "", List<string> characters = null)
         {
-            _username = username;
-            _password = password;
-        }
-
-        /// <summary>
-        /// Gets/Sets the Username of the account
-        /// </summary>
-        public string Username
-        {
-            get { return _username; }
-            set { _username = value; }
-        }
-
-        /// <summary>
-        /// Gets/Sets the Password of the account
-        /// </summary>
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
+            Username = username;
+            PasswordHash = passwordHash;
+            Description = description;
+            Characters = characters ?? new List<string>();
         }
     }
 }
