@@ -3,13 +3,31 @@ A WPF application is used to automatically log in to the free to play MMORPG, [A
 
 ![](https://i.imgur.com/rGP5n2f.png)
 
+## Features
+* Account List
+    * Save accounts with username, password, description, and character names
+	* Edit/Delete account information
+	* Move accounts up/down in the list
+* Party List
+	* Create a party with 2 or more accounts that have a password saved to open multiple clients at once
+	* Edit/Delete party information
+	* Move parties up/down in the list
+* Options
+	* Choose to run the client as admin to make sure it has additional privileges
+	* Choose a window size preset
+* Info
+	* Links to the Arua Armory, Arua Discord, Login Manager Source Code, and a forum thread to post suggestions/bugs
+* Misc
+	* Add custom emblems for the account list
+	* Window size persists across uses
+
 ## How to use
 1. Download the latest release
 	+ [Found Here](https://github.com/xHergz/AruaROSELoginManager/releases/download/v2.0.0/v2-0-0.zip)
 2. Extract the contents to a folder
     + i.e. `C:\Users\<user>\AppData\Local\AruaROSELoginManager`
 3. Run the program
-    + (Instructions)[https://imgur.com/a/k31URBX]
+    + [Instructions](https://imgur.com/a/k31URBX)
 4. Close the application to save new data to the XML file
 
 ## Where is the info stored?
@@ -18,12 +36,12 @@ The info you enter is stored in a XML file saved to your AppData/Roaming folder.
 ![](https://i.imgur.com/m1iH5GV.png)
 
 ## Custom emblems
-The installer will provide 15 emblems that are taken from the game itself. These images are not included here in the source code. If you wish to add your own emblems, simply go to the AruaROSELoginManager/Images folder. Delete any "emblemX.png" files you don't want and add any pictures you want to use as emblems. These need to be PNG images and by named emblemX.png where X is the order you want it displayed in. These must be in order or it won't load them. The resolution I used is 75x75, but I believe any resolution should work (I haven't tested this). Here is an example:
+The installer will provide 15 emblems that are taken from the game itself. If you wish to add your own emblems, simply go to the AruaROSELoginManager/Images folder. Delete any "emblemX.png" files you don't want and add any pictures you want to use as emblems. These need to be PNG images and be named emblemX.png where X is the order you want it displayed in. These must be in order or it won't load them. The resolution I used is 75x75, but any resolution will work. Here is an example:
 
 ![](https://i.imgur.com/zQdC24Z.png)
 
 ## Assets
 + Most of the icons used are from the [Material Design Icons](https://material.io/resources/icons/?style=baseline)
-+ The emblems that come with the installer are taken from the [AruaROSE Armory](http://armory.aruarose.com)
++ The emblems that come with the application are taken from the [AruaROSE Armory](http://armory.aruarose.com)
 
 <!-- Imgur album with the pictures: https://imgur.com/a/k31URBX -->
