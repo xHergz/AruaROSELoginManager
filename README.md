@@ -1,4 +1,4 @@
-# AruaROSELoginManager
+# AruaROSE Login Manager
 A WPF application is used to automatically log in to the free to play MMORPG, [AruaROSE](http://www.aruarose.com). You enter your account information which is saved in a XML file in your AppData folder. You can then use one of the login buttons on an account that will open the TRose.exe application with the command line arguments to automatically log you in to the specified server. The program can either store just the account name and will prompt you for the password only or can store both (password MD5 encrypted because it is supported by the game client).
 
 ![](https://i.imgur.com/rGP5n2f.png)
