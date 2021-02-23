@@ -20,6 +20,7 @@ A WPF application is used to automatically log in to the free to play MMORPG, [A
 * Misc
 	* Add custom emblems for the account list
 	* Window size persists across uses
+	* Backwards compatible with v1 (i.e. v1 can open and use v2 saves and vice versa)
 
 ## How to use
 1. Download the latest release
