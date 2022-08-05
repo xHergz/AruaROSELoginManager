@@ -45,4 +45,4 @@ The installer will provide 15 emblems that are taken from the game itself. If yo
 + Most of the icons used are from the [Material Design Icons](https://material.io/resources/icons/?style=baseline)
 + The emblems that come with the application are taken from the [AruaROSE Armory](http://armory.aruarose.com)
 
-<!-- Imgur album with the pictures: https://imgur.com/a/k31URBX -->
+<!-- Imgur album with the pictures: https://imgur.com/a/k31URBX https://i.imgur.com/rGP5n2f.png https://i.imgur.com/zQdC24Z.png -->
