@@ -261,6 +261,24 @@ namespace AruaRoseLoginManager.Controls
         }
 
         /// <summary>
+        /// Event handler for when the seasonal login button is clicked
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event args</param>
+        private void SeasonalLoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender != null && Login != null)
+            {
+                LoginEventArgs args = new LoginEventArgs()
+                {
+                    Id = _itemIdentifier,
+                    ServerId = Server.Seasonal
+                };
+                Login(this, args);
+            }
+        }
+
+        /// <summary>
         /// Event handler for when the delete button is clicked
         /// </summary>
         /// <param name="sender">Event sender</param>

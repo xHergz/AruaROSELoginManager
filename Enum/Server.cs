@@ -14,6 +14,7 @@ namespace AruaRoseLoginManager.Enum
     {
         NotApplicable = -1,
         Arua = 0,
-        Classic = 1
+        Classic = 1,
+        Seasonal = 2
     }
 }

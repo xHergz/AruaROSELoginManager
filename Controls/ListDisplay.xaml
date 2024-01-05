@@ -56,12 +56,23 @@
                 <TextBlock Name="_listItemDescription" Grid.Row="0" Grid.Column="0" Text="Description" TextTrimming="CharacterEllipsis" FontSize="12" FontWeight="Bold" Foreground="#222" Margin="5 0 0 0"/>
                 <TextBlock Name="_listItemDetails" Grid.Row="1" Grid.Column="0" Text="Detail, Detail, Detail, Detail, Detail" TextTrimming="CharacterEllipsis" FontSize="12" FontWeight="Bold" Foreground="#222" Margin="5 0 0 0"/>
             </Grid>
-            <Button Name="_aruaLoginButton" Grid.Row="0" Grid.Column="2" Width="65" Height="25" Content="Arua" FontWeight="Normal" Click="AruaLoginButton_Click"/>
-            <Button Name="_classicLoginButton" Grid.Row="1" Grid.Column="2" Width="65" Height="25" Content="Classic" FontWeight="Normal" Click="ClassicLoginButton_Click"/>
-            <Button Name="_deleteButton" Grid.Row="0" Grid.Column="3" Width="25" Height="25" Click="DeleteButton_Click">
+            <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Name="_aruaLoginButton" Grid.Row="0" Grid.Column="1" Width="65" Height="18" Content="Arua" FontSize="12" FontWeight="Bold" Click="AruaLoginButton_Click"/>
+                <Button Name="_classicLoginButton" Grid.Row="1" Grid.Column="1" Width="65" Height="18" Content="Classic" FontSize="12"  FontWeight="Bold" Click="ClassicLoginButton_Click"/>
+                <Button Name="_seasonalLoginButton" Grid.Row="3" Grid.Column="1" Width="65" Height="18" Content="Seasonal" FontSize="12"  FontWeight="Bold" Click="SeasonalLoginButton_Click"/>
+            </Grid>
+            <Button Name="_deleteButton" Grid.Row="0" Grid.Column="4" Width="25" Height="25" Click="DeleteButton_Click">
                 <Image Source="../Assets/delete-icon.png" Margin="2" />
             </Button>
-            <Button Name="_editButton" Grid.Row="1" Grid.Column="3" Width="25" Height="25" Click="EditButton_Click">
+            <Button Name="_editButton" Grid.Row="1" Grid.Column="4" Width="25" Height="25" Click="EditButton_Click">
                 <Image Source="../Assets/edit-icon.png" Margin="2" />
             </Button>
         </Grid>
